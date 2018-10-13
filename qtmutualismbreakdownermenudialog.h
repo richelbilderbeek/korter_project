@@ -11,7 +11,7 @@ class QtMutualismBreakdownerMenuDialog;
 }
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
 class QtMutualismBreakdownerMenuDialog : public QtHideAndShowDialog
 {

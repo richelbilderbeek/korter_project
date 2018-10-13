@@ -13,7 +13,7 @@
 #pragma GCC diagnostic pop
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
 struct MenuDialog final : public ::ribi::MenuDialog
 {

@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
   QApplication a(argc, argv);
-  ribi::mb::QtMutualismBreakdownerMenuDialog w;
+  ribi::kp::QtMutualismBreakdownerMenuDialog w;
   w.show();
   return a.exec();
 }

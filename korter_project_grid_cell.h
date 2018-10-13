@@ -1,14 +1,14 @@
-#ifndef GRIDCELL_H
-#define GRIDCELL_H
+#ifndef KORTER_PROJECT_GRID_CELL_H
+#define KORTER_PROJECT_GRID_CELL_H
 
 #include "mutualismbreakdownerparameters.h"
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
-struct GridCell
+struct grid_cell
 {
-  GridCell(const Parameters& parameters);
+  grid_cell(const Parameters& parameters);
 
   void AddSeagrassDensity(const double seagrass_density) { m_seagrass_density += seagrass_density; }
   void Change(const double delta_t);
@@ -33,4 +33,4 @@ struct GridCell
 } //~namespace mb
 } //~namespace ribi
 
-#endif // GRIDCELL_H
+#endif // KORTER_PROJECT_GRID_CELL_H

@@ -4,14 +4,14 @@
 #include <vector>
 
 #include "mutualismbreakdownerparameters.h"
-#include "mutualismbreakdownerseagrasssystem.h"
+#include "korter_project_grid_cell.h"
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
 struct SpatialSimulation
 {
-  using Grid = std::vector<std::vector<GridCell>>;
+  using Grid = std::vector<std::vector<grid_cell>>;
 
   SpatialSimulation(const Parameters& parameters);
 

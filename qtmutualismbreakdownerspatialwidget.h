@@ -11,7 +11,7 @@ namespace Ui {
 struct QImage;
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
 class QtMutualismBreakdownerSpatialWidget : public QWidget
 {

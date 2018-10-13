@@ -5,7 +5,7 @@
 #include <memory>
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
 struct Parameters
 {

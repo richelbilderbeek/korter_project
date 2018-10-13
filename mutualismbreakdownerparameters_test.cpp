@@ -9,7 +9,7 @@
 
 #include "fileio.h"
 
-void ribi::mb::Parameters::Test() noexcept
+void ribi::kp::Parameters::Test() noexcept
 {
   {
     static bool is_tested{false};

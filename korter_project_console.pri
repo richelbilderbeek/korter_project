@@ -4,13 +4,13 @@ SOURCES += \
     $$PWD/mutualismbreakdownerparameters.cpp \
     $$PWD/mutualismbreakdownerparameters_test.cpp \
     $$PWD/mutualismbreakdownermenudialog.cpp \
-    $$PWD/mutualismbreakdownerseagrasssystem.cpp \
+    $$PWD/korter_project_grid_cell.cpp \
     $$PWD/mutualismbreakdownerspatialsimulation.cpp
 
 HEADERS  += \
     $$PWD/mutualismbreakdownerparameters.h \
     $$PWD/mutualismbreakdownermenudialog.h \
-    $$PWD/mutualismbreakdownerseagrasssystem.h \
+    $$PWD/korter_project_grid_cell.h \
     $$PWD/mutualismbreakdownerspatialsimulation.h
 
 RESOURCES += \

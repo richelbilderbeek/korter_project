@@ -6,7 +6,7 @@
 
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
-ribi::mb::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
+ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
   QWidget(parent),
   ui(new Ui::QtMutualismBreakdownerParametersWidget)
 {
@@ -35,12 +35,12 @@ ribi::mb::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParamete
   //QObject::connect(m_qtpoisoningwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
 
-ribi::mb::QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()
+ribi::kp::QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()
 {
   delete ui;
 }
 
-ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerParametersWidget::GetParameters() const
+ribi::kp::Parameters ribi::kp::QtMutualismBreakdownerParametersWidget::GetParameters() const
 {
   const Parameters p(
     ui->box_spatial_height->value(),
@@ -53,7 +53,7 @@ ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerParametersWidget::GetParame
   return p;
 }
 
-void ribi::mb::QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
+void ribi::kp::QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
 {
   ui->box_spatial_height->setValue(parameters.GetSpatialHeight());
   ui->box_spatial_width->setValue(parameters.GetSpatialWidth());
@@ -62,14 +62,14 @@ void ribi::mb::QtMutualismBreakdownerParametersWidget::SetParameters(const Param
   ui->box_initial_sulfide_concentration->setValue(parameters.GetInitialSulfidedouble());
 }
 
-void ribi::mb::QtMutualismBreakdownerParametersWidget::OnAnyChange()
+void ribi::kp::QtMutualismBreakdownerParametersWidget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }
 
 
 
-void ribi::mb::QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
+void ribi::kp::QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
 {
   const std::string filename{
     QFileDialog::getSaveFileName().toStdString()
@@ -79,7 +79,7 @@ void ribi::mb::QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
   f << GetParameters();
 }
 
-void ribi::mb::QtMutualismBreakdownerParametersWidget::on_button_load_clicked()
+void ribi::kp::QtMutualismBreakdownerParametersWidget::on_button_load_clicked()
 {
   const std::string filename{
     QFileDialog::getOpenFileName().toStdString()

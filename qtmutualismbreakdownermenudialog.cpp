@@ -12,27 +12,27 @@
 #pragma GCC diagnostic pop
 
 
-ribi::mb::QtMutualismBreakdownerMenuDialog::QtMutualismBreakdownerMenuDialog(QWidget *parent) :
+ribi::kp::QtMutualismBreakdownerMenuDialog::QtMutualismBreakdownerMenuDialog(QWidget *parent) :
     QtHideAndShowDialog(parent),
     ui(new Ui::QtMutualismBreakdownerMenuDialog)
 {
   ui->setupUi(this);
 }
 
-ribi::mb::QtMutualismBreakdownerMenuDialog::~QtMutualismBreakdownerMenuDialog() noexcept
+ribi::kp::QtMutualismBreakdownerMenuDialog::~QtMutualismBreakdownerMenuDialog() noexcept
 {
   delete ui;
 }
 
-void ribi::mb::QtMutualismBreakdownerMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kp::QtMutualismBreakdownerMenuDialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
 
-void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
+void ribi::kp::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
 {
-  About a = ribi::mb::MenuDialog().GetAbout();
+  About a = ribi::kp::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());
@@ -42,13 +42,13 @@ void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_quit_clicked()
+void ribi::kp::QtMutualismBreakdownerMenuDialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::mb::QtMutualismBreakdownerMenuDialog::Test() noexcept
+void ribi::kp::QtMutualismBreakdownerMenuDialog::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -59,7 +59,7 @@ void ribi::mb::QtMutualismBreakdownerMenuDialog::Test() noexcept
 }
 #endif
 
-void ribi::mb::QtMutualismBreakdownerMenuDialog::on_button_start_clicked()
+void ribi::kp::QtMutualismBreakdownerMenuDialog::on_button_start_clicked()
 {
   QtMutualismBreakdownerSpatialPlotDialog d;
   ShowChild(&d);

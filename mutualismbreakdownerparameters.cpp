@@ -4,7 +4,7 @@
 #include <iostream>
 #include <boost/units/io.hpp>
 
-ribi::mb::Parameters::Parameters()
+ribi::kp::Parameters::Parameters()
   :
     m_spatial_height{10},
     m_spatial_width{10},
@@ -17,7 +17,7 @@ ribi::mb::Parameters::Parameters()
   #endif
 }
 
-ribi::mb::Parameters::Parameters(
+ribi::kp::Parameters::Parameters(
   const int spatial_height,
   const int spatial_width,
   const double initial_loripes_density,
@@ -38,7 +38,7 @@ ribi::mb::Parameters::Parameters(
   assert(m_initial_sulfide_concentration >= 0.0);
 }
 
-ribi::mb::Parameters ribi::mb::Parameters::GetTest(const int /* i */)
+ribi::kp::Parameters ribi::kp::Parameters::GetTest(const int /* i */)
 {
 
   const Parameters p(
@@ -55,7 +55,7 @@ ribi::mb::Parameters ribi::mb::Parameters::GetTest(const int /* i */)
 }
 
 /*
-void ribi::mb::Parameters::SetTimeplotDeltaT(const Time any_delta_t)
+void ribi::kp::Parameters::SetTimeplotDeltaT(const Time any_delta_t)
 {
   if (any_delta_t <= 0.0 * boost::units::si::seconds)
   {
@@ -69,7 +69,7 @@ void ribi::mb::Parameters::SetTimeplotDeltaT(const Time any_delta_t)
 }
 */
 
-void ribi::mb::Parameters::SetInitialSeagrassDensity(const double any_initial_seagrass_density)
+void ribi::kp::Parameters::SetInitialSeagrassDensity(const double any_initial_seagrass_density)
 {
   if (any_initial_seagrass_density < 0.0)
   {
@@ -83,7 +83,7 @@ void ribi::mb::Parameters::SetInitialSeagrassDensity(const double any_initial_se
   m_initial_seagrass_density = any_initial_seagrass_density;
 }
 
-std::ostream& ribi::mb::operator<<(std::ostream& os, const Parameters& parameter) noexcept
+std::ostream& ribi::kp::operator<<(std::ostream& os, const Parameters& parameter) noexcept
 {
   os
     << parameter.GetSpatialHeight() << " "
@@ -95,7 +95,7 @@ std::ostream& ribi::mb::operator<<(std::ostream& os, const Parameters& parameter
   return os;
 }
 
-std::istream& ribi::mb::operator>>(std::istream& is, Parameters& parameter) noexcept
+std::istream& ribi::kp::operator>>(std::istream& is, Parameters& parameter) noexcept
 {
   is
     >> parameter.m_spatial_height
@@ -107,7 +107,7 @@ std::istream& ribi::mb::operator>>(std::istream& is, Parameters& parameter) noex
   return is;
 }
 
-bool ribi::mb::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
+bool ribi::kp::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
 {
   return
        lhs.GetSpatialHeight() == rhs.GetSpatialHeight()
@@ -119,7 +119,7 @@ bool ribi::mb::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
 
 }
 
-bool ribi::mb::operator!=(const Parameters& lhs, const Parameters& rhs) noexcept
+bool ribi::kp::operator!=(const Parameters& lhs, const Parameters& rhs) noexcept
 {
   return !(lhs == rhs);
 }

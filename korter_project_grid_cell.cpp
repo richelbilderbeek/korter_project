@@ -1,9 +1,9 @@
-#include "mutualismbreakdownerseagrasssystem.h"
+#include "korter_project_grid_cell.h"
 
 #include <iostream>
 #include <sstream>
 
-ribi::mb::GridCell::GridCell(const Parameters& parameters)
+ribi::kp::grid_cell::grid_cell(const Parameters& parameters)
   : m_parameters{parameters},
     m_seagrass_density{parameters.GetInitialSeagrassDensity()},
     m_sulfide_concentration{parameters.GetInitialSulfidedouble()}
@@ -11,7 +11,7 @@ ribi::mb::GridCell::GridCell(const Parameters& parameters)
 
 }
 
-void ribi::mb::GridCell::Change(const double delta_t)
+void ribi::kp::grid_cell::Change(const double delta_t)
 {
   //Seagrass
   try

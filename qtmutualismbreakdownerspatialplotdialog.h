@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "mutualismbreakdownerseagrasssystem.h"
+#include "korter_project_grid_cell.h"
 #include "mutualismbreakdownerparameters.h"
 #include "qthideandshowdialog.h"
 #include "mutualismbreakdownerspatialsimulation.h"
@@ -14,7 +14,7 @@ namespace Ui {
 }
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
 struct SpatialSimulation;
 struct QtMutualismBreakdownerParametersWidget;

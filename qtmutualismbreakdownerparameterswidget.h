@@ -10,7 +10,7 @@ namespace Ui {
 }
 
 namespace ribi {
-namespace mb {
+namespace kp {
 
 class QtMutualismBreakdownerParametersWidget : public QWidget
 {

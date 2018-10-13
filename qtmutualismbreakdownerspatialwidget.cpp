@@ -7,7 +7,7 @@
 
 #include "ui_qtmutualismbreakdownerspatialwidget.h"
 
-ribi::mb::QtMutualismBreakdownerSpatialWidget::QtMutualismBreakdownerSpatialWidget(
+ribi::kp::QtMutualismBreakdownerSpatialWidget::QtMutualismBreakdownerSpatialWidget(
   const int width,
   const int height,
   QWidget *parent
@@ -19,22 +19,22 @@ ribi::mb::QtMutualismBreakdownerSpatialWidget::QtMutualismBreakdownerSpatialWidg
   ui->setupUi(this);
 }
 
-ribi::mb::QtMutualismBreakdownerSpatialWidget::~QtMutualismBreakdownerSpatialWidget()
+ribi::kp::QtMutualismBreakdownerSpatialWidget::~QtMutualismBreakdownerSpatialWidget()
 {
   delete ui;
 }
 
-void ribi::mb::QtMutualismBreakdownerSpatialWidget::SetPixel(const int x, const int y, const QColor color)
+void ribi::kp::QtMutualismBreakdownerSpatialWidget::SetPixel(const int x, const int y, const QColor color)
 {
   m_image.setPixel(x,y,color.rgb());
 }
 
-void ribi::mb::QtMutualismBreakdownerSpatialWidget::SetResolution(const int width, const int height)
+void ribi::kp::QtMutualismBreakdownerSpatialWidget::SetResolution(const int width, const int height)
 {
   m_image = QImage(width,height,QImage::Format_RGB32);
 }
 
-void ribi::mb::QtMutualismBreakdownerSpatialWidget::paintEvent(QPaintEvent *)
+void ribi::kp::QtMutualismBreakdownerSpatialWidget::paintEvent(QPaintEvent *)
 {
   QPainter painter(this);
   painter.drawPixmap(

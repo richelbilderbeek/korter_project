@@ -19,7 +19,7 @@
 #include "ui_qtmutualismbreakdownerspatialplotdialog.h"
 #include "mutualismbreakdownerspatialsimulation.h"
 
-ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
+ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtMutualismBreakdownerSpatialPlotDialog),
   m_curve_sulfide_concentration(new QwtPlotCurve),
@@ -60,12 +60,12 @@ ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatial
   StartRun();
 }
 
-ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatialPlotDialog()
+ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatialPlotDialog()
 {
   delete ui;
 }
 
-void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
+void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
 {
   const auto k = 10.0;
   const auto max_s = 1.0;
@@ -102,13 +102,13 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
   //m_sulfide_widget->update();
 }
 
-ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
+ribi::kp::Parameters ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
 {
   assert(m_parameters_widget);
   return m_parameters_widget->GetParameters();
 }
 
-void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
+void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 {
   const auto parameters = GetParameters();
   const auto dt = 0.1; //STUB
@@ -128,7 +128,7 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
   DisplayGrid();
 }
 
-void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& parameters)
+void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& parameters)
 {
   try
   {
@@ -141,7 +141,7 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Para
   }
 }
 
-void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
+void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 {
   m_timer->stop();
   m_seagrass_widget->setEnabled(false);
