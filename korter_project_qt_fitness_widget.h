@@ -1,6 +1,7 @@
 #ifndef KORTER_PROJECT_FITNESS_WIDGET_H
 #define KORTER_PROJECT_FITNESS_WIDGET_H
 
+#include "korter_project_fitness_parameters.h"
 #include <QWidget>
 
 namespace Ui {
@@ -17,6 +18,7 @@ class qt_fitness_widget : public QWidget
 public:
   explicit qt_fitness_widget(QWidget *parent = 0);
   ~qt_fitness_widget();
+  fitness_parameters to_parameters() const noexcept;
 
 signals:
   void signal_parameters_changed();

@@ -17,6 +17,16 @@ ribi::kp::qt_fitness_widget::~qt_fitness_widget()
   delete ui;
 }
 
+ribi::kp::fitness_parameters ribi::kp::qt_fitness_widget::to_parameters() const noexcept
+{
+  return fitness_parameters(
+    ui->box_fac_opt->value(),
+    ui->box_fac_stddev->value(),
+    ui->box_unfac_opt->value(),
+    ui->box_unfac_stddev->value()
+  );
+}
+
 void ribi::kp::qt_fitness_widget::OnAnyChange()
 {
   emit signal_parameters_changed();
