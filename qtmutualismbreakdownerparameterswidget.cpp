@@ -30,7 +30,7 @@ ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParamete
   QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_nurse_plants,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_n_seeds,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   //QObject::connect(m_qtpoisoningwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
@@ -46,7 +46,7 @@ ribi::kp::Parameters ribi::kp::QtMutualismBreakdownerParametersWidget::GetParame
     ui->box_spatial_height->value(),
     ui->box_spatial_width->value(),
     ui->box_n_nurse_plants->value(),
-    ui->box_initial_seagrass_density->value(),
+    ui->box_n_seeds->value(),
     ui->box_initial_sulfide_concentration->value()
   );
 
@@ -58,7 +58,7 @@ void ribi::kp::QtMutualismBreakdownerParametersWidget::SetParameters(const Param
   ui->box_spatial_height->setValue(parameters.GetSpatialHeight());
   ui->box_spatial_width->setValue(parameters.GetSpatialWidth());
   ui->box_n_nurse_plants->setValue(parameters.get_n_nurse_plants());
-  ui->box_initial_seagrass_density->setValue(parameters.GetInitialSeagrassDensity());
+  ui->box_n_seeds->setValue(parameters.get_n_seeds());
   ui->box_initial_sulfide_concentration->setValue(parameters.GetInitialSulfidedouble());
 }
 

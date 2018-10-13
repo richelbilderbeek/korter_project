@@ -5,7 +5,7 @@
 
 ribi::kp::grid_cell::grid_cell(const Parameters& parameters)
   : m_parameters{parameters},
-    m_seagrass_density{parameters.GetInitialSeagrassDensity()},
+    m_seagrass_density{0.0},
     m_sulfide_concentration{parameters.GetInitialSulfidedouble()}
 {
 

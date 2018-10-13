@@ -33,7 +33,7 @@ void ribi::kp::Parameters::Test() noexcept
     Parameters q;
     q.m_n_nurse_plants
       = p.m_n_nurse_plants
-      + 0.1
+      + 1
     ;
     assert(p != q);
 
@@ -76,10 +76,10 @@ void ribi::kp::Parameters::Test() noexcept
   //File I/O of initial_species_density
   {
     Parameters parameters;
-    const double d{
-      23.45
+    const int d{
+      23
     };
-    parameters.m_initial_seagrass_density = d;
+    parameters.m_n_seeds = d;
     const std::string filename{
       FileIo().GetTempFileName(".txt")
     };
@@ -90,7 +90,7 @@ void ribi::kp::Parameters::Test() noexcept
     std::ifstream f(filename);
     Parameters parameters_too;
     f >> parameters_too;
-    assert(parameters_too.m_initial_seagrass_density == d);
+    assert(parameters_too.m_n_seeds == d);
     assert(parameters_too == parameters);
     FileIo().DeleteFile(filename);
   }

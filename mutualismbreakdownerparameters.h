@@ -13,23 +13,23 @@ struct Parameters
   Parameters(
     const int spatial_height,
     const int spatial_width,
-    const double m_n_nurse_plants,
-    const double m_initial_seagrass_density,
+    const int n_nurse_plants,
+    const int n_seeds,
     const double any_n_nurse_plants
   );
 
   int GetSpatialHeight() const noexcept { return m_spatial_height; }
   int GetSpatialWidth() const noexcept { return m_spatial_width; }
 
-  const double& get_n_nurse_plants() const noexcept { return m_n_nurse_plants; }
-  const double& GetInitialSeagrassDensity() const noexcept { return m_initial_seagrass_density; }
+  int get_n_nurse_plants() const noexcept { return m_n_nurse_plants; }
+  int get_n_seeds() const noexcept { return m_n_seeds; }
   const double& GetInitialSulfidedouble() const noexcept { return m_initial_sulfide_concentration; }
 
   ///Create a testing parameter set
   static Parameters GetTest(const int i);
 
   void SetTimeplotDeltaT(const double any_delta_t);
-  void SetInitialSeagrassDensity(const double any_initial_seagrass_density);
+  void SetInitialSeagrassDensity(const double any_n_seeds);
 
   #ifndef NDEBUG
   static void Test() noexcept;
@@ -40,8 +40,8 @@ struct Parameters
   int m_spatial_height;
   int m_spatial_width;
 
-  double m_n_nurse_plants;
-  double m_initial_seagrass_density;
+  int m_n_nurse_plants;
+  int m_n_seeds;
   double m_initial_sulfide_concentration;
 
   friend std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;
