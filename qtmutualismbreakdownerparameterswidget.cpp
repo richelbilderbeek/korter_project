@@ -4,13 +4,6 @@
 #include <fstream>
 #include <QFileDialog>
 
-#include "qtpoisoningfunctionwidget.h"
-#include "qtseagrasscolonisationfunctionwidget.h"
-#include "qtseagrassgrowthfunctionwidget.h"
-#include "qtsulfideconsumptionfunctionwidget.h"
-#include "qtsulfidedetoxificationfunctionwidget.h"
-#include "qtsulfidediffusionfunctionwidget.h"
-#include "qtsulfideproductionfunctionwidget.h"
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
 ribi::mb::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :

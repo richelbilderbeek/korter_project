@@ -9,7 +9,6 @@
 #include "qtmutualismbreakdownertimeplotdialog.h"
 #include "qtmutualismbreakdownerspatialplotdialog.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
-#include "qtpoisoningfunctionwidget.h"
 #include "ui_qtmutualismbreakdownermenudialog.h"
 #pragma GCC diagnostic pop
 
