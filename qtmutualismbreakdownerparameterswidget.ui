@@ -97,7 +97,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="MutualismBreakdowner.qrc">:/images/Grid.jpg</pixmap>
+          <pixmap resource="korter_project.qrc">:/images/Grid.jpg</pixmap>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -194,7 +194,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="MutualismBreakdowner.qrc">:/images/PrimordialSoup.png</pixmap>
+          <pixmap resource="korter_project.qrc">:/images/PrimordialSoup.png</pixmap>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -350,7 +350,7 @@
   <tabstop>button_save</tabstop>
  </tabstops>
  <resources>
-  <include location="MutualismBreakdowner.qrc"/>
+  <include location="korter_project.qrc"/>
  </resources>
  <connections/>
 </ui>
