@@ -21,7 +21,7 @@ class QtMutualismBreakdownerParametersWidget : public QWidget
 public:
   explicit QtMutualismBreakdownerParametersWidget(QWidget *parent = 0);
   ~QtMutualismBreakdownerParametersWidget();
-  parameters GetParameters() const;
+  parameters to_parameters() const;
   void SetParameters(const parameters& parameters);
 
 signals:

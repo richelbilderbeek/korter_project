@@ -21,6 +21,8 @@ ribi::kp::parameters::parameters(
   #ifndef NDEBUG
   Test();
   #endif
+  assert(m_spatial_height > 0);
+  assert(m_spatial_width > 0);
   assert(m_n_nurse_plants >= 0.0);
   assert(m_n_seeds >= 0.0);
   assert(m_rng_seed >= 0.0);

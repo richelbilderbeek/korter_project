@@ -13,8 +13,8 @@ struct parameters
 {
   parameters(
     const fitness_parameters& fp = fitness_parameters(),
-    const int spatial_height = 0,
-    const int spatial_width = 0,
+    const int spatial_height = 1,
+    const int spatial_width = 1,
     const int n_nurse_plants = 0,
     const int n_seeds = 0,
     const int rng_seed = 0

@@ -1,14 +1,18 @@
-#include "mutualismbreakdownerspatialsimulation.h"
+#include "korter_project_simulation.h"
 
 
-ribi::kp::SpatialSimulation::SpatialSimulation(const parameters& parameters)
-  : m_grid{Grid(parameters.GetSpatialHeight(),std::vector<grid_cell>(parameters.GetSpatialWidth(),grid_cell(parameters)))},
-    m_parameters{parameters}
+ribi::kp::simulation::simulation(const parameters& p)
+  : m_grid{
+      grid(p.GetSpatialHeight(),
+      std::vector<grid_cell>(p.GetSpatialWidth(),
+      grid_cell(p)))
+    },
+    m_parameters{p}
 {
 
 }
 
-void ribi::kp::SpatialSimulation::Change(const double delta_t)
+void ribi::kp::simulation::Change(const double delta_t)
 {
   for (auto& line: m_grid)
   {
@@ -42,7 +46,7 @@ void ribi::kp::SpatialSimulation::Change(const double delta_t)
   }
 }
 
-void ribi::kp::SpatialSimulation::KillSeagrass(const int x, const int y)
+void ribi::kp::simulation::KillSeagrass(const int x, const int y)
 {
   m_grid[y][x].SetSeagrassDensity(0.0);
 }

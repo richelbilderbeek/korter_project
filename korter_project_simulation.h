@@ -9,21 +9,21 @@
 namespace ribi {
 namespace kp {
 
-struct SpatialSimulation
+struct simulation
 {
-  using Grid = std::vector<std::vector<grid_cell>>;
+  using grid = std::vector<std::vector<grid_cell>>;
 
-  SpatialSimulation(const parameters& parameters);
+  simulation(const parameters& p);
 
   void Change(const double delta_t);
 
-  const Grid& GetGrid() const noexcept { return m_grid; }
+  const grid& GetGrid() const noexcept { return m_grid; }
 
   void KillSeagrass(const int x, const int y);
 
   private:
 
-  Grid m_grid;
+  grid m_grid;
   const parameters m_parameters;
 };
 

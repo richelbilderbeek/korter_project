@@ -6,7 +6,7 @@
 #include "korter_project_grid_cell.h"
 #include "korter_project_parameters.h"
 #include "qthideandshowdialog.h"
-#include "mutualismbreakdownerspatialsimulation.h"
+#include "korter_project_simulation.h"
 struct QwtPlotCurve;
 
 namespace Ui {
@@ -16,7 +16,7 @@ namespace Ui {
 namespace ribi {
 namespace kp {
 
-struct SpatialSimulation;
+struct simulation;
 struct QtMutualismBreakdownerParametersWidget;
 struct QtMutualismBreakdownerSpatialWidget;
 
@@ -29,7 +29,7 @@ public:
 
   explicit QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent = 0);
   ~QtMutualismBreakdownerSpatialPlotDialog();
-  parameters GetParameters() const;
+  parameters to_parameters() const;
   void SetParameters(const parameters& parameters);
 
 private slots:
@@ -38,14 +38,12 @@ private slots:
   void NextTimestep();
 
 private:
-  using Simulation = SpatialSimulation;
-
   Ui::QtMutualismBreakdownerSpatialPlotDialog *ui;
   QwtPlotCurve * const m_curve_sulfide_concentration;
   QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
   QtMutualismBreakdownerSpatialWidget * const m_seagrass_widget;
   QTimer * const m_timer;
-  std::unique_ptr<Simulation> m_simulation;
+  std::unique_ptr<simulation> m_simulation;
   void DisplayGrid();
 };
 

@@ -19,8 +19,8 @@ void ribi::kp::QtMutualismBreakdownerParametersWidget::Test() noexcept
   using ribi::fileio::FileIo;
   {
     const QtMutualismBreakdownerParametersWidget d;
-    const auto p = d.GetParameters();
-    const auto q = d.GetParameters();
+    const auto p = d.to_parameters();
+    const auto q = d.to_parameters();
     assert(p == q);
   }
 }

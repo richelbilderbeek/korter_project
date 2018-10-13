@@ -23,15 +23,15 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="page_spatial_plot">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>174</width>
-        <height>105</height>
+        <width>400</width>
+        <height>261</height>
        </rect>
       </property>
       <attribute name="label">
@@ -61,7 +61,7 @@
        <item row="1" column="1">
         <widget class="QSpinBox" name="box_spatial_width">
          <property name="minimum">
-          <number>1</number>
+          <number>10</number>
          </property>
          <property name="maximum">
           <number>10000</number>
@@ -81,7 +81,7 @@
        <item row="0" column="1">
         <widget class="QSpinBox" name="box_spatial_height">
          <property name="minimum">
-          <number>1</number>
+          <number>10</number>
          </property>
          <property name="maximum">
           <number>10000</number>
@@ -111,8 +111,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>386</width>
-        <height>357</height>
+        <width>233</width>
+        <height>137</height>
        </rect>
       </property>
       <attribute name="label">
