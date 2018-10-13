@@ -47,13 +47,21 @@ QPlainTextEdit {
     </widget>
    </item>
    <item>
-    <widget class="QWidget" name="widget_right" native="true">
+    <widget class="QwtPlot" name="plot_sulfide_concentration" native="true">
      <layout class="QGridLayout" name="gridLayout_2"/>
     </widget>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QWidget</extends>
+   <header>qwt_plot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

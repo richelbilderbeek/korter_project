@@ -41,9 +41,9 @@ private:
   using Simulation = SpatialSimulation;
 
   Ui::QtMutualismBreakdownerSpatialPlotDialog *ui;
+  QwtPlotCurve * const m_curve_sulfide_concentration;
   QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
   QtMutualismBreakdownerSpatialWidget * const m_seagrass_widget;
-  QtMutualismBreakdownerSpatialWidget * const m_sulfide_widget;
   QTimer * const m_timer;
   std::unique_ptr<Simulation> m_simulation;
   void DisplayGrid();

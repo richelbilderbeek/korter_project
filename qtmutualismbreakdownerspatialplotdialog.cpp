@@ -9,6 +9,11 @@
 #include <QGridLayout>
 #include <QTimer>
 
+#include <qwt_plot_zoomer.h>
+#include <qwt_plot_grid.h>
+#include <qwt_plot.h>
+#include <qwt_plot_curve.h>
+
 #include "mutualismbreakdownertimesimulation.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "qtmutualismbreakdownerspatialwidget.h"
@@ -19,9 +24,9 @@
 ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
   ui(new Ui::QtMutualismBreakdownerSpatialPlotDialog),
+  m_curve_sulfide_concentration(new QwtPlotCurve),
   m_parameters_widget{new QtMutualismBreakdownerParametersWidget},
   m_seagrass_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
-  m_sulfide_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
   m_timer{new QTimer(this)},
   m_simulation{nullptr}
 {
@@ -39,9 +44,10 @@ ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatial
     my_layout->addWidget(m_seagrass_widget);
   }
   {
-    const auto my_layout = ui->widget_right->layout();
-    assert(my_layout);
-    my_layout->addWidget(m_sulfide_widget);
+    ui->plot_sulfide_concentration->setMaximumWidth(400);
+    m_curve_sulfide_concentration->attach(ui->plot_sulfide_concentration);
+    m_curve_sulfide_concentration->setStyle(QwtPlotCurve::Lines);
+    m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
   }
 
   QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(StartRun()));
@@ -96,12 +102,12 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
         int r = static_cast<int>(255.0 * s / max_s);
         if (r < 0) r = 0;
         else if (r > 255) r = 255;
-        m_sulfide_widget->SetPixel(x,y,qRgb(r,0,0));
+        //m_sulfide_widget->SetPixel(x,y,qRgb(r,0,0));
       }
     }
   }
   m_seagrass_widget->update();
-  m_sulfide_widget->update();
+  //m_sulfide_widget->update();
 }
 
 ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
@@ -147,7 +153,7 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 {
   m_timer->stop();
   m_seagrass_widget->setEnabled(false);
-  m_sulfide_widget->setEnabled(false);
+  //m_sulfide_widget->setEnabled(false);
   try
   {
     const auto parameters = GetParameters();
@@ -163,10 +169,10 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
     const int w{parameters.GetSpatialWidth()};
     const int h{parameters.GetSpatialHeight()};
     this->m_seagrass_widget->SetResolution(w,h);
-    this->m_sulfide_widget->SetResolution(w,h);
+    //this->m_sulfide_widget->SetResolution(w,h);
   }
   this->m_seagrass_widget->setEnabled(true);
-  this->m_sulfide_widget->setEnabled(true);
+  //this->m_sulfide_widget->setEnabled(true);
 
   //m_simulation = std::make_unique<Simulation>(parameters);
   m_simulation.reset(new Simulation(parameters));
