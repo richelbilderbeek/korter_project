@@ -3,8 +3,8 @@
 
 ribi::kp::simulation::simulation(const parameters& p)
   : m_grid{
-      grid(p.GetSpatialHeight(),
-      std::vector<grid_cell>(p.GetSpatialWidth(),
+      grid(p.get_spatial_height(),
+      std::vector<grid_cell>(p.get_spatial_width(),
       grid_cell(p)))
     },
     m_parameters{p}

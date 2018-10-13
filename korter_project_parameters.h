@@ -20,18 +20,14 @@ struct parameters
     const int rng_seed = 0
   );
 
-  int GetSpatialHeight() const noexcept { return m_spatial_height; }
-  int GetSpatialWidth() const noexcept { return m_spatial_width; }
-
+  int get_spatial_height() const noexcept { return m_spatial_height; }
+  int get_spatial_width() const noexcept { return m_spatial_width; }
   int get_n_nurse_plants() const noexcept { return m_n_nurse_plants; }
   int get_n_seeds() const noexcept { return m_n_seeds; }
   int get_rng_seed() const noexcept { return m_rng_seed; }
 
   ///Create a testing parameter set
   static parameters GetTest(const int i);
-
-  void SetTimeplotDeltaT(const double any_delta_t);
-  void SetInitialSeagrassDensity(const double any_n_seeds);
 
   #ifndef NDEBUG
   static void Test() noexcept;

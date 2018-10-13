@@ -56,8 +56,8 @@ ribi::kp::parameters ribi::kp::QtMutualismBreakdownerParametersWidget::to_parame
 
 void ribi::kp::QtMutualismBreakdownerParametersWidget::SetParameters(const parameters& parameters)
 {
-  ui->box_spatial_height->setValue(parameters.GetSpatialHeight());
-  ui->box_spatial_width->setValue(parameters.GetSpatialWidth());
+  ui->box_spatial_height->setValue(parameters.get_spatial_height());
+  ui->box_spatial_width->setValue(parameters.get_spatial_width());
   ui->box_n_nurse_plants->setValue(parameters.get_n_nurse_plants());
   ui->box_n_seeds->setValue(parameters.get_n_seeds());
   ui->box_rng_seed->setValue(parameters.get_rng_seed());

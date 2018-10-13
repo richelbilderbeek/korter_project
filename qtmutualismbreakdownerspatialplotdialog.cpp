@@ -117,8 +117,8 @@ void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 
   //Kill some random patch
   {
-    const int w = parameters.GetSpatialWidth();
-    const int h = parameters.GetSpatialHeight();
+    const int w = parameters.get_spatial_width();
+    const int h = parameters.get_spatial_height();
     m_simulation->KillSeagrass(
       std::rand() % w,
       std::rand() % h
@@ -157,8 +157,8 @@ void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 
   const auto parameters = to_parameters();
   {
-    const int w{parameters.GetSpatialWidth()};
-    const int h{parameters.GetSpatialHeight()};
+    const int w{parameters.get_spatial_width()};
+    const int h{parameters.get_spatial_height()};
     this->m_seagrass_widget->SetResolution(w,h);
     //this->m_sulfide_widget->SetResolution(w,h);
   }
