@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>korter_project_fitness_widget</class>
+ <widget class="QWidget" name="korter_project_fitness_widget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>426</width>
+    <height>340</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="4" column="0">
+    <spacer name="spacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="3">
+    <widget class="QDoubleSpinBox" name="box_fac_stddev"/>
+   </item>
+   <item row="2" column="3">
+    <widget class="QDoubleSpinBox" name="box_unfac_stddev"/>
+   </item>
+   <item row="0" column="3">
+    <widget class="QLabel" name="label_stddev">
+     <property name="text">
+      <string>Std.dev.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QDoubleSpinBox" name="box_fac_opt"/>
+   </item>
+   <item row="2" column="2">
+    <widget class="QDoubleSpinBox" name="box_unfac_opt"/>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_opt">
+     <property name="text">
+      <string>Optimum</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_trait_value">
+     <property name="text">
+      <string>Trait value</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="label_fac">
+     <property name="text">
+      <string>Faciltated</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_unfac">
+     <property name="text">
+      <string>Unfacilitated</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="4">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>40</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="0" colspan="4">
+    <widget class="QLabel" name="image">
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap resource="korter_project.qrc">:/images/SulfideDetoxificationSmall.jpg</pixmap>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="korter_project.qrc"/>
+ </resources>
+ <connections/>
+</ui>

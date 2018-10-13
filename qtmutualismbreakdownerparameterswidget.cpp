@@ -4,10 +4,12 @@
 #include <fstream>
 #include <QFileDialog>
 
+#include "korter_project_fitness_widget.h"
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
 ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
   QWidget(parent),
+  m_fitness_widget(new fitness_widget),
   ui(new Ui::QtMutualismBreakdownerParametersWidget)
 {
   #ifndef NDEBUG
@@ -15,16 +17,14 @@ ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParamete
   #endif
 
   ui->setupUi(this);
-  /*
   {
     using Layout = QGridLayout;
     Layout * const my_layout{
-      dynamic_cast<Layout*>(ui->page_poisoning->layout())
+      dynamic_cast<Layout*>(ui->page_fitness->layout())
     };
     assert(my_layout);
-    my_layout->addWidget(m_qtpoisoningwidget);
+    my_layout->addWidget(m_fitness_widget);
   }
-  */
 
 
   QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
@@ -32,7 +32,7 @@ ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParamete
   QObject::connect(ui->box_n_nurse_plants,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_seeds,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_rng_seed,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  //QObject::connect(m_qtpoisoningwidget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
 
 ribi::kp::QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()

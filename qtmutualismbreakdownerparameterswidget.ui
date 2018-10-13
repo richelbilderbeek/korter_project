@@ -23,7 +23,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_spatial_plot">
       <property name="geometry">
@@ -31,7 +31,7 @@
         <x>0</x>
         <y>0</y>
         <width>174</width>
-        <height>221</height>
+        <height>105</height>
        </rect>
       </property>
       <attribute name="label">
@@ -111,8 +111,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>397</height>
+        <width>386</width>
+        <height>357</height>
        </rect>
       </property>
       <attribute name="label">
@@ -177,17 +177,17 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="page_poisoning">
+     <widget class="QWidget" name="page_fitness">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>400</width>
+        <height>82</height>
        </rect>
       </property>
       <attribute name="label">
-       <string>Poisoning</string>
+       <string>Fitness</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2"/>
      </widget>
@@ -196,8 +196,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -210,8 +210,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -224,8 +224,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -238,8 +238,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -252,8 +252,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
@@ -266,8 +266,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>98</width>
+        <height>28</height>
        </rect>
       </property>
       <attribute name="label">
