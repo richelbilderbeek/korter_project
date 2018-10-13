@@ -4,18 +4,20 @@
 #include <iosfwd>
 #include <memory>
 
+#include "korter_project_fitness_parameters.h"
+
 namespace ribi {
 namespace kp {
 
 struct parameters
 {
-  parameters();
   parameters(
-    const int spatial_height,
-    const int spatial_width,
-    const int n_nurse_plants,
-    const int n_seeds,
-    const int rng_seed
+    const fitness_parameters& fp = fitness_parameters(),
+    const int spatial_height = 0,
+    const int spatial_width = 0,
+    const int n_nurse_plants = 0,
+    const int n_seeds = 0,
+    const int rng_seed = 0
   );
 
   int GetSpatialHeight() const noexcept { return m_spatial_height; }
@@ -37,6 +39,7 @@ struct parameters
 
 
   private:
+  const fitness_parameters m_fitness_parameters;
   int m_spatial_height;
   int m_spatial_width;
 

@@ -52,7 +52,7 @@ script:
   - ./download_other_githubs.sh
   - ./build_other_githubs.sh
   - qmake -qt=qt5 korter_project_desktop.pro
-  - make
+  - make --silent
   - ./korter_project_desktop &
   - sleep 10
   - sudo killall -9 korter_project_desktop

@@ -8,10 +8,10 @@ class fitness_parameters
 {
 public:
   fitness_parameters(
-    const double fac_opt,
-    const double fac_stddev,
-    const double unfac_opt,
-    const double unfac_stddev
+    const double fac_opt = 0.0,
+    const double fac_stddev = 0.0,
+    const double unfac_opt = 0.0,
+    const double unfac_stddev = 0.0
   );
   const double m_fac_opt;
   const double m_fac_stddev;

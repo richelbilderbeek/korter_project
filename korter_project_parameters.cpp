@@ -4,26 +4,14 @@
 #include <iostream>
 #include <boost/units/io.hpp>
 
-ribi::kp::parameters::parameters()
-  :
-    m_spatial_height{10},
-    m_spatial_width{10},
-    m_n_nurse_plants{0},
-    m_n_seeds{0},
-    m_rng_seed{0}
-{
-  #ifndef NDEBUG
-  Test();
-  #endif
-}
-
 ribi::kp::parameters::parameters(
+  const fitness_parameters& fp,
   const int spatial_height,
   const int spatial_width,
   const int n_nurse_plants,
   const int n_seeds,
   const int rng_seed
-) :
+) : m_fitness_parameters(fp),
     m_spatial_height{spatial_height},
     m_spatial_width{spatial_width},
     m_n_nurse_plants{n_nurse_plants},
@@ -42,6 +30,7 @@ ribi::kp::parameters ribi::kp::parameters::GetTest(const int /* i */)
 {
 
   const parameters p(
+    fitness_parameters(),
     //0.1 * seconds, //spatial_delta_t,
     10, //spatial_height
     10, //spatial_width
