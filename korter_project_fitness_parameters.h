@@ -7,7 +7,7 @@ namespace kp {
 class fitness_parameters
 {
 public:
-  fitness_parameters(
+  explicit fitness_parameters(
     const double fac_opt = 0.0,
     const double fac_stddev = 0.0,
     const double unfac_opt = 0.0,

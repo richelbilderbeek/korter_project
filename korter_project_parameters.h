@@ -11,7 +11,7 @@ namespace kp {
 
 struct parameters
 {
-  parameters(
+  explicit parameters(
     const fitness_parameters& fp = fitness_parameters(),
     const int spatial_height = 1,
     const int spatial_width = 1,
