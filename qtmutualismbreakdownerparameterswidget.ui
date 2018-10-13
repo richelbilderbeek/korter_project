@@ -30,7 +30,7 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>386</width>
+        <width>174</width>
         <height>221</height>
        </rect>
       </property>
@@ -119,33 +119,10 @@
        <string>Initial conditions</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_8">
-       <item row="4" column="0">
-        <widget class="QLabel" name="label_initial_seagrass_concentration">
-         <property name="text">
-          <string>Sulfide concentration</string>
-         </property>
-        </widget>
-       </item>
        <item row="2" column="0">
         <widget class="QLabel" name="label_n_seeds">
          <property name="text">
           <string>Number of seeds</string>
-         </property>
-        </widget>
-       </item>
-       <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-         <property name="maximum">
-          <double>1000000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.100000000000000</double>
-         </property>
-         <property name="value">
-          <double>0.100000000000000</double>
          </property>
         </widget>
        </item>
@@ -188,6 +165,16 @@
        <item row="2" column="1">
         <widget class="QSpinBox" name="box_n_seeds"/>
        </item>
+       <item row="3" column="1">
+        <widget class="QSpinBox" name="box_rng_seed"/>
+       </item>
+       <item row="3" column="0">
+        <widget class="QLabel" name="label_initial_seagrass_concentration">
+         <property name="text">
+          <string>RNG seed</string>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="page_poisoning">
@@ -195,8 +182,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -209,8 +196,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -223,8 +210,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -237,8 +224,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -251,8 +238,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -265,8 +252,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -279,8 +266,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">

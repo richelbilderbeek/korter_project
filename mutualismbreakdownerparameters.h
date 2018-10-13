@@ -15,7 +15,7 @@ struct Parameters
     const int spatial_width,
     const int n_nurse_plants,
     const int n_seeds,
-    const double any_n_nurse_plants
+    const int rng_seed
   );
 
   int GetSpatialHeight() const noexcept { return m_spatial_height; }
@@ -23,7 +23,7 @@ struct Parameters
 
   int get_n_nurse_plants() const noexcept { return m_n_nurse_plants; }
   int get_n_seeds() const noexcept { return m_n_seeds; }
-  const double& GetInitialSulfidedouble() const noexcept { return m_initial_sulfide_concentration; }
+  int get_rng_seed() const noexcept { return m_rng_seed; }
 
   ///Create a testing parameter set
   static Parameters GetTest(const int i);
@@ -42,7 +42,7 @@ struct Parameters
 
   int m_n_nurse_plants;
   int m_n_seeds;
-  double m_initial_sulfide_concentration;
+  int m_rng_seed;
 
   friend std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept;

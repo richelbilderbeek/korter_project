@@ -10,7 +10,7 @@ ribi::kp::Parameters::Parameters()
     m_spatial_width{10},
     m_n_nurse_plants{0},
     m_n_seeds{0},
-    m_initial_sulfide_concentration{0.0}
+    m_rng_seed{0}
 {
   #ifndef NDEBUG
   Test();
@@ -22,20 +22,20 @@ ribi::kp::Parameters::Parameters(
   const int spatial_width,
   const int n_nurse_plants,
   const int n_seeds,
-  const double initial_sulfide_concentration
+  const int rng_seed
 ) :
     m_spatial_height{spatial_height},
     m_spatial_width{spatial_width},
     m_n_nurse_plants{n_nurse_plants},
     m_n_seeds{n_seeds},
-    m_initial_sulfide_concentration{initial_sulfide_concentration}
+    m_rng_seed{rng_seed}
 {
   #ifndef NDEBUG
   Test();
   #endif
   assert(m_n_nurse_plants >= 0.0);
   assert(m_n_seeds >= 0.0);
-  assert(m_initial_sulfide_concentration >= 0.0);
+  assert(m_rng_seed >= 0.0);
 }
 
 ribi::kp::Parameters ribi::kp::Parameters::GetTest(const int /* i */)
@@ -90,7 +90,7 @@ std::ostream& ribi::kp::operator<<(std::ostream& os, const Parameters& parameter
     << parameter.GetSpatialWidth() << " "
     << parameter.get_n_nurse_plants() << " "
     << parameter.get_n_seeds() << " "
-    << parameter.GetInitialSulfidedouble() << " "
+    << parameter.get_rng_seed() << " "
   ;
   return os;
 }
@@ -102,7 +102,7 @@ std::istream& ribi::kp::operator>>(std::istream& is, Parameters& parameter) noex
     >> parameter.m_spatial_width
     >> parameter.m_n_nurse_plants
     >> parameter.m_n_seeds
-    >> parameter.m_initial_sulfide_concentration
+    >> parameter.m_rng_seed
   ;
   return is;
 }
@@ -114,7 +114,7 @@ bool ribi::kp::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
     && lhs.GetSpatialWidth() == rhs.GetSpatialWidth()
     && lhs.m_n_nurse_plants == rhs.m_n_nurse_plants
     && lhs.m_n_seeds == rhs.m_n_seeds
-    && lhs.m_initial_sulfide_concentration == rhs.m_initial_sulfide_concentration
+    && lhs.m_rng_seed == rhs.m_rng_seed
   ;
 
 }

@@ -51,9 +51,6 @@ before_script:
 script: 
   - ./download_other_githubs.sh
   - ./build_other_githubs.sh
-  - qmake -qt=qt5 korter_project_console.pro
-  - make
-  - ./korter_project_console
   - qmake -qt=qt5 korter_project_desktop.pro
   - make
   - ./korter_project_desktop &
