@@ -14,7 +14,6 @@
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 
-#include "mutualismbreakdownertimesimulation.h"
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "qtmutualismbreakdownerspatialwidget.h"
 #include "ui_qtmutualismbreakdownerspatialplotdialog.h"

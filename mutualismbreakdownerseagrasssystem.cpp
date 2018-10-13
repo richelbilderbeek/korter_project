@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-ribi::mb::SeagrassSystem::SeagrassSystem(const Parameters& parameters)
+ribi::mb::GridCell::GridCell(const Parameters& parameters)
   : m_parameters{parameters},
     m_seagrass_density{parameters.GetInitialSeagrassDensity()},
     m_sulfide_concentration{parameters.GetInitialSulfidedouble()}
@@ -11,7 +11,7 @@ ribi::mb::SeagrassSystem::SeagrassSystem(const Parameters& parameters)
 
 }
 
-void ribi::mb::SeagrassSystem::Change(const double delta_t)
+void ribi::mb::GridCell::Change(const double delta_t)
 {
   //Seagrass
   try

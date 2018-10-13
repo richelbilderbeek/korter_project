@@ -2,7 +2,7 @@
 
 
 ribi::mb::SpatialSimulation::SpatialSimulation(const Parameters& parameters)
-  : m_grid{Grid(parameters.GetSpatialHeight(),std::vector<System>(parameters.GetSpatialWidth(),System(parameters)))},
+  : m_grid{Grid(parameters.GetSpatialHeight(),std::vector<GridCell>(parameters.GetSpatialWidth(),GridCell(parameters)))},
     m_parameters{parameters}
 {
 

@@ -11,8 +11,7 @@ namespace mb {
 
 struct SpatialSimulation
 {
-  using System = SeagrassSystem;
-  using Grid = std::vector<std::vector<System>>;
+  using Grid = std::vector<std::vector<GridCell>>;
 
   SpatialSimulation(const Parameters& parameters);
 

@@ -1,5 +1,5 @@
-#ifndef MUTUALISMBREAKDOWNER_PARAMETERS_H
-#define MUTUALISMBREAKDOWNER_PARAMETERS_H
+#ifndef KORTER_PROJECT_PARAMETERS_H
+#define KORTER_PROJECT_PARAMETERS_H
 
 #include <iosfwd>
 #include <memory>
@@ -58,4 +58,4 @@ std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept;
 } //~namespace mb
 } //~namespace ribi
 
-#endif // MUTUALISMBREAKDOWNER_PARAMETERS_H
+#endif // KORTER_PROJECT_PARAMETERS_H

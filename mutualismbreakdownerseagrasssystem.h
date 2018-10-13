@@ -1,14 +1,14 @@
-#ifndef SEAGRASSSYSTEM_H
-#define SEAGRASSSYSTEM_H
+#ifndef GRIDCELL_H
+#define GRIDCELL_H
 
 #include "mutualismbreakdownerparameters.h"
 
 namespace ribi {
 namespace mb {
 
-struct SeagrassSystem
+struct GridCell
 {
-  SeagrassSystem(const Parameters& parameters);
+  GridCell(const Parameters& parameters);
 
   void AddSeagrassDensity(const double seagrass_density) { m_seagrass_density += seagrass_density; }
   void Change(const double delta_t);
@@ -33,4 +33,4 @@ struct SeagrassSystem
 } //~namespace mb
 } //~namespace ribi
 
-#endif // SEAGRASSSYSTEM_H
+#endif // GRIDCELL_H
