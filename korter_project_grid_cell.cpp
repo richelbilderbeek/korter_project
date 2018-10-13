@@ -3,7 +3,7 @@
 #include <iostream>
 #include <sstream>
 
-ribi::kp::grid_cell::grid_cell(const Parameters& parameters)
+ribi::kp::grid_cell::grid_cell(const parameters& parameters)
   : m_parameters{parameters},
     m_seagrass_density{0.1},
     m_sulfide_concentration{0.1}

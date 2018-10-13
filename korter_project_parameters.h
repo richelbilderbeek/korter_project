@@ -7,10 +7,10 @@
 namespace ribi {
 namespace kp {
 
-struct Parameters
+struct parameters
 {
-  Parameters();
-  Parameters(
+  parameters();
+  parameters(
     const int spatial_height,
     const int spatial_width,
     const int n_nurse_plants,
@@ -26,7 +26,7 @@ struct Parameters
   int get_rng_seed() const noexcept { return m_rng_seed; }
 
   ///Create a testing parameter set
-  static Parameters GetTest(const int i);
+  static parameters GetTest(const int i);
 
   void SetTimeplotDeltaT(const double any_delta_t);
   void SetInitialSeagrassDensity(const double any_n_seeds);
@@ -44,16 +44,16 @@ struct Parameters
   int m_n_seeds;
   int m_rng_seed;
 
-  friend std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;
-  friend std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept;
-  friend bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept;
+  friend std::ostream& operator<<(std::ostream& os, const parameters& parameter) noexcept;
+  friend std::istream& operator>>(std::istream& is, parameters& parameter) noexcept;
+  friend bool operator==(const parameters& lhs, const parameters& rhs) noexcept;
 };
 
-bool operator==(const Parameters& lhs, const Parameters& rhs) noexcept;
-bool operator!=(const Parameters& lhs, const Parameters& rhs) noexcept;
+bool operator==(const parameters& lhs, const parameters& rhs) noexcept;
+bool operator!=(const parameters& lhs, const parameters& rhs) noexcept;
 
-std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;
-std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept;
+std::ostream& operator<<(std::ostream& os, const parameters& parameter) noexcept;
+std::istream& operator>>(std::istream& is, parameters& parameter) noexcept;
 
 } //~namespace mb
 } //~namespace ribi

@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "mutualismbreakdownerparameters.h"
+#include "korter_project_parameters.h"
 #include "korter_project_grid_cell.h"
 
 namespace ribi {
@@ -13,7 +13,7 @@ struct SpatialSimulation
 {
   using Grid = std::vector<std::vector<grid_cell>>;
 
-  SpatialSimulation(const Parameters& parameters);
+  SpatialSimulation(const parameters& parameters);
 
   void Change(const double delta_t);
 
@@ -24,7 +24,7 @@ struct SpatialSimulation
   private:
 
   Grid m_grid;
-  const Parameters m_parameters;
+  const parameters m_parameters;
 };
 
 } //~namespace mb

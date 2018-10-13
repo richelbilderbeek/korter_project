@@ -5,16 +5,16 @@
 #include <QKeyEvent>
 
 #include "qtaboutdialog.h"
-#include "mutualismbreakdownermenudialog.h"
+#include "korter_project_menu_dialog.h"
 #include "qtmutualismbreakdownerspatialplotdialog.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
-#include "ui_qtmutualismbreakdownermenudialog.h"
+#include "ui_korter_project_qt_menu_dialog.h"
 #pragma GCC diagnostic pop
 
 
 ribi::kp::qt_menu_dialog::qt_menu_dialog(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::korter_project_qt_menu_dialog)
+    ui(new Ui::qt_menu_dialog)
 {
   ui->setupUi(this);
 }

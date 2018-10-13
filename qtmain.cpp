@@ -1,6 +1,6 @@
 #include <QApplication>
 #include "korter_project_qt_menu_dialog.h"
-#include "mutualismbreakdownerparameters.h"
+#include "korter_project_parameters.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
 
 int main(int argc, char *argv[])

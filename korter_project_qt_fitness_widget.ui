@@ -138,6 +138,12 @@
    <container>1</container>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>box_fac_opt</tabstop>
+  <tabstop>box_fac_stddev</tabstop>
+  <tabstop>box_unfac_opt</tabstop>
+  <tabstop>box_unfac_stddev</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

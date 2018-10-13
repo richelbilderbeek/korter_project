@@ -1,7 +1,7 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
-#include "mutualismbreakdownermenudialog.h"
+#include "korter_project_menu_dialog.h"
 
 #include <algorithm>
 #include <fstream>
@@ -12,7 +12,7 @@
 
 #include <QFile>
 
-#include "mutualismbreakdownermenudialog.h"
+#include "korter_project_menu_dialog.h"
 #include "fileio.h"
 #pragma GCC diagnostic pop
 

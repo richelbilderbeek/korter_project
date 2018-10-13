@@ -1,7 +1,7 @@
 #ifndef QTKORTER_PROJECT_PARAMETERSWIDGET_H
 #define QTKORTER_PROJECT_PARAMETERSWIDGET_H
 
-#include "mutualismbreakdownerparameters.h"
+#include "korter_project_parameters.h"
 #include <QWidget>
 
 
@@ -21,8 +21,8 @@ class QtMutualismBreakdownerParametersWidget : public QWidget
 public:
   explicit QtMutualismBreakdownerParametersWidget(QWidget *parent = 0);
   ~QtMutualismBreakdownerParametersWidget();
-  Parameters GetParameters() const;
-  void SetParameters(const Parameters& parameters);
+  parameters GetParameters() const;
+  void SetParameters(const parameters& parameters);
 
 signals:
   void signal_parameters_changed() const;

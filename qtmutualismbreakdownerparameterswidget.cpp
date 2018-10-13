@@ -40,9 +40,9 @@ ribi::kp::QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParamet
   delete ui;
 }
 
-ribi::kp::Parameters ribi::kp::QtMutualismBreakdownerParametersWidget::GetParameters() const
+ribi::kp::parameters ribi::kp::QtMutualismBreakdownerParametersWidget::GetParameters() const
 {
-  const Parameters p(
+  const parameters p(
     ui->box_spatial_height->value(),
     ui->box_spatial_width->value(),
     ui->box_n_nurse_plants->value(),
@@ -53,7 +53,7 @@ ribi::kp::Parameters ribi::kp::QtMutualismBreakdownerParametersWidget::GetParame
   return p;
 }
 
-void ribi::kp::QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
+void ribi::kp::QtMutualismBreakdownerParametersWidget::SetParameters(const parameters& parameters)
 {
   ui->box_spatial_height->setValue(parameters.GetSpatialHeight());
   ui->box_spatial_width->setValue(parameters.GetSpatialWidth());
@@ -84,7 +84,7 @@ void ribi::kp::QtMutualismBreakdownerParametersWidget::on_button_load_clicked()
   };
   if (filename.empty()) return;
   std::ifstream f(filename);
-  Parameters parameters;
+  parameters parameters;
   f >> parameters;
   SetParameters(parameters);
 }

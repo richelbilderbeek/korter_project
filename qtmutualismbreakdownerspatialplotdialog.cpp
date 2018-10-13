@@ -102,7 +102,7 @@ void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
   //m_sulfide_widget->update();
 }
 
-ribi::kp::Parameters ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
+ribi::kp::parameters ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::GetParameters() const
 {
   assert(m_parameters_widget);
   return m_parameters_widget->GetParameters();
@@ -128,7 +128,7 @@ void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
   DisplayGrid();
 }
 
-void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const Parameters& parameters)
+void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const parameters& parameters)
 {
   try
   {

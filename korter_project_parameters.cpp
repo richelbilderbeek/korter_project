@@ -1,10 +1,10 @@
-#include "mutualismbreakdownerparameters.h"
+#include "korter_project_parameters.h"
 
 #include <cassert>
 #include <iostream>
 #include <boost/units/io.hpp>
 
-ribi::kp::Parameters::Parameters()
+ribi::kp::parameters::parameters()
   :
     m_spatial_height{10},
     m_spatial_width{10},
@@ -17,7 +17,7 @@ ribi::kp::Parameters::Parameters()
   #endif
 }
 
-ribi::kp::Parameters::Parameters(
+ribi::kp::parameters::parameters(
   const int spatial_height,
   const int spatial_width,
   const int n_nurse_plants,
@@ -38,10 +38,10 @@ ribi::kp::Parameters::Parameters(
   assert(m_rng_seed >= 0.0);
 }
 
-ribi::kp::Parameters ribi::kp::Parameters::GetTest(const int /* i */)
+ribi::kp::parameters ribi::kp::parameters::GetTest(const int /* i */)
 {
 
-  const Parameters p(
+  const parameters p(
     //0.1 * seconds, //spatial_delta_t,
     10, //spatial_height
     10, //spatial_width
@@ -69,7 +69,7 @@ void ribi::kp::Parameters::SetTimeplotDeltaT(const Time any_delta_t)
 }
 */
 
-void ribi::kp::Parameters::SetInitialSeagrassDensity(const double any_n_seeds)
+void ribi::kp::parameters::SetInitialSeagrassDensity(const double any_n_seeds)
 {
   if (any_n_seeds < 0.0)
   {
@@ -83,7 +83,7 @@ void ribi::kp::Parameters::SetInitialSeagrassDensity(const double any_n_seeds)
   m_n_seeds = any_n_seeds;
 }
 
-std::ostream& ribi::kp::operator<<(std::ostream& os, const Parameters& parameter) noexcept
+std::ostream& ribi::kp::operator<<(std::ostream& os, const parameters& parameter) noexcept
 {
   os
     << parameter.GetSpatialHeight() << " "
@@ -95,7 +95,7 @@ std::ostream& ribi::kp::operator<<(std::ostream& os, const Parameters& parameter
   return os;
 }
 
-std::istream& ribi::kp::operator>>(std::istream& is, Parameters& parameter) noexcept
+std::istream& ribi::kp::operator>>(std::istream& is, parameters& parameter) noexcept
 {
   is
     >> parameter.m_spatial_height
@@ -107,7 +107,7 @@ std::istream& ribi::kp::operator>>(std::istream& is, Parameters& parameter) noex
   return is;
 }
 
-bool ribi::kp::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
+bool ribi::kp::operator==(const parameters& lhs, const parameters& rhs) noexcept
 {
   return
        lhs.GetSpatialHeight() == rhs.GetSpatialHeight()
@@ -119,7 +119,7 @@ bool ribi::kp::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
 
 }
 
-bool ribi::kp::operator!=(const Parameters& lhs, const Parameters& rhs) noexcept
+bool ribi::kp::operator!=(const parameters& lhs, const parameters& rhs) noexcept
 {
   return !(lhs == rhs);
 }

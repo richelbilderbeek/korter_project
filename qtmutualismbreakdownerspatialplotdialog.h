@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "korter_project_grid_cell.h"
-#include "mutualismbreakdownerparameters.h"
+#include "korter_project_parameters.h"
 #include "qthideandshowdialog.h"
 #include "mutualismbreakdownerspatialsimulation.h"
 struct QwtPlotCurve;
@@ -29,8 +29,8 @@ public:
 
   explicit QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent = 0);
   ~QtMutualismBreakdownerSpatialPlotDialog();
-  Parameters GetParameters() const;
-  void SetParameters(const Parameters& parameters);
+  parameters GetParameters() const;
+  void SetParameters(const parameters& parameters);
 
 private slots:
 

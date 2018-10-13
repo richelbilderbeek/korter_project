@@ -1,7 +1,7 @@
 #include "mutualismbreakdownerspatialsimulation.h"
 
 
-ribi::kp::SpatialSimulation::SpatialSimulation(const Parameters& parameters)
+ribi::kp::SpatialSimulation::SpatialSimulation(const parameters& parameters)
   : m_grid{Grid(parameters.GetSpatialHeight(),std::vector<grid_cell>(parameters.GetSpatialWidth(),grid_cell(parameters)))},
     m_parameters{parameters}
 {

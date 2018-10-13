@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtMutualismBreakdownerMenuDialog</class>
- <widget class="QDialog" name="QtMutualismBreakdownerMenuDialog">
+ <class>qt_menu_dialog</class>
+ <widget class="QDialog" name="qt_menu_dialog">
   <property name="geometry">
    <rect>
     <x>0</x>

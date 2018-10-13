@@ -4,7 +4,7 @@
 #include <QDialog>
 
 namespace Ui {
-class korter_project_qt_menu_dialog;
+  class qt_menu_dialog;
 }
 
 namespace ribi {
@@ -29,7 +29,7 @@ private slots:
   void on_button_quit_clicked();
 
 private:
-  Ui::korter_project_qt_menu_dialog *ui;
+  Ui::qt_menu_dialog *ui;
 
   #ifndef NDEBUG
   static void Test() noexcept;
