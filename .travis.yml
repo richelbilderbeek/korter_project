@@ -51,14 +51,14 @@ before_script:
 script: 
   - ./download_other_githubs.sh
   - ./build_other_githubs.sh
-  - qmake -qt=qt5 MutualismBreakdownerConsole.pro
+  - qmake -qt=qt5 korter_project_console.pro
   - make
-  - ./MutualismBreakdownerConsole
-  - qmake -qt=qt5 MutualismBreakdownerDesktop.pro
+  - ./korter_project_console
+  - qmake -qt=qt5 korter_project_desktop.pro
   - make
-  - ./MutualismBreakdownerDesktop &
+  - ./korter_project_desktop &
   - sleep 10
-  - sudo killall -9 MutualismBreakdownerDesktop
+  - sudo killall -9 korter_project_desktop
   # cppcheck, be mild
   - cppcheck --quiet --error-exitcode=0 . 
   #- cppcheck --quiet --error-exitcode=1 . 
