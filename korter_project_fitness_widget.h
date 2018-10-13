@@ -21,6 +21,10 @@ public:
 signals:
   void signal_parameters_changed();
 
+private slots:
+
+  void OnAnyChange();
+
 private:
   Ui::korter_project_fitness_widget *ui;
 };
