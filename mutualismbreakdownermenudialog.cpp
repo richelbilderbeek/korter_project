@@ -1,27 +1,3 @@
-//---------------------------------------------------------------------------
-/*
-MutualismBreakdowner, seagrass model
-Copyright (C) 2015 Richel Bilderbeek
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
-GNU General Public License for more details.
-You should have received a copy of the GNU General Public License
-along with this program.If not, see <http://www.gnu.org/licenses/>.
-*/
-//---------------------------------------------------------------------------
-//System expert: Greg Fivash
-//Model development: Greg Fivash (major), Richel Bilderbeek (minor)
-//Programming: Richel Bilderbeek
-//
-//From http://www.richelbilderbeek.nl/ToolMutualismBreakdowner.htm
-//---------------------------------------------------------------------------
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
 #pragma GCC diagnostic ignored "-Wunused-local-typedefs"
@@ -59,12 +35,12 @@ int ribi::mb::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) 
 ribi::About ribi::mb::MenuDialog::GetAbout() const noexcept
 {
   About a(
-    "Greg Fivash and Richel Bilderbeek",
-    "MutualismBreakdowner",
+    "Richel Bilderbeek",
+    "korter_project",
     "simulation",
-    "the 12th of November 2015",
-    "2015-2015",
-    "http://www.richelbilderbeek.nl/ToolMutualismBreakdowner.htm",
+    "the 13th of October 2018",
+    "2018",
+    "https://github.com/richelbilderbeek/korter_project",
     GetVersion(),
     GetVersionHistory()
   );
@@ -73,25 +49,21 @@ ribi::About ribi::mb::MenuDialog::GetAbout() const noexcept
 
 std::string ribi::mb::MenuDialog::GetVersion() const noexcept
 {
-  return "2.2";
+  return "0.1";
 }
 
 std::vector<std::string> ribi::mb::MenuDialog::GetVersionHistory() const noexcept
 {
   return {
-    "2015-05-03: Version 0.1: initial version with 3 ODEs",
-    "2015-05-05: Version 1.0: implemented system of 4 ODEs, added menu screens",
-    "2015-05-12: Version 2.0: implemented system of 2 ODEs",
-    "2015-05-13: Version 2.1: added spatial model",
-    "2015-11-12: Version 2.2: moved to own GitHub"
+    "2018-10-13: Version 0.1: initial version "
   };
 }
 
 ribi::Help ribi::mb::MenuDialog::GetHelp() const noexcept
 {
   return ribi::Help(
-    "MutualismBreakdowner",
-    "Seagrass model",
+    "korter_project",
+    "model",
     {
       //No additional options
     },

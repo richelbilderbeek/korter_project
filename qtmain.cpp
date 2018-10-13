@@ -2,7 +2,6 @@
 #include "qtmutualismbreakdownermenudialog.h"
 #include "mutualismbreakdownerparameters.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
-#include "qtmutualismbreakdownertimeplotdialog.h"
 
 int main(int argc, char *argv[])
 {

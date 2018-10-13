@@ -52,19 +52,9 @@ QPushButton
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="button_start_time">
+    <widget class="QPushButton" name="button_start">
      <property name="text">
-      <string>&amp;Time</string>
-     </property>
-     <property name="flat">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QPushButton" name="button_start_spatial">
-     <property name="text">
-      <string>&amp;Spatial</string>
+      <string>&amp;Start</string>
      </property>
      <property name="flat">
       <bool>true</bool>
