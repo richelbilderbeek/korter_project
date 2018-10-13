@@ -4,7 +4,7 @@ include(../RibiClasses/CppFileIo/CppFileIo.pri)
 include(../RibiClasses/CppHelp/CppHelp.pri)
 include(../RibiClasses/CppMenuDialog/CppMenuDialog.pri)
 include(../RibiUnits/RibiUnits.pri)
-include(MutualismBreakdownerConsole.pri)
+include(korter_project_console.pri)
 
 SOURCES += main.cpp
 

@@ -17,4 +17,4 @@ HEADERS  += \
     $$PWD/mutualismbreakdownerspatialsimulation.h
 
 RESOURCES += \
-    $$PWD/MutualismBreakdowner.qrc
+    $$PWD/korter_project.qrc

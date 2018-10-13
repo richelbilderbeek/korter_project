@@ -1,4 +1,4 @@
-include(MutualismBreakdownerConsole.pri)
+include(korter_project_console.pri)
 
 SOURCES += \
     $$PWD/qtmutualismbreakdownertimeplotdialog.cpp \

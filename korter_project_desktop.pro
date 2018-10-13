@@ -7,7 +7,7 @@ include(../RibiClasses/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 include(../RibiLibraries/Qwt.pri)
 
 #Specific, console
-include(MutualismBreakdownerDesktop.pri)
+include(korter_project_desktop.pri)
 
 SOURCES += qtmain.cpp
 
