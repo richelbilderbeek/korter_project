@@ -13,15 +13,15 @@ struct Parameters
   Parameters(
     const int spatial_height,
     const int spatial_width,
-    const double m_initial_loripes_density,
+    const double m_n_nurse_plants,
     const double m_initial_seagrass_density,
-    const double any_initial_loripes_density
+    const double any_n_nurse_plants
   );
 
   int GetSpatialHeight() const noexcept { return m_spatial_height; }
   int GetSpatialWidth() const noexcept { return m_spatial_width; }
 
-  const double& GetInitialLoripesDensity() const noexcept { return m_initial_loripes_density; }
+  const double& get_n_nurse_plants() const noexcept { return m_n_nurse_plants; }
   const double& GetInitialSeagrassDensity() const noexcept { return m_initial_seagrass_density; }
   const double& GetInitialSulfidedouble() const noexcept { return m_initial_sulfide_concentration; }
 
@@ -40,7 +40,7 @@ struct Parameters
   int m_spatial_height;
   int m_spatial_width;
 
-  double m_initial_loripes_density;
+  double m_n_nurse_plants;
   double m_initial_seagrass_density;
   double m_initial_sulfide_concentration;
 

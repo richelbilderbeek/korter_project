@@ -23,15 +23,15 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_spatial_plot">
       <property name="geometry">
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>293</height>
+        <width>386</width>
+        <height>221</height>
        </rect>
       </property>
       <attribute name="label">
@@ -119,37 +119,21 @@
        <string>Initial conditions</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_8">
-       <item row="0" column="1">
-        <widget class="QDoubleSpinBox" name="box_initial_loripes_density">
-         <property name="decimals">
-          <number>4</number>
-         </property>
-         <property name="maximum">
-          <double>1000000.000000000000000</double>
-         </property>
-         <property name="singleStep">
-          <double>0.100000000000000</double>
-         </property>
-         <property name="value">
-          <double>0.100000000000000</double>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="0">
+       <item row="3" column="0">
         <widget class="QLabel" name="label_initial_seagrass_concentration">
          <property name="text">
           <string>Sulfide concentration</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="0">
+       <item row="2" column="0">
         <widget class="QLabel" name="label_initial_seagrass_density">
          <property name="text">
           <string>Seagrass density</string>
          </property>
         </widget>
        </item>
-       <item row="2" column="1">
+       <item row="3" column="1">
         <widget class="QDoubleSpinBox" name="box_initial_sulfide_concentration">
          <property name="decimals">
           <number>4</number>
@@ -168,11 +152,11 @@
        <item row="0" column="0">
         <widget class="QLabel" name="label_initial_loripes_density">
          <property name="text">
-          <string>Loripes density</string>
+          <string>Number of nurse plants</string>
          </property>
         </widget>
        </item>
-       <item row="1" column="1">
+       <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="box_initial_seagrass_density">
          <property name="decimals">
           <number>4</number>
@@ -188,7 +172,7 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="0" colspan="2">
+       <item row="5" column="0" colspan="2">
         <widget class="QLabel" name="image_initial_conditions">
          <property name="text">
           <string/>
@@ -201,7 +185,7 @@
          </property>
         </widget>
        </item>
-       <item row="3" column="0">
+       <item row="4" column="0">
         <spacer name="verticalSpacer">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -214,6 +198,9 @@
          </property>
         </spacer>
        </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="box_n_nurse_plants"/>
+       </item>
       </layout>
      </widget>
      <widget class="QWidget" name="page_poisoning">
@@ -221,8 +208,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -235,8 +222,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -249,8 +236,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -263,8 +250,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -277,8 +264,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -291,8 +278,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">
@@ -305,8 +292,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>82</height>
+        <width>100</width>
+        <height>30</height>
        </rect>
       </property>
       <attribute name="label">

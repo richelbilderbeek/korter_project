@@ -27,12 +27,12 @@ void ribi::kp::Parameters::Test() noexcept
     assert(p == q);
   }
   //DeltaT
-  //Change of initial_loripes_density
+  //Change of n_nurse_plants
   {
     Parameters p;
     Parameters q;
-    q.m_initial_loripes_density
-      = p.m_initial_loripes_density
+    q.m_n_nurse_plants
+      = p.m_n_nurse_plants
       + 0.1
     ;
     assert(p != q);
