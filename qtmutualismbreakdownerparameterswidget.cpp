@@ -77,11 +77,8 @@ ribi::mb::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParamete
 
 
 
-  QObject::connect(ui->box_spatial_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_timeplot_delta_t,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
-  QObject::connect(ui->box_n_timesteps,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_loripes_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_seagrass_density,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_initial_sulfide_concentration,SIGNAL(valueChanged(double)),this,SLOT(OnAnyChange()));
@@ -106,10 +103,8 @@ ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerParametersWidget::GetParame
   using boost::units::si::cubic_meter;
   using boost::units::si::seconds;
   const Parameters p(
-    ui->box_spatial_delta_t->value() * seconds,
     ui->box_spatial_height->value(),
     ui->box_spatial_width->value(),
-    ui->box_timeplot_delta_t->value() * seconds,
     ui->box_initial_loripes_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_seagrass_density->value() * boost::units::si::species_per_square_meter,
     ui->box_initial_sulfide_concentration->value() * mole / cubic_meter,
@@ -119,8 +114,7 @@ ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerParametersWidget::GetParame
     m_qtsulfideconsumptionwidget->GetFunction(),
     m_qtsulfidedetoxificationwidget->GetFunction(),
     m_qtsulfidediffusionwidget->GetFunction(),
-    m_qtsulfideproductionwidget->GetFunction(),
-    ui->box_n_timesteps->value()
+    m_qtsulfideproductionwidget->GetFunction()
   );
 
   return p;
@@ -128,11 +122,8 @@ ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerParametersWidget::GetParame
 
 void ribi::mb::QtMutualismBreakdownerParametersWidget::SetParameters(const Parameters& parameters)
 {
-  ui->box_spatial_delta_t->setValue(parameters.GetSpatialDeltaT().value());
   ui->box_spatial_height->setValue(parameters.GetSpatialHeight());
   ui->box_spatial_width->setValue(parameters.GetSpatialWidth());
-  ui->box_timeplot_delta_t->setValue(parameters.GetTimeplotDeltaT().value());
-  ui->box_n_timesteps->setValue(parameters.GetNumberOfTimesteps());
   ui->box_initial_loripes_density->setValue(parameters.GetInitialLoripesDensity().value());
   ui->box_initial_seagrass_density->setValue(parameters.GetInitialSeagrassDensity().value());
   ui->box_initial_sulfide_concentration->setValue(parameters.GetInitialSulfideConcentration().value());

@@ -119,7 +119,7 @@ ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::GetParam
 void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 {
   const auto parameters = GetParameters();
-  const auto dt = parameters.GetSpatialDeltaT();
+  const auto dt = 0.1 * boost::units::si::seconds; //STUB
   assert(m_simulation);
   m_simulation->Change(dt);
 

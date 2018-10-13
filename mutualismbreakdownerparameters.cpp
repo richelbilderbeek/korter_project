@@ -14,10 +14,8 @@
 
 ribi::mb::Parameters::Parameters()
   :
-    m_spatial_delta_t{0.1 * boost::units::si::seconds},
     m_spatial_height{10},
     m_spatial_width{10},
-    m_timeplot_delta_t{0.1 * boost::units::si::seconds},
     m_initial_loripes_density{0.0 * boost::units::si::species_per_square_meters},
     m_initial_seagrass_density{0.0 * boost::units::si::species_per_square_meters},
     m_initial_sulfide_concentration{0.0 * boost::units::si::mole / boost::units::si::cubic_meter},
@@ -27,8 +25,7 @@ ribi::mb::Parameters::Parameters()
     m_sulfide_consumption_function{new LinearConsumption},
     m_sulfide_detoxification_function{new LinearSulfideDetoxification},
     m_sulfide_diffusion_function{new LinearSulfideDiffusion},
-    m_sulfide_production_function{std::make_shared<LinearSulfideProduction>()},
-    n_timesteps{1}
+    m_sulfide_production_function{std::make_shared<LinearSulfideProduction>()}
 {
   #ifndef NDEBUG
   Test();
@@ -38,10 +35,8 @@ ribi::mb::Parameters::Parameters()
 }
 
 ribi::mb::Parameters::Parameters(
-  const Time spatial_delta_t,
   const int spatial_height,
   const int spatial_width,
-  const Time timeplot_delta_t,
   const ribi::units::SpeciesDensity initial_loripes_density,
   const ribi::units::SpeciesDensity initial_seagrass_density,
   const ribi::units::Concentration initial_sulfide_concentration,
@@ -51,13 +46,10 @@ ribi::mb::Parameters::Parameters(
   std::shared_ptr<SulfideConsumptionFunction> sulfide_consumption_function,
   std::shared_ptr<SulfideDetoxificationFunction> sulfide_detoxification_function,
   std::shared_ptr<SulfideDiffusionFunction> sulfide_diffusion_function,
-  std::shared_ptr<SulfideProductionFunction> sulfide_production_function,
-  const int any_n_timesteps
+  std::shared_ptr<SulfideProductionFunction> sulfide_production_function
 ) :
-    m_spatial_delta_t{spatial_delta_t},
     m_spatial_height{spatial_height},
     m_spatial_width{spatial_width},
-    m_timeplot_delta_t{timeplot_delta_t},
     m_initial_loripes_density{initial_loripes_density},
     m_initial_seagrass_density{initial_seagrass_density},
     m_initial_sulfide_concentration{initial_sulfide_concentration},
@@ -67,8 +59,7 @@ ribi::mb::Parameters::Parameters(
     m_sulfide_consumption_function{sulfide_consumption_function},
     m_sulfide_detoxification_function{sulfide_detoxification_function},
     m_sulfide_diffusion_function{sulfide_diffusion_function},
-    m_sulfide_production_function{sulfide_production_function},
-    n_timesteps{any_n_timesteps}
+    m_sulfide_production_function{sulfide_production_function}
 {
   #ifndef NDEBUG
   Test();
@@ -77,14 +68,6 @@ ribi::mb::Parameters::Parameters(
   using boost::units::si::mole;
   using boost::units::si::cubic_meter;
   using boost::units::si::seconds;
-  if (m_spatial_delta_t <= 0.0 * seconds)
-  {
-    throw std::logic_error("Parameters::Parameters: spatial_delta_t must be above zero");
-  }
-  if (m_timeplot_delta_t <= 0.0 * seconds)
-  {
-    throw std::logic_error("Parameters::Parameters: timeplot_delta_t must be above zero");
-  }
   assert(m_initial_loripes_density >= 0.0 * species_per_square_meter);
   assert(m_initial_seagrass_density >= 0.0 * species_per_square_meter);
   assert(m_initial_sulfide_concentration >= 0.0 * mole / cubic_meter);
@@ -127,10 +110,10 @@ ribi::mb::Parameters ribi::mb::Parameters::GetTest(const int /* i */)
   using boost::units::si::cubic_meter;
   using boost::units::si::seconds;
   const Parameters p(
-    0.1 * seconds, //spatial_delta_t,
+    //0.1 * seconds, //spatial_delta_t,
     10, //spatial_height
     10, //spatial_width
-    0.1 * seconds, //timeplot_delta_t,
+    //0.1 * seconds, //timeplot_delta_t,
     0.1 * species_per_square_meters, //initial_loripes_density,
     0.1 * species_per_square_meters, //initial_seagrass_density,
     0.0 * mole / cubic_meter, //any_initial_loripes_density,
@@ -140,12 +123,13 @@ ribi::mb::Parameters ribi::mb::Parameters::GetTest(const int /* i */)
     sulfide_consumption_function,
     sulfide_detoxification_function,
     sulfide_diffusion_function,
-    sulfide_production_function,
-    100 //any_n_timesteps
+    sulfide_production_function
+    //100 //any_n_timesteps
   );
   return p;
 }
 
+/*
 void ribi::mb::Parameters::SetTimeplotDeltaT(const Time any_delta_t)
 {
   if (any_delta_t <= 0.0 * boost::units::si::seconds)
@@ -158,6 +142,7 @@ void ribi::mb::Parameters::SetTimeplotDeltaT(const Time any_delta_t)
   }
   m_timeplot_delta_t = any_delta_t;
 }
+*/
 
 void ribi::mb::Parameters::SetInitialSeagrassDensity(const ribi::units::SpeciesDensity any_initial_seagrass_density)
 {
@@ -188,10 +173,8 @@ void ribi::mb::Parameters::SetPoisoningFunction(const std::shared_ptr<PoisoningF
 std::ostream& ribi::mb::operator<<(std::ostream& os, const Parameters& parameter) noexcept
 {
   os
-    << parameter.GetSpatialDeltaT() << " "
     << parameter.GetSpatialHeight() << " "
     << parameter.GetSpatialWidth() << " "
-    << parameter.GetTimeplotDeltaT() << " "
     << parameter.GetInitialLoripesDensity() << " "
     << parameter.GetInitialSeagrassDensity() << " "
     << parameter.GetInitialSulfideConcentration() << " "
@@ -200,7 +183,6 @@ std::ostream& ribi::mb::operator<<(std::ostream& os, const Parameters& parameter
     << *parameter.GetSulfideDetoxificationFunction() << " "
     << *parameter.GetSulfideDiffusionFunction() << " "
     << *parameter.GetSulfideProductionFunction() << " "
-    << parameter.n_timesteps
   ;
   return os;
 }
@@ -208,10 +190,8 @@ std::ostream& ribi::mb::operator<<(std::ostream& os, const Parameters& parameter
 std::istream& ribi::mb::operator>>(std::istream& is, Parameters& parameter) noexcept
 {
   is
-    >> parameter.m_spatial_delta_t
     >> parameter.m_spatial_height
     >> parameter.m_spatial_width
-    >> parameter.m_timeplot_delta_t
     >> parameter.m_initial_loripes_density
     >> parameter.m_initial_seagrass_density
     >> parameter.m_initial_sulfide_concentration
@@ -220,7 +200,6 @@ std::istream& ribi::mb::operator>>(std::istream& is, Parameters& parameter) noex
     >> parameter.m_sulfide_detoxification_function
     >> parameter.m_sulfide_diffusion_function
     >> parameter.m_sulfide_production_function
-    >> parameter.n_timesteps
   ;
   return is;
 }
@@ -228,10 +207,8 @@ std::istream& ribi::mb::operator>>(std::istream& is, Parameters& parameter) noex
 bool ribi::mb::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
 {
   return
-       lhs.GetSpatialDeltaT() == rhs.GetSpatialDeltaT()
-    && lhs.GetSpatialHeight() == rhs.GetSpatialHeight()
+       lhs.GetSpatialHeight() == rhs.GetSpatialHeight()
     && lhs.GetSpatialWidth() == rhs.GetSpatialWidth()
-    && lhs.GetTimeplotDeltaT() == rhs.GetTimeplotDeltaT()
     && lhs.m_initial_loripes_density == rhs.m_initial_loripes_density
     && lhs.m_initial_seagrass_density == rhs.m_initial_seagrass_density
     && lhs.m_initial_sulfide_concentration == rhs.m_initial_sulfide_concentration
@@ -240,7 +217,6 @@ bool ribi::mb::operator==(const Parameters& lhs, const Parameters& rhs) noexcept
     && lhs.m_sulfide_detoxification_function->ToStr() == rhs.m_sulfide_detoxification_function->ToStr()
     && lhs.m_sulfide_diffusion_function->ToStr() == rhs.m_sulfide_diffusion_function->ToStr()
     && lhs.m_sulfide_production_function->ToStr() == rhs.m_sulfide_production_function->ToStr()
-    && lhs.n_timesteps == rhs.n_timesteps
   ;
 
 }

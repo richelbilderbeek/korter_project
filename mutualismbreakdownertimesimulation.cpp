@@ -32,11 +32,11 @@ void ribi::mb::TimeSimulation::Run()
 {
   using Time = boost::units::quantity<boost::units::si::time>;
   using boost::units::si::seconds;
-  const int n_timesteps{m_parameters.GetNumberOfTimesteps()};
+  const int n_timesteps{100}; //STUB
   assert(n_timesteps >= 0);
   const auto t_end = static_cast<double>(n_timesteps) * seconds;
 
-  const auto delta_t = m_parameters.GetTimeplotDeltaT();
+  const auto delta_t = Time(1.0 * seconds); //STUB
 
   const int sz{static_cast<int>(t_end / delta_t)};
   assert(sz > 0);

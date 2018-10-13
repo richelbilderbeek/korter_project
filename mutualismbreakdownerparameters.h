@@ -27,10 +27,8 @@ struct Parameters
 
   Parameters();
   Parameters(
-    const Time spatial_delta_t,
     const int spatial_height,
     const int spatial_width,
-    const Time timeplot_delta_t,
     const SpeciesDensity m_initial_loripes_density,
     const SpeciesDensity m_initial_seagrass_density,
     const Concentration any_initial_loripes_density,
@@ -40,20 +38,15 @@ struct Parameters
     std::shared_ptr<SulfideConsumptionFunction> sulfide_consumption_function,
     std::shared_ptr<SulfideDetoxificationFunction> sulfide_detoxification_function,
     std::shared_ptr<SulfideDiffusionFunction> sulfide_diffusion_function,
-    std::shared_ptr<SulfideProductionFunction> sulfide_production_function,
-    const int any_n_timesteps
+    std::shared_ptr<SulfideProductionFunction> sulfide_production_function
   );
 
-  const Time& GetSpatialDeltaT() const noexcept { return m_spatial_delta_t; }
   int GetSpatialHeight() const noexcept { return m_spatial_height; }
   int GetSpatialWidth() const noexcept { return m_spatial_width; }
-  const Time& GetTimeplotDeltaT() const noexcept { return m_timeplot_delta_t; }
 
   const SpeciesDensity& GetInitialLoripesDensity() const noexcept { return m_initial_loripes_density; }
   const SpeciesDensity& GetInitialSeagrassDensity() const noexcept { return m_initial_seagrass_density; }
   const Concentration& GetInitialSulfideConcentration() const noexcept { return m_initial_sulfide_concentration; }
-
-  int GetNumberOfTimesteps() const noexcept { return n_timesteps; }
 
   const std::shared_ptr<PoisoningFunction>& GetPoisoningFunction() const noexcept { return m_poisoning_function; }
   const std::shared_ptr<SeagrassColonisationFunction>& GetSeagrassColonisationFunction() const noexcept { return m_seagrass_colonisation_function; }
@@ -76,11 +69,8 @@ struct Parameters
 
 
   private:
-  Time m_spatial_delta_t;
   int m_spatial_height;
   int m_spatial_width;
-  Time m_timeplot_delta_t;
-
 
   SpeciesDensity m_initial_loripes_density;
   SpeciesDensity m_initial_seagrass_density;
@@ -93,8 +83,6 @@ struct Parameters
   std::shared_ptr<SulfideDetoxificationFunction> m_sulfide_detoxification_function;
   std::shared_ptr<SulfideDiffusionFunction> m_sulfide_diffusion_function;
   std::shared_ptr<SulfideProductionFunction> m_sulfide_production_function;
-
-  int n_timesteps;
 
   friend std::ostream& operator<<(std::ostream& os, const Parameters& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, Parameters& parameter) noexcept;
