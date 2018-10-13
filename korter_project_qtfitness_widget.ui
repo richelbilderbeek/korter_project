@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>korter_project_fitness_widget</class>
- <widget class="QWidget" name="korter_project_fitness_widget">
+ <class>korter_project_qtfitness_widget</class>
+ <widget class="QWidget" name="korter_project_qtfitness_widget">
   <property name="geometry">
    <rect>
     <x>0</x>

@@ -4,7 +4,7 @@
 #include <QWidget>
 
 namespace Ui {
-  class korter_project_fitness_widget;
+  class korter_project_qtfitness_widget;
 }
 
 namespace ribi {
@@ -26,7 +26,7 @@ private slots:
   void OnAnyChange();
 
 private:
-  Ui::korter_project_fitness_widget *ui;
+  Ui::korter_project_qtfitness_widget *ui;
 };
 
 } //~namespace kp

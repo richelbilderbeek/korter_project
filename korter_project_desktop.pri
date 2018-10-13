@@ -6,7 +6,7 @@ SOURCES += \
     $$PWD/qtmutualismbreakdownerparameterswidget_test.cpp \
     $$PWD/qtmutualismbreakdownerspatialplotdialog.cpp \
     $$PWD/qtmutualismbreakdownerspatialwidget.cpp \
-    $$PWD/korter_project_fitness_widget.cpp
+    $$PWD/korter_project_qtfitness_widget.cpp
 
 
 HEADERS  += \
@@ -14,12 +14,12 @@ HEADERS  += \
     $$PWD/qtmutualismbreakdownerparameterswidget.h \
     $$PWD/qtmutualismbreakdownerspatialplotdialog.h \
     $$PWD/qtmutualismbreakdownerspatialwidget.h \
-    $$PWD/korter_project_fitness_widget.h
+    $$PWD/korter_project_qtfitness_widget.h
 
 FORMS += \
     $$PWD/qtmutualismbreakdownermenudialog.ui \
     $$PWD/qtmutualismbreakdownerparameterswidget.ui \
     $$PWD/qtmutualismbreakdownerspatialplotdialog.ui \
     $$PWD/qtmutualismbreakdownerspatialwidget.ui \
-    $$PWD/korter_project_fitness_widget.ui
+    $$PWD/korter_project_qtfitness_widget.ui
 
