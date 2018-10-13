@@ -1,9 +1,9 @@
-#include "korter_project_qtfitness_widget.h"
+#include "korter_project_qt_fitness_widget.h"
 #include "ui_korter_project_qtfitness_widget.h"
 
-ribi::kp::fitness_widget::fitness_widget(QWidget *parent) :
+ribi::kp::qt_fitness_widget::qt_fitness_widget(QWidget *parent) :
   QWidget(parent),
-  ui(new Ui::korter_project_qtfitness_widget)
+  ui(new Ui::korter_project_qt_fitness_widget)
 {
   ui->setupUi(this);
   QObject::connect(ui->box_fac_opt, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
@@ -12,12 +12,12 @@ ribi::kp::fitness_widget::fitness_widget(QWidget *parent) :
   QObject::connect(ui->box_unfac_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
 }
 
-ribi::kp::fitness_widget::~fitness_widget()
+ribi::kp::qt_fitness_widget::~qt_fitness_widget()
 {
   delete ui;
 }
 
-void ribi::kp::fitness_widget::OnAnyChange()
+void ribi::kp::qt_fitness_widget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }

@@ -12,7 +12,7 @@ namespace Ui {
 namespace ribi {
 namespace kp {
 
-class fitness_widget;
+class qt_fitness_widget;
 
 class QtMutualismBreakdownerParametersWidget : public QWidget
 {
@@ -36,7 +36,7 @@ private slots:
   void on_button_save_clicked();
 
 private:
-  fitness_widget * const m_fitness_widget;
+  qt_fitness_widget * const m_fitness_widget;
   Ui::QtMutualismBreakdownerParametersWidget *ui;
   #ifndef NDEBUG
   static void Test() noexcept;

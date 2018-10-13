@@ -4,12 +4,12 @@
 #include <fstream>
 #include <QFileDialog>
 
-#include "korter_project_fitness_widget.h"
+#include "korter_project_qt_fitness_widget.h"
 #include "ui_qtmutualismbreakdownerparameterswidget.h"
 
 ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
   QWidget(parent),
-  m_fitness_widget(new fitness_widget),
+  m_fitness_widget(new qt_fitness_widget),
   ui(new Ui::QtMutualismBreakdownerParametersWidget)
 {
   #ifndef NDEBUG

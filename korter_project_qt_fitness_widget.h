@@ -4,19 +4,19 @@
 #include <QWidget>
 
 namespace Ui {
-  class korter_project_qtfitness_widget;
+  class korter_project_qt_fitness_widget;
 }
 
 namespace ribi {
 namespace kp {
 
-class fitness_widget : public QWidget
+class qt_fitness_widget : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit fitness_widget(QWidget *parent = 0);
-  ~fitness_widget();
+  explicit qt_fitness_widget(QWidget *parent = 0);
+  ~qt_fitness_widget();
 
 signals:
   void signal_parameters_changed();
@@ -26,7 +26,7 @@ private slots:
   void OnAnyChange();
 
 private:
-  Ui::korter_project_qtfitness_widget *ui;
+  Ui::korter_project_qt_fitness_widget *ui;
 };
 
 } //~namespace kp

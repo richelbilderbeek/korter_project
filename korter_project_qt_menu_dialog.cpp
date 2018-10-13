@@ -1,6 +1,6 @@
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include "qtmutualismbreakdownermenudialog.h"
+#include "korter_project_qt_menu_dialog.h"
 
 #include <QKeyEvent>
 
@@ -12,25 +12,25 @@
 #pragma GCC diagnostic pop
 
 
-ribi::kp::QtMutualismBreakdownerMenuDialog::QtMutualismBreakdownerMenuDialog(QWidget *parent) :
-    QtHideAndShowDialog(parent),
-    ui(new Ui::QtMutualismBreakdownerMenuDialog)
+ribi::kp::qt_menu_dialog::qt_menu_dialog(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::korter_project_qt_menu_dialog)
 {
   ui->setupUi(this);
 }
 
-ribi::kp::QtMutualismBreakdownerMenuDialog::~QtMutualismBreakdownerMenuDialog() noexcept
+ribi::kp::qt_menu_dialog::~qt_menu_dialog() noexcept
 {
   delete ui;
 }
 
-void ribi::kp::QtMutualismBreakdownerMenuDialog::keyPressEvent(QKeyEvent * event)
+void ribi::kp::qt_menu_dialog::keyPressEvent(QKeyEvent * event)
 {
   if (event->key() == Qt::Key_Escape) close();
 }
 
 
-void ribi::kp::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
+void ribi::kp::qt_menu_dialog::on_button_about_clicked()
 {
   About a = ribi::kp::MenuDialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
@@ -42,25 +42,27 @@ void ribi::kp::QtMutualismBreakdownerMenuDialog::on_button_about_clicked()
   this->show();
 }
 
-void ribi::kp::QtMutualismBreakdownerMenuDialog::on_button_quit_clicked()
+void ribi::kp::qt_menu_dialog::on_button_quit_clicked()
 {
   this->close();
 }
 
 #ifndef NDEBUG
-void ribi::kp::QtMutualismBreakdownerMenuDialog::Test() noexcept
+void ribi::kp::qt_menu_dialog::Test() noexcept
 {
   {
     static bool is_tested{false};
     if (is_tested) return;
     is_tested = true;
   }
-  QtMutualismBreakdownerMenuDialog();
+  qt_menu_dialog();
 }
 #endif
 
-void ribi::kp::QtMutualismBreakdownerMenuDialog::on_button_start_clicked()
+void ribi::kp::qt_menu_dialog::on_button_start_clicked()
 {
   QtMutualismBreakdownerSpatialPlotDialog d;
-  ShowChild(&d);
+  this->hide();
+  d.exec();
+  this->show();
 }
