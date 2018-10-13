@@ -1,5 +1,5 @@
-#ifndef QTMUTUALISMBREAKDOWNERMENUDIALOG_H
-#define QTMUTUALISMBREAKDOWNERMENUDIALOG_H
+#ifndef QTKORTER_PROJECT_MENUDIALOG_H
+#define QTKORTER_PROJECT_MENUDIALOG_H
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
@@ -42,4 +42,4 @@ private:
 } //~namespace mb
 } //~namespace ribi
 
-#endif // QTMUTUALISMBREAKDOWNERMENUDIALOG_H
+#endif // QTKORTER_PROJECT_MENUDIALOG_H

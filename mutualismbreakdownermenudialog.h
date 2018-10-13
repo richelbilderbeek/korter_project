@@ -1,5 +1,5 @@
-#ifndef MUTUALISMBREAKDOWNERMENUDIALOG_H
-#define MUTUALISMBREAKDOWNERMENUDIALOG_H
+#ifndef KORTER_PROJECT_MENUDIALOG_H
+#define KORTER_PROJECT_MENUDIALOG_H
 
 #include <string>
 #include <vector>
@@ -30,4 +30,4 @@ struct MenuDialog final : public ::ribi::MenuDialog
 } //~namespace mb
 } //~namespace ribi
 
-#endif // MUTUALISMBREAKDOWNERMENUDIALOG_H
+#endif // KORTER_PROJECT_MENUDIALOG_H
