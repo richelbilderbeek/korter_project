@@ -19,6 +19,14 @@ public:
   const double m_unfac_stddev;
 };
 
+///Density of Gauss curve with mean zero, standard deviation of sd,
+///at position x
+double gauss(const double x, const double sd) noexcept;
+
+///Density of normal with mean 'mean', standard deviation'sd',
+///at position x
+double normal(const double x, const double mean, const double sd) noexcept;
+
 } //~namespace kp
 } //~namespace rib
 

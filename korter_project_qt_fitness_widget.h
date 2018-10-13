@@ -4,6 +4,8 @@
 #include "korter_project_fitness_parameters.h"
 #include <QWidget>
 
+class QwtPlotCurve;
+
 namespace Ui {
   class korter_project_qt_fitness_widget;
 }
@@ -29,6 +31,11 @@ private slots:
 
 private:
   Ui::korter_project_qt_fitness_widget *ui;
+
+  QwtPlotCurve * const m_curve_fac;
+  QwtPlotCurve * const m_curve_unfac;
+
+  void plot();
 };
 
 } //~namespace kp

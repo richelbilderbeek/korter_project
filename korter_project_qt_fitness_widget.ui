@@ -1,19 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>korter_project_qtfitness_widget</class>
- <widget class="QWidget" name="korter_project_qtfitness_widget">
+ <class>korter_project_qt_fitness_widget</class>
+ <widget class="QWidget" name="korter_project_qt_fitness_widget">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>426</width>
-    <height>340</height>
+    <width>481</width>
+    <height>375</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Form</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QwtPlotCanvas { background: #fff; } </string>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="2">
+    <widget class="QLabel" name="label_stddev">
+     <property name="text">
+      <string>Std.dev.</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2">
+    <widget class="QDoubleSpinBox" name="box_fac_stddev">
+     <property name="singleStep">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="value">
+      <double>0.100000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="2">
+    <widget class="QDoubleSpinBox" name="box_unfac_stddev">
+     <property name="singleStep">
+      <double>0.010000000000000</double>
+     </property>
+     <property name="value">
+      <double>0.200000000000000</double>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QDoubleSpinBox" name="box_unfac_opt">
+     <property name="singleStep">
+      <double>0.100000000000000</double>
+     </property>
+     <property name="value">
+      <double>0.100000000000000</double>
+     </property>
+    </widget>
+   </item>
    <item row="4" column="0">
     <spacer name="spacer">
      <property name="orientation">
@@ -27,58 +67,13 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="3">
-    <widget class="QDoubleSpinBox" name="box_fac_stddev">
+   <item row="1" column="1">
+    <widget class="QDoubleSpinBox" name="box_fac_opt">
      <property name="singleStep">
-      <double>0.010000000000000</double>
-     </property>
-     <property name="value">
       <double>0.100000000000000</double>
      </property>
-    </widget>
-   </item>
-   <item row="2" column="3">
-    <widget class="QDoubleSpinBox" name="box_unfac_stddev">
-     <property name="singleStep">
-      <double>0.010000000000000</double>
-     </property>
-     <property name="value">
-      <double>0.200000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="3">
-    <widget class="QLabel" name="label_stddev">
-     <property name="text">
-      <string>Std.dev.</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="2">
-    <widget class="QDoubleSpinBox" name="box_fac_opt">
      <property name="value">
       <double>0.500000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="2">
-    <widget class="QDoubleSpinBox" name="box_unfac_opt">
-     <property name="value">
-      <double>0.100000000000000</double>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2">
-    <widget class="QLabel" name="label_opt">
-     <property name="text">
-      <string>Optimum</string>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="0">
-    <widget class="QLabel" name="label_trait_value">
-     <property name="text">
-      <string>Trait value</string>
      </property>
     </widget>
    </item>
@@ -89,14 +84,14 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0">
-    <widget class="QLabel" name="label_unfac">
+   <item row="0" column="1">
+    <widget class="QLabel" name="label_opt">
      <property name="text">
-      <string>Unfacilitated</string>
+      <string>Optimum</string>
      </property>
     </widget>
    </item>
-   <item row="2" column="4">
+   <item row="2" column="3">
     <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
@@ -109,23 +104,40 @@
      </property>
     </spacer>
    </item>
-   <item row="3" column="0" colspan="4">
-    <widget class="QLabel" name="image">
+   <item row="0" column="0">
+    <widget class="QLabel" name="label_trait_value">
      <property name="text">
-      <string/>
+      <string>Trait value</string>
      </property>
-     <property name="pixmap">
-      <pixmap resource="korter_project.qrc">:/images/SulfideDetoxificationSmall.jpg</pixmap>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="label_unfac">
+     <property name="text">
+      <string>Unfacilitated</string>
      </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="3">
+    <widget class="QwtPlot" name="fitness_plot" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>50</width>
+       <height>200</height>
+      </size>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="korter_project.qrc"/>
- </resources>
+ <customwidgets>
+  <customwidget>
+   <class>QwtPlot</class>
+   <extends>QWidget</extends>
+   <header>qwt_plot.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
  <connections/>
 </ui>
