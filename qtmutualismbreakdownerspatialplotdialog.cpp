@@ -19,7 +19,6 @@
 #include "qtmutualismbreakdownerspatialwidget.h"
 #include "ui_qtmutualismbreakdownerspatialplotdialog.h"
 #include "mutualismbreakdownerspatialsimulation.h"
-#include "mutualismbreakdownerseagrassgrowthfunction.h"
 
 ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
@@ -69,14 +68,8 @@ ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatia
 
 void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
 {
-  const auto parameters = GetParameters();
-  const auto seagrass_growth_function
-    = std::dynamic_pointer_cast<SeagrassStressedLogisticGrowth>(
-      parameters.GetSeagrassGrowthFunction()
-    );
-  assert(seagrass_growth_function);
-  const auto k = seagrass_growth_function->GetCarryingCapacity();
-  const auto max_s = 1.0 * boost::units::si::mole_per_cubic_meter;
+  const auto k = 10.0;
+  const auto max_s = 1.0;
 
   assert(m_simulation);
   const auto grid = m_simulation->GetGrid();
@@ -98,7 +91,7 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
       }
       //Sulfide
       {
-        const auto s = cell.GetSulfideConcentration();
+        const auto s = cell.GetSulfidedouble();
         int r = static_cast<int>(255.0 * s / max_s);
         if (r < 0) r = 0;
         else if (r > 255) r = 255;
@@ -119,7 +112,7 @@ ribi::mb::Parameters ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::GetParam
 void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
 {
   const auto parameters = GetParameters();
-  const auto dt = 0.1 * boost::units::si::seconds; //STUB
+  const auto dt = 0.1; //STUB
   assert(m_simulation);
   m_simulation->Change(dt);
 
@@ -153,10 +146,9 @@ void ribi::mb::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
 {
   m_timer->stop();
   m_seagrass_widget->setEnabled(false);
-  //m_sulfide_widget->setEnabled(false);
   try
   {
-    const auto parameters = GetParameters();
+    GetParameters();
   }
   catch (std::logic_error& e)
   {

@@ -1,33 +1,22 @@
 #include "mutualismbreakdownerseagrasssystem.h"
 
 #include <iostream>
-
-#include "mutualismbreakdownerseagrassgrowthfunction.h"
-#include "mutualismbreakdownerpoisoningfunction.h"
-#include "mutualismbreakdownersulfideconsumptionfunction.h"
-#include "mutualismbreakdownersulfidedetoxificationfunction.h"
-#include "mutualismbreakdownersulfidediffusionfunction.h"
-#include "mutualismbreakdownersulfideproductionfunction.h"
+#include <sstream>
 
 ribi::mb::SeagrassSystem::SeagrassSystem(const Parameters& parameters)
   : m_parameters{parameters},
     m_seagrass_density{parameters.GetInitialSeagrassDensity()},
-    m_sulfide_concentration{parameters.GetInitialSulfideConcentration()}
+    m_sulfide_concentration{parameters.GetInitialSulfidedouble()}
 {
 
 }
 
-void ribi::mb::SeagrassSystem::Change(const Time delta_t)
+void ribi::mb::SeagrassSystem::Change(const double delta_t)
 {
-  const auto n = m_seagrass_density;
-  const auto s = m_sulfide_concentration;
-
   //Seagrass
   try
   {
-    const auto growth = m_parameters.GetSeagrassGrowthFunction()->CalculateGrowth(n);
-    const auto poisoning = m_parameters.GetPoisoningFunction()->CalculateDecline(n,s);
-    const auto delta_n = growth - poisoning;
+    const auto delta_n = 0.1;
     m_seagrass_density += (delta_n * delta_t);
   }
   catch (std::logic_error& e)
@@ -40,17 +29,7 @@ void ribi::mb::SeagrassSystem::Change(const Time delta_t)
   //Sulfide
   try
   {
-    const auto loripes_density = m_parameters.GetInitialLoripesDensity();
-    const auto production = m_parameters.GetSulfideProductionFunction()->CalculateProduction(n);
-    const auto detoxification = m_parameters.GetSulfideDetoxificationFunction()->CalculateDetoxification(n,s);
-    const auto diffusion = m_parameters.GetSulfideDiffusionFunction()->CalculateDiffusion(s);
-    const auto consumption = m_parameters.GetSulfideConsumptionFunction()->CalculateConsumption(s,loripes_density);
-    const auto delta_s
-      = production
-      - diffusion
-      - detoxification
-      - consumption
-    ;
+    const auto delta_s = 0.1;
 
     m_sulfide_concentration += (delta_s * delta_t);
 

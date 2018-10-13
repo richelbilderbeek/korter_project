@@ -1,7 +1,5 @@
 #include <QApplication>
 #include "qtmutualismbreakdownermenudialog.h"
-#include "mutualismbreakdownerpoisoningfunction.h"
-#include "mutualismbreakdownersulfideconsumptionfunction.h"
 #include "mutualismbreakdownerparameters.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
 #include "qtmutualismbreakdownertimeplotdialog.h"

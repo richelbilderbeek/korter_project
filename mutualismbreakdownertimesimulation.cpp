@@ -9,13 +9,6 @@
 #include <boost/units/systems/si.hpp>
 #include <boost/units/io.hpp>
 
-#include "mutualismbreakdownerpoisoningfunction.h"
-#include "speciesdensity.h"
-#include "mutualismbreakdownerseagrassgrowthfunction.h"
-#include "mutualismbreakdownersulfideconsumptionfunction.h"
-#include "mutualismbreakdownersulfidedetoxificationfunction.h"
-#include "mutualismbreakdownersulfidediffusionfunction.h"
-#include "mutualismbreakdownersulfideproductionfunction.h"
 #include "mutualismbreakdownerseagrasssystem.h"
 
 ribi::mb::TimeSimulation::TimeSimulation(const Parameters& parameters)
@@ -30,13 +23,11 @@ ribi::mb::TimeSimulation::TimeSimulation(const Parameters& parameters)
 
 void ribi::mb::TimeSimulation::Run()
 {
-  using Time = boost::units::quantity<boost::units::si::time>;
-  using boost::units::si::seconds;
   const int n_timesteps{100}; //STUB
   assert(n_timesteps >= 0);
-  const auto t_end = static_cast<double>(n_timesteps) * seconds;
+  const double t_end = 1.0;
 
-  const auto delta_t = Time(1.0 * seconds); //STUB
+  const auto delta_t = 0.1;
 
   const int sz{static_cast<int>(t_end / delta_t)};
   assert(sz > 0);
@@ -46,7 +37,7 @@ void ribi::mb::TimeSimulation::Run()
   SeagrassSystem seagrass_system(m_parameters);
 
   int i=0;
-  for (Time t=0.0 * seconds; t<t_end; t+=delta_t)
+  for (double t=0.0; t<t_end; t+=delta_t)
   {
     assert(i >= 0);
     try
@@ -62,9 +53,9 @@ void ribi::mb::TimeSimulation::Run()
     }
     if (i % track_after == 0)
     {    
-      m_timeseries.push_back(t.value());
+      m_timeseries.push_back(t);
       m_seagrass_densities.push_back(seagrass_system.GetSeagrassDensity());
-      m_sulfide_concentrations.push_back(seagrass_system.GetSulfideConcentration());
+      m_sulfide_concentrations.push_back(seagrass_system.GetSulfidedouble());
     }
     ++i;
   }
@@ -75,7 +66,7 @@ std::ostream& ribi::mb::operator<<(std::ostream& os, const TimeSimulation& simul
 {
   const std::vector<double>& t{simulation.GetTimeSeries()};
   const auto& n = simulation.GetSeagrassDensities();
-  const auto& s = simulation.GetSulfideConcentrations();
+  const auto& s = simulation.GetSulfidedoubles();
   std::stringstream stream;
   assert(t.size() == n.size());
   assert(t.size() == s.size());

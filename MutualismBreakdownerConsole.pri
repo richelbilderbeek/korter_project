@@ -6,29 +6,15 @@ SOURCES += \
     $$PWD/mutualismbreakdownerparameters.cpp \
     $$PWD/mutualismbreakdownerparameters_test.cpp \
     $$PWD/mutualismbreakdownermenudialog.cpp \
-    $$PWD/mutualismbreakdownerpoisoningfunction.cpp \
-    $$PWD/mutualismbreakdownersulfideconsumptionfunction.cpp \
-    $$PWD/mutualismbreakdownerseagrassgrowthfunction.cpp \
-    $$PWD/mutualismbreakdownersulfideproductionfunction.cpp \
-    $$PWD/mutualismbreakdownersulfidediffusionfunction.cpp \
-    $$PWD/mutualismbreakdownersulfidedetoxificationfunction.cpp \
     $$PWD/mutualismbreakdownerseagrasssystem.cpp \
-    $$PWD/mutualismbreakdownerspatialsimulation.cpp \
-    $$PWD/mutualismbreakdownerseagrasscolonisationfunction.cpp
+    $$PWD/mutualismbreakdownerspatialsimulation.cpp
 
 HEADERS  += \
     $$PWD/mutualismbreakdownertimesimulation.h \
     $$PWD/mutualismbreakdownerparameters.h \
     $$PWD/mutualismbreakdownermenudialog.h \
-    $$PWD/mutualismbreakdownerpoisoningfunction.h \
-    $$PWD/mutualismbreakdownersulfideconsumptionfunction.h \
-    $$PWD/mutualismbreakdownerseagrassgrowthfunction.h \
-    $$PWD/mutualismbreakdownersulfideproductionfunction.h \
-    $$PWD/mutualismbreakdownersulfidediffusionfunction.h \
-    $$PWD/mutualismbreakdownersulfidedetoxificationfunction.h \
     $$PWD/mutualismbreakdownerseagrasssystem.h \
-    $$PWD/mutualismbreakdownerspatialsimulation.h \
-    $$PWD/mutualismbreakdownerseagrasscolonisationfunction.h
+    $$PWD/mutualismbreakdownerspatialsimulation.h
 
 RESOURCES += \
     $$PWD/MutualismBreakdowner.qrc

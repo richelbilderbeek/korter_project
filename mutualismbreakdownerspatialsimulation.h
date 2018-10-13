@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "mutualismbreakdownerparameters.h"
-#include "ribi_time_unit.h"
 #include "mutualismbreakdownerseagrasssystem.h"
 
 namespace ribi {
@@ -12,13 +11,12 @@ namespace mb {
 
 struct SpatialSimulation
 {
-  using Time = ribi::units::Time;
   using System = SeagrassSystem;
   using Grid = std::vector<std::vector<System>>;
 
   SpatialSimulation(const Parameters& parameters);
 
-  void Change(const Time delta_t);
+  void Change(const double delta_t);
 
   const Grid& GetGrid() const noexcept { return m_grid; }
 

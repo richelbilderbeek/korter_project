@@ -8,7 +8,6 @@
 #include <boost/units/io.hpp>
 
 #include "fileio.h"
-#include "mutualismbreakdownersulfideconsumptionfunction.h"
 
 void ribi::mb::Parameters::Test() noexcept
 {
@@ -28,68 +27,13 @@ void ribi::mb::Parameters::Test() noexcept
     assert(p == q);
   }
   //DeltaT
-  //Does sulfide_consumption_function work?
-  {
-    const Parameters p = Parameters::GetTest(0);
-    assert(p.m_sulfide_consumption_function);
-    assert(p.m_sulfide_consumption_function.get());
-    assert(p.m_sulfide_consumption_function->CalculateConsumption(
-      p.m_initial_sulfide_concentration,
-      p.m_initial_loripes_density
-    ).value() >= 0.0);
-  }
-  //Does sulfide_consumption_function work after copying?
-  {
-    const Parameters p = Parameters::GetTest(0);
-    assert(p.m_sulfide_consumption_function);
-    assert(p.m_sulfide_consumption_function.get());
-    assert(p.m_sulfide_consumption_function->CalculateConsumption(
-      p.m_initial_sulfide_concentration,
-      p.m_initial_loripes_density
-    ).value() >= 0.0);
-    const Parameters q(p);
-    assert(q.m_sulfide_consumption_function);
-    assert(q.m_sulfide_consumption_function.get());
-    assert(q.m_sulfide_consumption_function->CalculateConsumption(
-      q.m_initial_sulfide_concentration,
-      q.m_initial_loripes_density
-    ).value() >= 0.0);
-  }
-  //Set same sulfide_consumption_function
-  {
-    Parameters p;
-    p.m_sulfide_consumption_function
-      = std::make_shared<LinearConsumption>(0.5)
-    ;
-    Parameters q;
-    q.m_sulfide_consumption_function
-      = std::make_shared<LinearConsumption>(0.5)
-    ;
-    if (p != q)
-    {
-      std::cerr << p << '\n' << q << '\n';
-    }
-    assert(p == q);
-  }
-  //Set different sulfide_consumption_function
-  {
-    Parameters p;
-    p.m_sulfide_consumption_function
-      = std::make_shared<LinearConsumption>(0.5)
-    ;
-    Parameters q;
-    q.m_sulfide_consumption_function
-      = std::make_shared<LinearConsumption>(0.6)
-    ;
-    assert(p != q);
-  }
   //Change of initial_loripes_density
   {
     Parameters p;
     Parameters q;
     q.m_initial_loripes_density
       = p.m_initial_loripes_density
-      + (0.1 * boost::units::si::species_per_square_meter)
+      + 0.1
     ;
     assert(p != q);
 
@@ -132,8 +76,8 @@ void ribi::mb::Parameters::Test() noexcept
   //File I/O of initial_species_density
   {
     Parameters parameters;
-    const ribi::units::SpeciesDensity d{
-      23.45 * boost::units::si::species_per_square_meter
+    const double d{
+      23.45
     };
     parameters.m_initial_seagrass_density = d;
     const std::string filename{

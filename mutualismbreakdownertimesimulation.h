@@ -9,17 +9,14 @@ namespace mb {
 
 struct TimeSimulation
 {
-  using SpeciesDensity = ribi::units::SpeciesDensity;
-  using Concentration = ribi::units::Concentration;
-
-  using SpeciesDensities = std::vector<SpeciesDensity>;
-  using Concentrations = std::vector<Concentration>;
+  using SpeciesDensities = std::vector<double>;
+  using doubles = std::vector<double>;
 
   TimeSimulation(const Parameters& parameters);
 
   const Parameters& GetParameters() const noexcept { return m_parameters; }
   const SpeciesDensities& GetSeagrassDensities() const noexcept { return m_seagrass_densities; }
-  const Concentrations& GetSulfideConcentrations() const noexcept { return m_sulfide_concentrations; }
+  const doubles& GetSulfidedoubles() const noexcept { return m_sulfide_concentrations; }
   const std::vector<double>& GetTimeSeries() const noexcept { return m_timeseries; }
 
   void Run();
@@ -27,8 +24,8 @@ struct TimeSimulation
   private:
   const Parameters m_parameters;
 
-  std::vector<SpeciesDensity> m_seagrass_densities;
-  std::vector<Concentration> m_sulfide_concentrations;
+  std::vector<double> m_seagrass_densities;
+  std::vector<double> m_sulfide_concentrations;
   std::vector<double> m_timeseries;
 };
 

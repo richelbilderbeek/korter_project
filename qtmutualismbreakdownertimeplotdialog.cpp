@@ -110,7 +110,7 @@ void ribi::mb::QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
   ui->plot_sulfide_concentration->setEnabled(false);
   try
   {
-    const auto parameters = GetParameters();
+    GetParameters();
   }
   catch (std::logic_error& e)
   {
@@ -127,14 +127,14 @@ void ribi::mb::QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
 
   const std::vector<double>& timeseries{simulation.GetTimeSeries()};
   const auto& seagrass_densities_with_unit = simulation.GetSeagrassDensities();
-  const auto& sulfide_concentrations_with_unit = simulation.GetSulfideConcentrations();
+  const auto& sulfide_concentrations_with_unit = simulation.GetSulfidedoubles();
 
   std::vector<double> seagrass_densities;
   std::transform(
     std::begin(seagrass_densities_with_unit),
     std::end(seagrass_densities_with_unit),
     std::back_inserter(seagrass_densities),
-    [](const ribi::units::SpeciesDensity& d){ return d.value(); }
+    [](const double& d){ return d; }
   );
 
   std::vector<double> sulfide_concentrations;
@@ -142,7 +142,7 @@ void ribi::mb::QtMutualismBreakdownerTimePlotDialog::on_button_run_clicked()
     std::begin(sulfide_concentrations_with_unit),
     std::end(sulfide_concentrations_with_unit),
     std::back_inserter(sulfide_concentrations),
-    [](const ribi::units::Concentration& d){ return d.value(); }
+    [](const double& d){ return d; }
   );
 
   m_curve_seagrass_density->setData(
