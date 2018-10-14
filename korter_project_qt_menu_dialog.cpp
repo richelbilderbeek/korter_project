@@ -6,7 +6,7 @@
 
 #include "qtaboutdialog.h"
 #include "korter_project_menu_dialog.h"
-#include "qtmutualismbreakdownerspatialplotdialog.h"
+#include "korter_project_qt_simulation_dialog.h"
 #include "qtmutualismbreakdownerequilibriumdialog.h"
 #include "ui_korter_project_qt_menu_dialog.h"
 #pragma GCC diagnostic pop
@@ -61,7 +61,7 @@ void ribi::kp::qt_menu_dialog::Test() noexcept
 
 void ribi::kp::qt_menu_dialog::on_button_start_clicked()
 {
-  QtMutualismBreakdownerSpatialPlotDialog d;
+  korter_project_qt_simulation_dialog d;
   this->hide();
   d.exec();
   this->show();

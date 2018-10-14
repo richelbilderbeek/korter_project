@@ -1,4 +1,4 @@
-#include "qtmutualismbreakdownerspatialplotdialog.h"
+#include "korter_project_qt_simulation_dialog.h"
 
 #include <cassert>
 #include <fstream>
@@ -16,12 +16,12 @@
 
 #include "qtmutualismbreakdownerparameterswidget.h"
 #include "qtmutualismbreakdownerspatialwidget.h"
-#include "ui_qtmutualismbreakdownerspatialplotdialog.h"
+#include "ui_korter_project_qt_simulation_dialog.h"
 #include "korter_project_simulation.h"
 
-ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent) :
+ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dialog(QWidget *parent) :
   QtHideAndShowDialog(parent),
-  ui(new Ui::QtMutualismBreakdownerSpatialPlotDialog),
+  ui(new Ui::korter_project_qt_simulation_dialog),
   m_curve_sulfide_concentration(new QwtPlotCurve),
   m_parameters_widget{new QtMutualismBreakdownerParametersWidget},
   m_seagrass_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
@@ -60,12 +60,12 @@ ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::QtMutualismBreakdownerSpatial
   StartRun();
 }
 
-ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::~QtMutualismBreakdownerSpatialPlotDialog()
+ribi::kp::korter_project_qt_simulation_dialog::~korter_project_qt_simulation_dialog()
 {
   delete ui;
 }
 
-void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
+void ribi::kp::korter_project_qt_simulation_dialog::DisplayGrid()
 {
   const auto k = 10.0;
   const auto max_s = 1.0;
@@ -102,13 +102,13 @@ void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::DisplayGrid()
   //m_sulfide_widget->update();
 }
 
-ribi::kp::parameters ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::to_parameters() const
+ribi::kp::parameters ribi::kp::korter_project_qt_simulation_dialog::to_parameters() const
 {
   assert(m_parameters_widget);
   return m_parameters_widget->to_parameters();
 }
 
-void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
+void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
 {
   const auto parameters = to_parameters();
   const auto dt = 0.1; //STUB
@@ -128,7 +128,7 @@ void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::NextTimestep()
   DisplayGrid();
 }
 
-void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const parameters& parameters)
+void ribi::kp::korter_project_qt_simulation_dialog::SetParameters(const parameters& parameters)
 {
   try
   {
@@ -141,7 +141,7 @@ void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::SetParameters(const para
   }
 }
 
-void ribi::kp::QtMutualismBreakdownerSpatialPlotDialog::StartRun()
+void ribi::kp::korter_project_qt_simulation_dialog::StartRun()
 {
   m_timer->stop();
   m_seagrass_widget->setEnabled(false);

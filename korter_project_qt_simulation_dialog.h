@@ -10,7 +10,7 @@
 struct QwtPlotCurve;
 
 namespace Ui {
-  class QtMutualismBreakdownerSpatialPlotDialog;
+  class korter_project_qt_simulation_dialog;
 }
 
 namespace ribi {
@@ -20,15 +20,15 @@ struct simulation;
 struct QtMutualismBreakdownerParametersWidget;
 struct QtMutualismBreakdownerSpatialWidget;
 
-class QtMutualismBreakdownerSpatialPlotDialog : public ribi::QtHideAndShowDialog
+class korter_project_qt_simulation_dialog : public ribi::QtHideAndShowDialog
 {
   Q_OBJECT
   
 public:
 
 
-  explicit QtMutualismBreakdownerSpatialPlotDialog(QWidget *parent = 0);
-  ~QtMutualismBreakdownerSpatialPlotDialog();
+  explicit korter_project_qt_simulation_dialog(QWidget *parent = 0);
+  ~korter_project_qt_simulation_dialog();
   parameters to_parameters() const;
   void SetParameters(const parameters& parameters);
 
@@ -38,7 +38,7 @@ private slots:
   void NextTimestep();
 
 private:
-  Ui::QtMutualismBreakdownerSpatialPlotDialog *ui;
+  Ui::korter_project_qt_simulation_dialog *ui;
   QwtPlotCurve * const m_curve_sulfide_concentration;
   QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
   QtMutualismBreakdownerSpatialWidget * const m_seagrass_widget;
