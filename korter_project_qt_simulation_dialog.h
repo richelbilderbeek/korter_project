@@ -44,7 +44,7 @@ private:
   korter_project_qt_grid * const m_seagrass_widget;
   QTimer * const m_timer;
   std::unique_ptr<simulation> m_simulation;
-  void DisplayGrid();
+  void display_grid();
 };
 
 } //~namespace mb

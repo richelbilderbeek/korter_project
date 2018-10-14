@@ -31,7 +31,7 @@ void ribi::kp::qt_menu_dialog::keyPressEvent(QKeyEvent * event)
 
 void ribi::kp::qt_menu_dialog::on_button_about_clicked()
 {
-  About a = ribi::kp::MenuDialog().GetAbout();
+  About a = ribi::kp::menu_dialog().GetAbout();
   a.AddLibrary("QtHideAndShowDialog version: " + QtHideAndShowDialog::GetVersion());
   QtAboutDialog d(a);
   d.setStyleSheet(this->styleSheet());

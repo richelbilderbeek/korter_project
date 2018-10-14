@@ -65,13 +65,13 @@ ribi::kp::korter_project_qt_simulation_dialog::~korter_project_qt_simulation_dia
   delete ui;
 }
 
-void ribi::kp::korter_project_qt_simulation_dialog::DisplayGrid()
+void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
 {
   const auto k = 10.0;
   const auto max_s = 1.0;
 
   assert(m_simulation);
-  const auto grid = m_simulation->GetGrid();
+  const auto grid = m_simulation->get_grid().get_cells();
   const int height{static_cast<int>(grid.size())};
   const int width{static_cast<int>(grid[0].size())};
   for (int y=0; y!=height; ++y)
@@ -82,19 +82,11 @@ void ribi::kp::korter_project_qt_simulation_dialog::DisplayGrid()
       const auto& cell = line[x];
       //Seagrass
       {
-        const auto n = cell.GetSeagrassDensity();
+        const auto n = cell.get_trait();
         int g = static_cast<int>(255.0 * n / k);
         if (g < 0) g = 0;
         else if (g > 255) g = 255;
         m_seagrass_widget->SetPixel(x,y,qRgb(0,g,0));
-      }
-      //Sulfide
-      {
-        const auto s = cell.GetSulfidedouble();
-        int r = static_cast<int>(255.0 * s / max_s);
-        if (r < 0) r = 0;
-        else if (r > 255) r = 255;
-        //m_sulfide_widget->SetPixel(x,y,qRgb(r,0,0));
       }
     }
   }
@@ -110,22 +102,9 @@ ribi::kp::parameters ribi::kp::korter_project_qt_simulation_dialog::to_parameter
 
 void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
 {
-  const auto parameters = to_parameters();
-  const auto dt = 0.1; //STUB
   assert(m_simulation);
-  m_simulation->Change(dt);
-
-  //Kill some random patch
-  {
-    const int w = parameters.get_spatial_width();
-    const int h = parameters.get_spatial_height();
-    m_simulation->KillSeagrass(
-      std::rand() % w,
-      std::rand() % h
-    );
-  }
-
-  DisplayGrid();
+  m_simulation->go_to_next_generation();
+  display_grid();
 }
 
 void ribi::kp::korter_project_qt_simulation_dialog::SetParameters(const parameters& parameters)
@@ -168,7 +147,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::StartRun()
   //m_simulation = std::make_unique<Simulation>(parameters);
   m_simulation.reset(new simulation(parameters));
 
-  DisplayGrid();
+  display_grid();
 
   m_timer->setInterval(1);
   m_timer->start();

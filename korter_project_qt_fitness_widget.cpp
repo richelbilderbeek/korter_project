@@ -40,10 +40,10 @@ ribi::kp::qt_fitness_widget::~qt_fitness_widget()
 
 void ribi::kp::qt_fitness_widget::set(const fitness_parameters& p) noexcept
 {
-  ui->box_fac_opt->setValue(p.m_fac_opt);
-  ui->box_fac_stddev->setValue(p.m_fac_stddev);
-  ui->box_unfac_opt->setValue(p.m_unfac_opt);
-  ui->box_unfac_stddev->setValue(p.m_unfac_stddev);
+  ui->box_fac_opt->setValue(p.get_fac_opt());
+  ui->box_fac_stddev->setValue(p.get_fac_stddev());
+  ui->box_unfac_opt->setValue(p.get_unfac_opt());
+  ui->box_unfac_stddev->setValue(p.get_unfac_stddev());
   assert(to_parameters() == p);
 }
 
@@ -69,8 +69,8 @@ void ribi::kp::qt_fitness_widget::plot()
   const auto params = to_parameters();
   const double max_trait{
     std::max(
-      params.m_fac_opt + (params.m_fac_stddev * 3.0),
-      params.m_unfac_opt + (params.m_unfac_stddev * 3.0)
+      params.get_fac_opt() + (params.get_fac_stddev() * 3.0),
+      params.get_unfac_opt() + (params.get_unfac_stddev() * 3.0)
     )
   };
   const int n_points{100};
@@ -87,8 +87,8 @@ void ribi::kp::qt_fitness_widget::plot()
   for (int i=0; i!=n_points; ++i)
   {
     const double x{xs[i]};
-    const double u_optimum = params.m_unfac_opt;
-    const double u_sd = params.m_unfac_stddev;
+    const double u_optimum = params.get_unfac_opt();
+    const double u_sd = params.get_unfac_stddev();
     fitness_unfacs.push_back(normal(x, u_optimum, u_sd));
   }
 
@@ -96,8 +96,8 @@ void ribi::kp::qt_fitness_widget::plot()
   for (int i=0; i!=n_points; ++i)
   {
     const double x{xs[i]};
-    const double f_optimum = params.m_fac_opt;
-    const double f_sd = params.m_fac_stddev;
+    const double f_optimum = params.get_fac_opt();
+    const double f_sd = params.get_fac_stddev();
     fitness_facs.push_back(normal(x, f_optimum, f_sd));
   }
   m_curve_fac->setData(
