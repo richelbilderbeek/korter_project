@@ -94,6 +94,19 @@ bool ribi::kp::is_empty(const ribi::kp::grid& g) noexcept
   return true;
 }
 
+bool ribi::kp::is_facilitated(const grid& g, const int x, const int y)
+{
+  assert(g.get(x, y).is_seed());
+  const int h{g.get_height()};
+  const int w{g.get_width()};
+  return
+       g.get((x - 1 + w) %  w, y).is_nurse()
+    || g.get((x + 1 + w) %  w, y).is_nurse()
+    || g.get(x, (y - 1 + h) % h).is_nurse()
+    || g.get(x, (y + 1 + h) % h).is_nurse()
+  ;
+}
+
 std::ostream& ribi::kp::operator<<(std::ostream& os, const grid& g) noexcept
 {
   //Number of rows

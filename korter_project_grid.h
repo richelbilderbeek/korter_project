@@ -45,6 +45,10 @@ int count_n_seeds(const grid& g) noexcept;
 ///Return true if all cells are empty
 bool is_empty(const grid& g) noexcept;
 
+///Is the cell adjacent to a nurse plant?
+///Assumes the cell is a seed/non-nurse plant
+bool is_facilitated(const grid& g, const int x, const int y);
+
 bool operator==(const grid& lhs, const grid& rhs) noexcept;
 bool operator!=(const grid& lhs, const grid& rhs) noexcept;
 

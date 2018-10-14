@@ -72,12 +72,13 @@ void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
   );
 
   assert(m_simulation);
-  const auto grid = m_simulation->get_grid().get_cells();
-  const int height{static_cast<int>(grid.size())};
-  const int width{static_cast<int>(grid[0].size())};
+  const auto& grid = m_simulation->get_grid();
+  const auto& cells = grid.get_cells();
+  const int height{static_cast<int>(cells.size())};
+  const int width{static_cast<int>(cells[0].size())};
   for (int y=0; y!=height; ++y)
   {
-    const auto& line = grid[y];
+    const auto& line = cells[y];
     for (int x=0; x!=width; ++x)
     {
       const grid_cell& c = line[x];
@@ -89,7 +90,16 @@ void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
         int z = static_cast<int>(255.0 * trait / upper_trait);
         if (z < 0) z = 0;
         else if (z > 255) z = 255;
-        m_qt_grid->set_pixel(x, y, qRgb(z, 0, 0));
+        if (is_facilitated(grid, x, y))
+        {
+          //Facilitated are blue
+          m_qt_grid->set_pixel(x, y, qRgb(0, 0, z));
+        }
+        else
+        {
+          //Unfacilitated are red
+          m_qt_grid->set_pixel(x, y, qRgb(z, 0, 0));
+        }
       }
     }
   }
