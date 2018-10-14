@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_correct_n_seeds)
   BOOST_CHECK_EQUAL(count_n_seeds(s), n_seeds);
 }
 
-BOOST_AUTO_TEST_CASE(ribi_kp_simulation_correct_histograms)
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_starts_with_one_histograms)
 {
   const int n_seeds{1};
   parameters p;
@@ -46,4 +46,17 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_correct_histograms)
   p.set_n_seeds(1);
   const simulation s(p);
   BOOST_CHECK_EQUAL(1, s.get_trait_histograms().size());
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_increases_number_of__histograms)
+{
+  const int n_seeds{1};
+  parameters p;
+  p.set_spatial_width(1);
+  p.set_spatial_height(1);
+  p.set_n_nurse_plants(0);
+  p.set_n_seeds(1);
+  simulation s(p);
+  s.go_to_next_generation();
+  BOOST_CHECK_EQUAL(2, s.get_trait_histograms().size());
 }

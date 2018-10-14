@@ -130,15 +130,19 @@ std::vector<double> ribi::kp::create_density_plot(const std::vector<int>& histog
 
 void ribi::kp::simulation::go_to_next_generation()
 {
-  /*
+  std::normal_distribution<double> d(0.0, m_parameters.get_mut_stddev());
   for (auto& line: m_grid.get_cells())
   {
-    for (auto& cell: line)
+    for (grid_cell& cell: line)
     {
-      cell.set_trait(static_cast<double>(std::rand()) / static_cast<double>(RAND_MAX));
+      if (cell.is_seed()) {
+        const double cur_trait{cell.get_trait()};
+        const double new_trait{cur_trait + d(m_rng_engine)};
+        cell.set_trait(std::max(0.0, new_trait));
+      }
     }
   }
-  */
+  add_trait_histogram();
 }
 
 

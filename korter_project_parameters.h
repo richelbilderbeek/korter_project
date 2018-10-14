@@ -35,7 +35,7 @@ struct parameters
   int get_n_nurse_plants() const noexcept { return m_n_nurse_plants; }
   int get_n_seeds() const noexcept { return m_n_seeds; }
   int get_rng_seed() const noexcept { return m_rng_seed; }
-  int get_n_trait_histogram_bins() const noexcept { return 100; }
+  int get_n_trait_histogram_bins() const noexcept { return 10; }
 
   ///Create a testing parameter set
   static parameters GetTest(const int i);

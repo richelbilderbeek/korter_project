@@ -104,6 +104,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
       else if (c.is_nurse()) m_qt_grid->set_pixel(x, y, qRgb(0, 255, 0));
       else
       {
+        assert(c.is_seed());
         const auto trait = c.get_trait();
         int z = static_cast<int>(255.0 * trait / upper_trait);
         if (z < 0) z = 0;
