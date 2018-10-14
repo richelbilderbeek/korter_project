@@ -19,11 +19,18 @@ struct simulation
   const grid& get_grid() const noexcept { return m_grid; }
   const parameters& get_parameters() const noexcept { return m_parameters; }
 
+  const std::vector<std::vector<double>>& get_trait_histograms() const noexcept { return m_trait_histograms; }
+
   private:
 
   grid m_grid;
   parameters m_parameters;
   std::mt19937 m_rng_engine;
+  std::vector<std::vector<double>> m_trait_histograms;
+
+  ///Measure the traits and add a histogram of these
+  void add_trait_histogram();
+
 
   friend std::ostream& operator<<(std::ostream& os, const simulation& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, simulation& parameter) noexcept;
@@ -50,6 +57,11 @@ int count_n_nurse(const simulation& s) noexcept;
 
 ///Count the number of seed/non-nurse plants in the simulation's grid
 int count_n_seeds(const simulation& s) noexcept;
+
+///Create a density plot from a histogram
+///In practice, simply converts the int to double,
+///as QwtSurfacePlotWidget will normalize anyways?
+std::vector<double> create_density_plot(const std::vector<int>& histogram);
 
 bool operator==(const simulation& lhs, const simulation& rhs) noexcept;
 bool operator!=(const simulation& lhs, const simulation& rhs) noexcept;

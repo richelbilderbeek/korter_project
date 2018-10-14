@@ -69,6 +69,11 @@ QPlainTextEdit {
      <layout class="QGridLayout" name="gridLayout_2"/>
     </widget>
    </item>
+   <item>
+    <widget class="QWidget" name="widget_right" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout"/>
+    </widget>
+   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11"/>

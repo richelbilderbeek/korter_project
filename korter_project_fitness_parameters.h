@@ -10,10 +10,10 @@ class fitness_parameters
 {
 public:
   explicit fitness_parameters(
-    const double fac_opt = 0.0,
-    const double fac_stddev = 0.0,
-    const double unfac_opt = 0.0,
-    const double unfac_stddev = 0.0
+    const double fac_opt = 0.5,
+    const double fac_stddev = 0.1,
+    const double unfac_opt = 0.1,
+    const double unfac_stddev = 0.2
   );
   ///Get the optimum trait value for a facilitated plant
   double get_fac_opt() const noexcept { return m_fac_opt; }

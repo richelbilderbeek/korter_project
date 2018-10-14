@@ -1,12 +1,14 @@
 #include "korter_project_simulation.h"
 
+#include <algorithm>
 #include <cassert>
 #include <iostream>
 
 ribi::kp::simulation::simulation(const parameters& p)
   : m_grid(p.get_spatial_width(), p.get_spatial_height()),
     m_parameters{p},
-    m_rng_engine(p.get_rng_seed())
+    m_rng_engine(p.get_rng_seed()),
+    m_trait_histograms{}
 {
   assert(m_grid.get_width() == p.get_spatial_width());
   assert(m_grid.get_height() == p.get_spatial_height());
@@ -23,6 +25,8 @@ ribi::kp::simulation::simulation(const parameters& p)
     p.get_init_trait_mean(),
     p.get_init_trait_stddev(),
     m_rng_engine);
+
+  add_trait_histogram();
 }
 
 ribi::kp::grid ribi::kp::add_nurse_plants(
@@ -90,6 +94,19 @@ ribi::kp::grid ribi::kp::add_seeds(
   return g;
 }
 
+void ribi::kp::simulation::add_trait_histogram()
+{
+  const std::vector<int> histogram = create_trait_histogram(
+    m_grid,
+    m_parameters.get_n_trait_histogram_bins(),
+    calc_upper_trait(m_parameters.get_fitness_parameters())
+  );
+
+  const std::vector<double> density = create_density_plot(histogram);
+
+  m_trait_histograms.push_back(density);
+}
+
 int ribi::kp::count_n_nurse(const simulation& s) noexcept
 {
   return count_n_nurse(s.get_grid());
@@ -98,6 +115,17 @@ int ribi::kp::count_n_nurse(const simulation& s) noexcept
 int ribi::kp::count_n_seeds(const simulation& s) noexcept
 {
   return count_n_seeds(s.get_grid());
+}
+
+std::vector<double> ribi::kp::create_density_plot(const std::vector<int>& histogram)
+{
+  std::vector<double> d;
+  d.reserve(histogram.size());
+  std::transform(
+    std::begin(histogram), std::end(histogram),
+    std::back_inserter(d), [](const int i){ return static_cast<double>(i); }
+  );
+  return d;
 }
 
 void ribi::kp::simulation::go_to_next_generation()

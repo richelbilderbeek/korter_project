@@ -20,13 +20,14 @@
 #include "korter_project_simulation.h"
 
 ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dialog(QWidget *parent) :
-  QtHideAndShowDialog(parent),
+  QDialog(parent),
   ui(new Ui::korter_project_qt_simulation_dialog),
   m_curve_sulfide_concentration(new QwtPlotCurve),
   m_parameters_widget{new korter_project_qt_parameters_widget},
   m_qt_grid{new korter_project_qt_grid(10,10)},
   m_timer{new QTimer(this)},
-  m_simulation{nullptr}
+  m_simulation{nullptr},
+  m_surface_plot{new QtSurfacePlotWidget}
 {
   ui->setupUi(this);
 
@@ -34,12 +35,29 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
     const auto my_layout = ui->widget_left->layout();
     assert(my_layout);
     my_layout->addWidget(m_parameters_widget);
-    //m_parameters_widget->HideTimeplot();
+    //m_parameters_widget->setMaximumWidth(100);
   }
   {
     const auto my_layout = ui->widget_mid->layout();
     assert(my_layout);
     my_layout->addWidget(m_qt_grid);
+  }
+  {
+    const auto my_layout = ui->widget_right->layout();
+    assert(my_layout);
+    my_layout->addWidget(m_surface_plot);
+    m_surface_plot->setMinimumWidth(100);
+    std::vector<std::vector<double>> v(100, std::vector<double>(100, 0.0));
+    for (int i = 0; i != 100; ++i)
+    {
+      for (int j = 0; j != 100; ++j)
+      {
+        v[i][j] = std::cos(6.28 * static_cast<double>(i) / 100.0)
+          + std::sin(6.28 * static_cast<double>(j) / 100.0)
+        ;
+      }
+    }
+    m_surface_plot->SetSurfaceGrey(v);
   }
   {
     ui->plot_sulfide_concentration->setMaximumWidth(400);
@@ -106,6 +124,12 @@ void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
   m_qt_grid->update();
 }
 
+void ribi::kp::korter_project_qt_simulation_dialog::display_traits()
+{
+  const auto& histograms = m_simulation->get_trait_histograms();
+  m_surface_plot->SetSurfaceGrey(histograms);
+}
+
 ribi::kp::parameters ribi::kp::korter_project_qt_simulation_dialog::to_parameters() const
 {
   assert(m_parameters_widget);
@@ -117,6 +141,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
   assert(m_simulation);
   m_simulation->go_to_next_generation();
   display_grid();
+  display_traits();
 }
 
 void ribi::kp::korter_project_qt_simulation_dialog::set_parameters(const parameters& parameters)
@@ -142,7 +167,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::start_run()
   }
   catch (std::logic_error& e)
   {
-    std::clog << e.what() << std::endl;
+    std::clog << e.what() << '\n';
     return;
   }
 
@@ -157,6 +182,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::start_run()
   m_simulation.reset(new simulation(parameters));
 
   display_grid();
+  display_traits();
 
   m_timer->setInterval(1);
   m_timer->start();

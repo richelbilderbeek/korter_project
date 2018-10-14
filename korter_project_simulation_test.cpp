@@ -35,3 +35,15 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_correct_n_seeds)
   const simulation s(p);
   BOOST_CHECK_EQUAL(count_n_seeds(s), n_seeds);
 }
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_correct_histograms)
+{
+  const int n_seeds{1};
+  parameters p;
+  p.set_spatial_width(1);
+  p.set_spatial_height(1);
+  p.set_n_nurse_plants(0);
+  p.set_n_seeds(1);
+  const simulation s(p);
+  BOOST_CHECK_EQUAL(1, s.get_trait_histograms().size());
+}

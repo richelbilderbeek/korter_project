@@ -62,13 +62,13 @@ void ribi::kp::parameters::set_n_seeds(const int n_seeds)
 
 void ribi::kp::parameters::set_spatial_height(const int height)
 {
-  assert(height > 1);
+  assert(height >= 1);
   m_spatial_height = height;
 }
 
 void ribi::kp::parameters::set_spatial_width(const int width)
 {
-  assert(width > 1);
+  assert(width >= 1);
   m_spatial_width = width;
 }
 

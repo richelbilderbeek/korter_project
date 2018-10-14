@@ -15,6 +15,21 @@ ribi::kp::grid::grid(
   assert(static_cast<int>(m_cells[0].size()) == get_width());
 }
 
+std::vector<double> ribi::kp::collect_traits(const grid& g)
+{
+  std::vector<double> t;
+  for (const auto& row: g.get_cells())
+  {
+    for (const grid_cell& cell: row)
+    {
+      if (cell.is_seed()) {
+        t.push_back(cell.get_trait());
+      }
+    }
+  }
+  return t;
+}
+
 int ribi::kp::count_n_empty(const grid& g) noexcept
 {
   int n{0};
@@ -55,6 +70,28 @@ int ribi::kp::count_n_seeds(const grid& g) noexcept
     );
   }
   return n;
+}
+
+std::vector<int> ribi::kp::create_trait_histogram(
+  const grid& g,
+  const int n_bins,
+  const double bin_width
+)
+{
+  assert(g.get_height() > 0);
+  assert(g.get_width() > 0);
+  assert(n_bins > 0);
+  assert(bin_width > 0.0);
+  const std::vector<double> traits = collect_traits(g);
+  std::vector<int> histogram(n_bins, 0);
+  for (const double trait: traits)
+  {
+    const int index = trait / bin_width;
+    assert(index >= 0);
+    if (index < n_bins) { ++histogram[index]; }
+    else { ++histogram.back(); }
+  }
+  return histogram;
 }
 
 const ribi::kp::grid_cell& ribi::kp::grid::get(const int x, const int y) const

@@ -32,6 +32,9 @@ private:
   friend std::istream& operator>>(std::istream& is, grid& parameter) noexcept;
 };
 
+///Extract the seed trait values
+std::vector<double> collect_traits(const grid& g);
+
 ///Count the number of empty grid cells
 int count_n_empty(const grid& g) noexcept;
 
@@ -41,6 +44,13 @@ int count_n_nurse(const grid& g) noexcept;
 ///Count the number of seeds/non-nurse plants
 int count_n_seeds(const grid& g) noexcept;
 
+///Create a histogram of the traits
+///Traits are assumed to be zero or more
+std::vector<int> create_trait_histogram(
+  const grid& g,
+  const int n_bins,
+  const double bin_width
+);
 
 ///Return true if all cells are empty
 bool is_empty(const grid& g) noexcept;
