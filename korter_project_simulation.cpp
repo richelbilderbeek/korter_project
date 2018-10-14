@@ -4,9 +4,26 @@
 
 ribi::kp::simulation::simulation(const parameters& p)
   : m_grid(p.get_spatial_height(), p.get_spatial_width()),
-    m_parameters{p}
+    m_parameters{p},
+    m_rng_engine(p.get_rng_seed())
 {
+  //Put nurse plants into position
+  const int width{p.get_spatial_width()};
+  const int height{p.get_spatial_height()};
+  std::uniform_int_distribution<int> width_distr(0, width - 1);
+  std::uniform_int_distribution<int> height_distr(0, height - 1);
+  const int n_nurse{p.get_n_nurse_plants()};
+  for (int i = 0; i != n_nurse; ++i)
+  {
+    const int x{width_distr(m_rng_engine)};
+    const int y{height_distr(m_rng_engine)};
+    m_grid.get(x, y).make_nurse();
+  }
+}
 
+int ribi::kp::count_n_nurse(const simulation& s) noexcept
+{
+  return count_n_nurse(s.get_grid());
 }
 
 void ribi::kp::simulation::go_to_next_generation()

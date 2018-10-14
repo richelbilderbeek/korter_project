@@ -42,6 +42,9 @@ struct parameters
   void set_n_nurse_plants(const int n_nurse_plants);
   void set_n_seeds(const int n_seeds);
 
+  void set_spatial_height(const int height);
+  void set_spatial_width(const int width);
+
   private:
   const fitness_parameters m_fitness_parameters;
 

@@ -1,5 +1,7 @@
 #include "korter_project_grid.h"
 
+#include <algorithm>
+#include <cassert>
 #include <iostream>
 
 ribi::kp::grid::grid(
@@ -8,6 +10,40 @@ ribi::kp::grid::grid(
 ) : m_cells(height, std::vector<grid_cell>(width))
 {
 
+}
+
+int ribi::kp::count_n_nurse(const grid& g) noexcept
+{
+  int n{0};
+  for (const auto& row: g.get_cells())
+  {
+    n += std::count_if(
+      std::begin(row),
+      std::end(row),
+      [](const grid_cell& c) { return is_nurse(c); }
+    );
+  }
+  return n;
+}
+
+const ribi::kp::grid_cell& ribi::kp::grid::get(const int x, const int y) const
+{
+  assert(y < get_height());
+  assert(x < get_width());
+  return m_cells[y][x];
+}
+
+ribi::kp::grid_cell& ribi::kp::grid::get(const int x, const int y)
+{
+  assert(y < get_height());
+  assert(x < get_width());
+  return m_cells[y][x];
+}
+
+int ribi::kp::grid::get_width() const
+{
+  assert(!m_cells.empty());
+  return m_cells[0].size();
 }
 
 std::ostream& ribi::kp::operator<<(std::ostream& os, const grid& g) noexcept

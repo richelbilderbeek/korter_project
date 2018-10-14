@@ -1,6 +1,7 @@
 #ifndef SPATIALSIMULATION_H
 #define SPATIALSIMULATION_H
 
+#include <random>
 #include <vector>
 
 #include "korter_project_parameters.h"
@@ -22,10 +23,14 @@ struct simulation
 
   grid m_grid;
   parameters m_parameters;
+  std::mt19937 m_rng_engine;
 
   friend std::ostream& operator<<(std::ostream& os, const simulation& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, simulation& parameter) noexcept;
 };
+
+///Count the number of nurse plants in the simulation's grid
+int count_n_nurse(const simulation& s) noexcept;
 
 bool operator==(const simulation& lhs, const simulation& rhs) noexcept;
 bool operator!=(const simulation& lhs, const simulation& rhs) noexcept;
