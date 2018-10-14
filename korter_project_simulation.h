@@ -29,8 +29,27 @@ struct simulation
   friend std::istream& operator>>(std::istream& is, simulation& parameter) noexcept;
 };
 
+///Add nurse plants to a grid
+grid add_nurse_plants(
+  grid g,
+  const int n_nurse,
+  std::mt19937& rng_engine
+);
+
+///Add seeds/non-nurse plants to a grid
+grid add_seeds(
+  grid g,
+  const int n_seeds,
+  const double init_trait_mean,
+  const double init_trait_stddev,
+  std::mt19937& rng_engine
+);
+
 ///Count the number of nurse plants in the simulation's grid
 int count_n_nurse(const simulation& s) noexcept;
+
+///Count the number of seed/non-nurse plants in the simulation's grid
+int count_n_seeds(const simulation& s) noexcept;
 
 bool operator==(const simulation& lhs, const simulation& rhs) noexcept;
 bool operator!=(const simulation& lhs, const simulation& rhs) noexcept;

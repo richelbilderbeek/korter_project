@@ -43,3 +43,13 @@ BOOST_AUTO_TEST_CASE(ribi_kp_set)
   p.get(x, y).make_nurse();
   BOOST_CHECK(p.get(x, y).is_nurse());
 }
+
+BOOST_AUTO_TEST_CASE(ribi_kp_grid_is_empty)
+{
+  const int width{3};
+  const int height{4};
+  grid p(width, height);
+  BOOST_CHECK(is_empty(p));
+  p.get(1, 2).make_nurse();
+  BOOST_CHECK(!is_empty(p));
+}

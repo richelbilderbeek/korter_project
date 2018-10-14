@@ -9,9 +9,19 @@ ribi::kp::grid_cell::grid_cell(const double trait)
 
 }
 
+bool ribi::kp::is_empty(const grid_cell& c) noexcept
+{
+  return c.is_empty();
+}
+
 bool ribi::kp::is_nurse(const grid_cell& c) noexcept
 {
   return c.is_nurse();
+}
+
+bool ribi::kp::is_seed(const grid_cell& c) noexcept
+{
+  return c.is_seed();
 }
 
 bool ribi::kp::operator==(const grid_cell& lhs, const grid_cell& rhs) noexcept

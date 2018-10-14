@@ -32,8 +32,18 @@ private:
   friend std::istream& operator>>(std::istream& is, grid& parameter) noexcept;
 };
 
+///Count the number of empty grid cells
+int count_n_empty(const grid& g) noexcept;
+
 ///Count the number of nurse plants
 int count_n_nurse(const grid& g) noexcept;
+
+///Count the number of seeds/non-nurse plants
+int count_n_seeds(const grid& g) noexcept;
+
+
+///Return true if all cells are empty
+bool is_empty(const grid& g) noexcept;
 
 bool operator==(const grid& lhs, const grid& rhs) noexcept;
 bool operator!=(const grid& lhs, const grid& rhs) noexcept;

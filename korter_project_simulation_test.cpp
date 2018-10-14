@@ -23,3 +23,15 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_correct_n_nurse)
   const simulation s(p);
   BOOST_CHECK_EQUAL(count_n_nurse(s), n_nurse_plants);
 }
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_correct_n_seeds)
+{
+  const int n_seeds{6};
+  parameters p;
+  p.set_n_nurse_plants(0);
+  p.set_n_seeds(n_seeds);
+  p.set_spatial_width(3);
+  p.set_spatial_height(2);
+  const simulation s(p);
+  BOOST_CHECK_EQUAL(count_n_seeds(s), n_seeds);
+}

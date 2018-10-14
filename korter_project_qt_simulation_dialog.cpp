@@ -67,7 +67,9 @@ ribi::kp::korter_project_qt_simulation_dialog::~korter_project_qt_simulation_dia
 
 void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
 {
-  const auto k = 1.0;
+  const auto upper_trait = calc_upper_trait(
+    m_simulation->get_parameters().get_fitness_parameters()
+  );
 
   assert(m_simulation);
   const auto grid = m_simulation->get_grid().get_cells();
@@ -83,11 +85,11 @@ void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
       else if (c.is_nurse()) m_qt_grid->set_pixel(x, y, qRgb(0, 255, 0));
       else
       {
-        const auto n = c.get_trait();
-        int g = static_cast<int>(255.0 * n / k);
-        if (g < 0) g = 0;
-        else if (g > 255) g = 255;
-        m_qt_grid->set_pixel(x,y,qRgb(0,g,0));
+        const auto trait = c.get_trait();
+        int z = static_cast<int>(255.0 * trait / upper_trait);
+        if (z < 0) z = 0;
+        else if (z > 255) z = 255;
+        m_qt_grid->set_pixel(x, y, qRgb(z, 0, 0));
       }
     }
   }

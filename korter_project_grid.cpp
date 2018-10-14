@@ -15,6 +15,20 @@ ribi::kp::grid::grid(
   assert(static_cast<int>(m_cells[0].size()) == get_width());
 }
 
+int ribi::kp::count_n_empty(const grid& g) noexcept
+{
+  int n{0};
+  for (const auto& row: g.get_cells())
+  {
+    n += std::count_if(
+      std::begin(row),
+      std::end(row),
+      [](const grid_cell& c) { return is_empty(c); }
+    );
+  }
+  return n;
+}
+
 int ribi::kp::count_n_nurse(const grid& g) noexcept
 {
   int n{0};
@@ -24,6 +38,20 @@ int ribi::kp::count_n_nurse(const grid& g) noexcept
       std::begin(row),
       std::end(row),
       [](const grid_cell& c) { return is_nurse(c); }
+    );
+  }
+  return n;
+}
+
+int ribi::kp::count_n_seeds(const grid& g) noexcept
+{
+  int n{0};
+  for (const auto& row: g.get_cells())
+  {
+    n += std::count_if(
+      std::begin(row),
+      std::end(row),
+      [](const grid_cell& c) { return is_seed(c); }
     );
   }
   return n;
@@ -51,6 +79,19 @@ int ribi::kp::grid::get_width() const
 {
   assert(!m_cells.empty());
   return m_cells[0].size();
+}
+
+bool ribi::kp::is_empty(const ribi::kp::grid& g) noexcept
+{
+  const auto& h = g.get_cells();
+  for (const auto& row: h)
+  {
+    for (const auto& c: row)
+    {
+      if (!c.is_empty()) return false;
+    }
+  }
+  return true;
 }
 
 std::ostream& ribi::kp::operator<<(std::ostream& os, const grid& g) noexcept

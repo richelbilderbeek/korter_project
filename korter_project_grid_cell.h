@@ -13,6 +13,7 @@ struct grid_cell
 
   bool is_empty() const noexcept { return m_trait == sm_empty; }
   bool is_nurse() const noexcept { return m_trait == sm_nurse; }
+  bool is_seed() const noexcept { return m_trait >= 0.0; }
   void make_empty() { m_trait = sm_empty; }
   void make_nurse() { m_trait = sm_nurse; }
   double get_trait() const noexcept { return m_trait; }
@@ -33,8 +34,14 @@ struct grid_cell
   friend std::istream& operator>>(std::istream& is, grid_cell& g) noexcept;
 };
 
+///Is the grid cell empty?
+bool is_empty(const grid_cell& c) noexcept;
+
 ///Is the grid cell a nurse plant?
 bool is_nurse(const grid_cell& c) noexcept;
+
+///Is the grid cell a seed/non-nurse plant?
+bool is_seed(const grid_cell& c) noexcept;
 
 bool operator==(const grid_cell& lhs, const grid_cell& rhs) noexcept;
 bool operator!=(const grid_cell& lhs, const grid_cell& rhs) noexcept;
