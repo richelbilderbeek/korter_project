@@ -67,7 +67,6 @@ ribi::kp::korter_project_qt_simulation_dialog::~korter_project_qt_simulation_dia
 
 void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
 {
-  this->m_qt_grid->
   const auto k = 1.0;
 
   assert(m_simulation);
