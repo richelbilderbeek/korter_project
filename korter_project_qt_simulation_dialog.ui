@@ -38,16 +38,34 @@ QPlainTextEdit {
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
     <widget class="QWidget" name="widget_left" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
      <layout class="QGridLayout" name="gridLayout_4"/>
     </widget>
    </item>
    <item>
     <widget class="QWidget" name="widget_mid" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
      <layout class="QGridLayout" name="gridLayout_3"/>
     </widget>
    </item>
    <item>
     <widget class="QwtPlot" name="plot_sulfide_concentration" native="true">
+     <property name="minimumSize">
+      <size>
+       <width>100</width>
+       <height>0</height>
+      </size>
+     </property>
      <layout class="QGridLayout" name="gridLayout_2"/>
     </widget>
    </item>

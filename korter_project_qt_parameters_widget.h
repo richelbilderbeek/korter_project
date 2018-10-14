@@ -6,7 +6,7 @@
 
 
 namespace Ui {
-  class QtMutualismBreakdownerParametersWidget;
+  class korter_project_qt_parameters_widget;
 }
 
 namespace ribi {
@@ -14,15 +14,15 @@ namespace kp {
 
 class qt_fitness_widget;
 
-class QtMutualismBreakdownerParametersWidget : public QWidget
+class korter_project_qt_parameters_widget : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit QtMutualismBreakdownerParametersWidget(QWidget *parent = 0);
-  ~QtMutualismBreakdownerParametersWidget();
+  explicit korter_project_qt_parameters_widget(QWidget *parent = 0);
+  ~korter_project_qt_parameters_widget();
   parameters to_parameters() const;
-  void SetParameters(const parameters& parameters);
+  void set(const parameters& parameters);
 
 signals:
   void signal_parameters_changed() const;
@@ -37,7 +37,7 @@ private slots:
 
 private:
   qt_fitness_widget * const m_fitness_widget;
-  Ui::QtMutualismBreakdownerParametersWidget *ui;
+  Ui::korter_project_qt_parameters_widget *ui;
   #ifndef NDEBUG
   static void Test() noexcept;
   #endif

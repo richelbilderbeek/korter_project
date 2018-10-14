@@ -1,16 +1,17 @@
-#include "qtmutualismbreakdownerparameterswidget.h"
+#include "korter_project_qt_parameters_widget.h"
 
 #include <cassert>
 #include <fstream>
 #include <QFileDialog>
 
 #include "korter_project_qt_fitness_widget.h"
-#include "ui_qtmutualismbreakdownerparameterswidget.h"
+#include "ui_korter_project_qt_parameters_widget.h"
 
-ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParametersWidget(QWidget *parent) :
+
+ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widget(QWidget *parent) :
   QWidget(parent),
   m_fitness_widget(new qt_fitness_widget),
-  ui(new Ui::QtMutualismBreakdownerParametersWidget)
+  ui(new Ui::korter_project_qt_parameters_widget)
 {
   #ifndef NDEBUG
   Test();
@@ -35,12 +36,12 @@ ribi::kp::QtMutualismBreakdownerParametersWidget::QtMutualismBreakdownerParamete
   QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
 }
 
-ribi::kp::QtMutualismBreakdownerParametersWidget::~QtMutualismBreakdownerParametersWidget()
+ribi::kp::korter_project_qt_parameters_widget::~korter_project_qt_parameters_widget()
 {
   delete ui;
 }
 
-ribi::kp::parameters ribi::kp::QtMutualismBreakdownerParametersWidget::to_parameters() const
+ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameters() const
 {
   const parameters p(
     m_fitness_widget->to_parameters(),
@@ -54,7 +55,7 @@ ribi::kp::parameters ribi::kp::QtMutualismBreakdownerParametersWidget::to_parame
   return p;
 }
 
-void ribi::kp::QtMutualismBreakdownerParametersWidget::SetParameters(const parameters& parameters)
+void ribi::kp::korter_project_qt_parameters_widget::set(const parameters& parameters)
 {
   ui->box_spatial_height->setValue(parameters.get_spatial_height());
   ui->box_spatial_width->setValue(parameters.get_spatial_width());
@@ -63,12 +64,12 @@ void ribi::kp::QtMutualismBreakdownerParametersWidget::SetParameters(const param
   ui->box_rng_seed->setValue(parameters.get_rng_seed());
 }
 
-void ribi::kp::QtMutualismBreakdownerParametersWidget::OnAnyChange()
+void ribi::kp::korter_project_qt_parameters_widget::OnAnyChange()
 {
   emit signal_parameters_changed();
 }
 
-void ribi::kp::QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
+void ribi::kp::korter_project_qt_parameters_widget::on_button_save_clicked()
 {
   const std::string filename{
     QFileDialog::getSaveFileName().toStdString()
@@ -78,7 +79,7 @@ void ribi::kp::QtMutualismBreakdownerParametersWidget::on_button_save_clicked()
   f << to_parameters();
 }
 
-void ribi::kp::QtMutualismBreakdownerParametersWidget::on_button_load_clicked()
+void ribi::kp::korter_project_qt_parameters_widget::on_button_load_clicked()
 {
   const std::string filename{
     QFileDialog::getOpenFileName().toStdString()
@@ -87,5 +88,5 @@ void ribi::kp::QtMutualismBreakdownerParametersWidget::on_button_load_clicked()
   std::ifstream f(filename);
   parameters parameters;
   f >> parameters;
-  SetParameters(parameters);
+  set(parameters);
 }

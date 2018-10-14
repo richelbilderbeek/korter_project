@@ -1,5 +1,5 @@
 #ifndef NDEBUG
-#include "qtmutualismbreakdownerparameterswidget.h"
+#include "korter_project_qt_parameters_widget.h"
 
 #include <cassert>
 #include <fstream>
@@ -7,9 +7,9 @@
 
 #include "fileio.h"
 
-#include "ui_qtmutualismbreakdownerparameterswidget.h"
+#include "ui_korter_project_qt_parameters_widget.h"
 
-void ribi::kp::QtMutualismBreakdownerParametersWidget::Test() noexcept
+void ribi::kp::korter_project_qt_parameters_widget::Test() noexcept
 {
   {
     static bool is_tested{false};
@@ -18,7 +18,7 @@ void ribi::kp::QtMutualismBreakdownerParametersWidget::Test() noexcept
   }
   using ribi::fileio::FileIo;
   {
-    const QtMutualismBreakdownerParametersWidget d;
+    const korter_project_qt_parameters_widget d;
     const auto p = d.to_parameters();
     const auto q = d.to_parameters();
     assert(p == q);

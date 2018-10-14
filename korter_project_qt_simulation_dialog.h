@@ -17,7 +17,7 @@ namespace ribi {
 namespace kp {
 
 struct simulation;
-struct QtMutualismBreakdownerParametersWidget;
+struct korter_project_qt_parameters_widget;
 struct QtMutualismBreakdownerSpatialWidget;
 
 class korter_project_qt_simulation_dialog : public ribi::QtHideAndShowDialog
@@ -40,7 +40,7 @@ private slots:
 private:
   Ui::korter_project_qt_simulation_dialog *ui;
   QwtPlotCurve * const m_curve_sulfide_concentration;
-  QtMutualismBreakdownerParametersWidget * const m_parameters_widget;
+  korter_project_qt_parameters_widget * const m_parameters_widget;
   QtMutualismBreakdownerSpatialWidget * const m_seagrass_widget;
   QTimer * const m_timer;
   std::unique_ptr<simulation> m_simulation;
