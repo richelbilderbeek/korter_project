@@ -5,6 +5,7 @@ include(../RibiClasses/CppMenuDialog/CppMenuDialog.pri)
 include(../RibiClasses/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../RibiClasses/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
 include(../RibiLibraries/Qwt.pri)
+include(../SurfacePlotter/QtSurfacePlotWidget.pri)
 
 #Specific, console
 include(korter_project_desktop.pri)
