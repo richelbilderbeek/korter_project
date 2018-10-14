@@ -20,6 +20,16 @@ ribi::kp::fitness_parameters::fitness_parameters(
   assert(m_unfac_stddev >= 0.0);
 }
 
+double ribi::kp::calc_upper_trait(const fitness_parameters& params, const double n_stddevs)
+{
+  assert(n_stddevs >= 0.0);
+  return std::max(
+      params.get_fac_opt() + (params.get_fac_stddev() * n_stddevs),
+      params.get_unfac_opt() + (params.get_unfac_stddev() * n_stddevs)
+    )
+  ;
+}
+
 double ribi::kp::gauss(const double x, const double sd) noexcept
 {
   return std::exp(-(x * x) / (2.0 * sd * sd));

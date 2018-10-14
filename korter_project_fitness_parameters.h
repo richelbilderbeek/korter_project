@@ -37,6 +37,10 @@ private:
   friend std::istream& operator>>(std::istream& is, fitness_parameters& parameter) noexcept;
 };
 
+///Calculate an upper trait value, which is the maximum of
+///  'trait_mean + (n_stddevs * trait_stddev)' of both facilitated and unfacilitated
+double calc_upper_trait(const fitness_parameters& params, const double n_stddevs = 2.0);
+
 ///Density of Gauss curve with mean zero, standard deviation of sd,
 ///at position x
 double gauss(const double x, const double sd) noexcept;

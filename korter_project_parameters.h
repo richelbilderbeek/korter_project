@@ -64,6 +64,7 @@ struct parameters
   friend bool operator==(const parameters& lhs, const parameters& rhs) noexcept;
 };
 
+
 bool operator==(const parameters& lhs, const parameters& rhs) noexcept;
 bool operator!=(const parameters& lhs, const parameters& rhs) noexcept;
 

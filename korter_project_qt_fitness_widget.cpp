@@ -67,11 +67,8 @@ void ribi::kp::qt_fitness_widget::OnAnyChange()
 void ribi::kp::qt_fitness_widget::plot()
 {
   const auto params = to_parameters();
-  const double max_trait{
-    std::max(
-      params.get_fac_opt() + (params.get_fac_stddev() * 3.0),
-      params.get_unfac_opt() + (params.get_unfac_stddev() * 3.0)
-    )
+  const double upper_trait{
+    calc_upper_trait(params)
   };
   const int n_points{100};
 
@@ -79,7 +76,7 @@ void ribi::kp::qt_fitness_widget::plot()
   for (int i=0; i!=n_points; ++i)
   {
     xs.push_back(
-      max_trait * static_cast<double>(i) / static_cast<double>(n_points)
+      upper_trait * static_cast<double>(i) / static_cast<double>(n_points)
     );
   }
   //Unfacilitated plant fitnesses
