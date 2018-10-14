@@ -18,7 +18,7 @@ namespace kp {
 
 struct simulation;
 struct korter_project_qt_parameters_widget;
-struct QtMutualismBreakdownerSpatialWidget;
+struct korter_project_qt_grid;
 
 class korter_project_qt_simulation_dialog : public ribi::QtHideAndShowDialog
 {
@@ -41,7 +41,7 @@ private:
   Ui::korter_project_qt_simulation_dialog *ui;
   QwtPlotCurve * const m_curve_sulfide_concentration;
   korter_project_qt_parameters_widget * const m_parameters_widget;
-  QtMutualismBreakdownerSpatialWidget * const m_seagrass_widget;
+  korter_project_qt_grid * const m_seagrass_widget;
   QTimer * const m_timer;
   std::unique_ptr<simulation> m_simulation;
   void DisplayGrid();

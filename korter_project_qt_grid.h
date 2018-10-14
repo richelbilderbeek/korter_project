@@ -5,7 +5,7 @@
 #include <QImage>
 
 namespace Ui {
-  class QtMutualismBreakdownerSpatialWidget;
+  class korter_project_qt_grid;
 }
 
 struct QImage;
@@ -13,19 +13,19 @@ struct QImage;
 namespace ribi {
 namespace kp {
 
-class QtMutualismBreakdownerSpatialWidget : public QWidget
+class korter_project_qt_grid : public QWidget
 {
   Q_OBJECT
 
 public:
-  explicit QtMutualismBreakdownerSpatialWidget(
+  explicit korter_project_qt_grid(
     const int width = 600,
     const int height = 400,
     QWidget *parent = 0
   );
-  QtMutualismBreakdownerSpatialWidget(const QtMutualismBreakdownerSpatialWidget&) = delete;
-  QtMutualismBreakdownerSpatialWidget& operator=(const QtMutualismBreakdownerSpatialWidget&) = delete;
-  ~QtMutualismBreakdownerSpatialWidget();
+  korter_project_qt_grid(const korter_project_qt_grid&) = delete;
+  korter_project_qt_grid& operator=(const korter_project_qt_grid&) = delete;
+  ~korter_project_qt_grid();
 
   void SetPixel(const int x, const int y, const QColor color);
   void SetResolution(const int width, const int height);
@@ -33,7 +33,7 @@ public:
 protected:
   void paintEvent(QPaintEvent *);
 private:
-  Ui::QtMutualismBreakdownerSpatialWidget *ui;
+  Ui::korter_project_qt_grid *ui;
   QImage m_image;
 };
 

@@ -15,7 +15,7 @@
 #include <qwt_plot_curve.h>
 
 #include "korter_project_qt_parameters_widget.h"
-#include "qtmutualismbreakdownerspatialwidget.h"
+#include "korter_project_qt_grid.h"
 #include "ui_korter_project_qt_simulation_dialog.h"
 #include "korter_project_simulation.h"
 
@@ -24,7 +24,7 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
   ui(new Ui::korter_project_qt_simulation_dialog),
   m_curve_sulfide_concentration(new QwtPlotCurve),
   m_parameters_widget{new korter_project_qt_parameters_widget},
-  m_seagrass_widget{new QtMutualismBreakdownerSpatialWidget(10,10)},
+  m_seagrass_widget{new korter_project_qt_grid(10,10)},
   m_timer{new QTimer(this)},
   m_simulation{nullptr}
 {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>QtMutualismBreakdownerSpatialWidget</class>
- <widget class="QWidget" name="QtMutualismBreakdownerSpatialWidget">
+ <class>korter_project_qt_grid</class>
+ <widget class="QWidget" name="korter_project_qt_grid">
   <property name="geometry">
    <rect>
     <x>0</x>
