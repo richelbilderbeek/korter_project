@@ -22,7 +22,6 @@
 ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dialog(QWidget *parent) :
   QDialog(parent),
   ui(new Ui::korter_project_qt_simulation_dialog),
-  m_curve_sulfide_concentration(new QwtPlotCurve),
   m_parameters_widget{new korter_project_qt_parameters_widget},
   m_qt_grid{new korter_project_qt_grid(10,10)},
   m_timer{new QTimer(this)},
@@ -58,12 +57,6 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
       }
     }
     m_surface_plot->SetSurfaceGrey(v);
-  }
-  {
-    ui->plot_sulfide_concentration->setMaximumWidth(400);
-    m_curve_sulfide_concentration->attach(ui->plot_sulfide_concentration);
-    m_curve_sulfide_concentration->setStyle(QwtPlotCurve::Lines);
-    m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
   }
 
   QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(start_run()));
@@ -143,6 +136,13 @@ void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
   m_simulation->go_to_next_generation();
   display_grid();
   display_traits();
+}
+
+void ribi::kp::korter_project_qt_simulation_dialog::resizeEvent(QResizeEvent *)
+{
+  const int w{this->width()};
+  ui->widget_left->setMaximumWidth(w / 3);
+  ui->widget_mid->setMaximumWidth(w / 3);
 }
 
 void ribi::kp::korter_project_qt_simulation_dialog::set_parameters(const parameters& parameters)

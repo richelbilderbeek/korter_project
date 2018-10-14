@@ -41,10 +41,10 @@ private slots:
 
   void start_run();
   void NextTimestep();
+  void resizeEvent(QResizeEvent *);
 
 private:
   Ui::korter_project_qt_simulation_dialog *ui;
-  QwtPlotCurve * const m_curve_sulfide_concentration;
   korter_project_qt_parameters_widget * const m_parameters_widget;
   korter_project_qt_grid * const m_qt_grid;
   QTimer * const m_timer;
