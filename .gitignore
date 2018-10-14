@@ -27,3 +27,11 @@
 *.out
 *.app
 *.pro.user
+.qmake.stash
+Makefile
+Makefile.Debug
+Makefile.Release
+korter_project_desktop_plugin_import.cpp
+release/
+debug/
+ui_*
