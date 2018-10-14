@@ -24,7 +24,7 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
   ui(new Ui::korter_project_qt_simulation_dialog),
   m_curve_sulfide_concentration(new QwtPlotCurve),
   m_parameters_widget{new korter_project_qt_parameters_widget},
-  m_seagrass_widget{new korter_project_qt_grid(10,10)},
+  m_qt_grid{new korter_project_qt_grid(10,10)},
   m_timer{new QTimer(this)},
   m_simulation{nullptr}
 {
@@ -39,7 +39,7 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
   {
     const auto my_layout = ui->widget_mid->layout();
     assert(my_layout);
-    my_layout->addWidget(m_seagrass_widget);
+    my_layout->addWidget(m_qt_grid);
   }
   {
     ui->plot_sulfide_concentration->setMaximumWidth(400);
@@ -48,7 +48,7 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
     m_curve_sulfide_concentration->setPen(QPen(QColor(255,0,0)));
   }
 
-  QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(StartRun()));
+  QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(start_run()));
   QObject::connect(m_timer,SIGNAL(timeout()),this,SLOT(NextTimestep()));
 
   {
@@ -57,7 +57,7 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
     this->setGeometry(0,0,screen.width() * 9 / 10,screen.height() * 9 / 10);
     this->move( screen.center() - this->rect().center() );
   }
-  StartRun();
+  start_run();
 }
 
 ribi::kp::korter_project_qt_simulation_dialog::~korter_project_qt_simulation_dialog()
@@ -67,8 +67,8 @@ ribi::kp::korter_project_qt_simulation_dialog::~korter_project_qt_simulation_dia
 
 void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
 {
-  const auto k = 10.0;
-  const auto max_s = 1.0;
+  this->m_qt_grid->
+  const auto k = 1.0;
 
   assert(m_simulation);
   const auto grid = m_simulation->get_grid().get_cells();
@@ -79,19 +79,20 @@ void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
     const auto& line = grid[y];
     for (int x=0; x!=width; ++x)
     {
-      const auto& cell = line[x];
-      //Seagrass
+      const grid_cell& c = line[x];
+      if (c.is_empty()) m_qt_grid->set_pixel(x, y, qRgb(0, 0, 0));
+      else if (c.is_nurse()) m_qt_grid->set_pixel(x, y, qRgb(0, 255, 0));
+      else
       {
-        const auto n = cell.get_trait();
+        const auto n = c.get_trait();
         int g = static_cast<int>(255.0 * n / k);
         if (g < 0) g = 0;
         else if (g > 255) g = 255;
-        m_seagrass_widget->SetPixel(x,y,qRgb(0,g,0));
+        m_qt_grid->set_pixel(x,y,qRgb(0,g,0));
       }
     }
   }
-  m_seagrass_widget->update();
-  //m_sulfide_widget->update();
+  m_qt_grid->update();
 }
 
 ribi::kp::parameters ribi::kp::korter_project_qt_simulation_dialog::to_parameters() const
@@ -107,7 +108,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
   display_grid();
 }
 
-void ribi::kp::korter_project_qt_simulation_dialog::SetParameters(const parameters& parameters)
+void ribi::kp::korter_project_qt_simulation_dialog::set_parameters(const parameters& parameters)
 {
   try
   {
@@ -120,10 +121,10 @@ void ribi::kp::korter_project_qt_simulation_dialog::SetParameters(const paramete
   }
 }
 
-void ribi::kp::korter_project_qt_simulation_dialog::StartRun()
+void ribi::kp::korter_project_qt_simulation_dialog::start_run()
 {
   m_timer->stop();
-  m_seagrass_widget->setEnabled(false);
+  m_qt_grid->setEnabled(false);
   try
   {
     to_parameters();
@@ -138,13 +139,10 @@ void ribi::kp::korter_project_qt_simulation_dialog::StartRun()
   {
     const int w{parameters.get_spatial_width()};
     const int h{parameters.get_spatial_height()};
-    this->m_seagrass_widget->SetResolution(w,h);
-    //this->m_sulfide_widget->SetResolution(w,h);
+    this->m_qt_grid->set_size(w, h);
   }
-  this->m_seagrass_widget->setEnabled(true);
-  //this->m_sulfide_widget->setEnabled(true);
+  this->m_qt_grid->setEnabled(true);
 
-  //m_simulation = std::make_unique<Simulation>(parameters);
   m_simulation.reset(new simulation(parameters));
 
   display_grid();

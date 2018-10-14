@@ -30,18 +30,18 @@ public:
   explicit korter_project_qt_simulation_dialog(QWidget *parent = 0);
   ~korter_project_qt_simulation_dialog();
   parameters to_parameters() const;
-  void SetParameters(const parameters& parameters);
+  void set_parameters(const parameters& parameters);
 
 private slots:
 
-  void StartRun();
+  void start_run();
   void NextTimestep();
 
 private:
   Ui::korter_project_qt_simulation_dialog *ui;
   QwtPlotCurve * const m_curve_sulfide_concentration;
   korter_project_qt_parameters_widget * const m_parameters_widget;
-  korter_project_qt_grid * const m_seagrass_widget;
+  korter_project_qt_grid * const m_qt_grid;
   QTimer * const m_timer;
   std::unique_ptr<simulation> m_simulation;
   void display_grid();

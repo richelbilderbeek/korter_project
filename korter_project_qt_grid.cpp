@@ -24,14 +24,14 @@ ribi::kp::korter_project_qt_grid::~korter_project_qt_grid()
   delete ui;
 }
 
-void ribi::kp::korter_project_qt_grid::SetPixel(const int x, const int y, const QColor color)
+void ribi::kp::korter_project_qt_grid::set_pixel(const int x, const int y, const QColor color)
 {
   m_image.setPixel(x,y,color.rgb());
 }
 
-void ribi::kp::korter_project_qt_grid::SetResolution(const int width, const int height)
+void ribi::kp::korter_project_qt_grid::set_size(const int width, const int height)
 {
-  m_image = QImage(width,height,QImage::Format_RGB32);
+  m_image = QImage(width, height, QImage::Format_RGB32);
 }
 
 void ribi::kp::korter_project_qt_grid::paintEvent(QPaintEvent *)

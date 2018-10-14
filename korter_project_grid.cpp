@@ -9,7 +9,10 @@ ribi::kp::grid::grid(
   const int height
 ) : m_cells(height, std::vector<grid_cell>(width))
 {
-
+  assert(height == get_height());
+  assert(width == get_width());
+  assert(static_cast<int>(m_cells.size()) == get_height());
+  assert(static_cast<int>(m_cells[0].size()) == get_width());
 }
 
 int ribi::kp::count_n_nurse(const grid& g) noexcept
@@ -28,6 +31,8 @@ int ribi::kp::count_n_nurse(const grid& g) noexcept
 
 const ribi::kp::grid_cell& ribi::kp::grid::get(const int x, const int y) const
 {
+  assert(x >= 0);
+  assert(y >= 0);
   assert(y < get_height());
   assert(x < get_width());
   return m_cells[y][x];
@@ -35,6 +40,8 @@ const ribi::kp::grid_cell& ribi::kp::grid::get(const int x, const int y) const
 
 ribi::kp::grid_cell& ribi::kp::grid::get(const int x, const int y)
 {
+  assert(x >= 0);
+  assert(y >= 0);
   assert(y < get_height());
   assert(x < get_width());
   return m_cells[y][x];

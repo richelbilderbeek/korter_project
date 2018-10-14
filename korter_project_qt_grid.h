@@ -27,8 +27,8 @@ public:
   korter_project_qt_grid& operator=(const korter_project_qt_grid&) = delete;
   ~korter_project_qt_grid();
 
-  void SetPixel(const int x, const int y, const QColor color);
-  void SetResolution(const int width, const int height);
+  void set_pixel(const int x, const int y, const QColor color);
+  void set_size(const int width, const int height);
 
 protected:
   void paintEvent(QPaintEvent *);

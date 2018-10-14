@@ -79,6 +79,9 @@ void ribi::kp::korter_project_qt_parameters_widget::set(const parameters& parame
 
 void ribi::kp::korter_project_qt_parameters_widget::OnAnyChange()
 {
+  ui->box_n_nurse_plants->setMaximum(
+    ui->box_spatial_width->value() * ui->box_spatial_height->value()
+  );
   emit signal_parameters_changed();
 }
 
