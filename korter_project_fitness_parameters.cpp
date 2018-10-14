@@ -28,3 +28,17 @@ double ribi::kp::normal(const double x, const double mean, const double sd) noex
 {
   return gauss(x - mean, sd);
 }
+
+bool ribi::kp::operator==(const fitness_parameters& lhs, const fitness_parameters& rhs) noexcept
+{
+  return lhs.m_fac_opt == rhs.m_fac_opt
+    &&  lhs.m_fac_stddev == rhs.m_fac_stddev
+    &&  lhs.m_unfac_opt == rhs.m_unfac_opt
+    &&  lhs.m_unfac_stddev == rhs.m_unfac_stddev
+  ;
+}
+
+bool ribi::kp::operator!=(const fitness_parameters& lhs, const fitness_parameters& rhs) noexcept
+{
+  return !(lhs == rhs);
+}

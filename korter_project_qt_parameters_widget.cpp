@@ -34,6 +34,9 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
   QObject::connect(ui->box_n_seeds,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_rng_seed,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_init_trait_mean, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_init_trait_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_mut_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
 }
 
 ribi::kp::korter_project_qt_parameters_widget::~korter_project_qt_parameters_widget()
@@ -45,6 +48,9 @@ ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameter
 {
   const parameters p(
     m_fitness_widget->to_parameters(),
+    ui->box_init_trait_mean->value(),
+    ui->box_init_trait_stddev->value(),
+    ui->box_mut_stddev->value(),
     ui->box_spatial_height->value(),
     ui->box_spatial_width->value(),
     ui->box_n_nurse_plants->value(),
@@ -57,11 +63,18 @@ ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameter
 
 void ribi::kp::korter_project_qt_parameters_widget::set(const parameters& parameters)
 {
-  ui->box_spatial_height->setValue(parameters.get_spatial_height());
-  ui->box_spatial_width->setValue(parameters.get_spatial_width());
+  m_fitness_widget->set(parameters.get_fitness_parameters());
+
+  ui->box_init_trait_mean->setValue(parameters.get_init_trait_mean());
+  ui->box_init_trait_stddev->setValue(parameters.get_init_trait_stddev());
+  ui->box_mut_stddev->setValue(parameters.get_mut_stddev());
   ui->box_n_nurse_plants->setValue(parameters.get_n_nurse_plants());
   ui->box_n_seeds->setValue(parameters.get_n_seeds());
   ui->box_rng_seed->setValue(parameters.get_rng_seed());
+  ui->box_spatial_height->setValue(parameters.get_spatial_height());
+  ui->box_spatial_width->setValue(parameters.get_spatial_width());
+
+
 }
 
 void ribi::kp::korter_project_qt_parameters_widget::OnAnyChange()

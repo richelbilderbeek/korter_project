@@ -20,6 +20,7 @@ class qt_fitness_widget : public QWidget
 public:
   explicit qt_fitness_widget(QWidget *parent = 0);
   ~qt_fitness_widget();
+  void set(const fitness_parameters& p) noexcept;
   fitness_parameters to_parameters() const noexcept;
 
 signals:

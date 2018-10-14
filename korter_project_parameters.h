@@ -13,12 +13,22 @@ struct parameters
 {
   explicit parameters(
     const fitness_parameters& fp = fitness_parameters(),
+    const double init_trait_mean = 0.5,
+    const double init_trait_stddev = 0.1,
+    const double mut_stddev = 0.01,
     const int spatial_height = 1,
     const int spatial_width = 1,
     const int n_nurse_plants = 0,
     const int n_seeds = 0,
     const int rng_seed = 0
   );
+
+  const auto& get_fitness_parameters() const noexcept { return m_fitness_parameters; }
+  double get_init_trait_mean() const noexcept { return m_init_trait_mean; }
+  double get_init_trait_stddev() const noexcept { return m_init_trait_stddev; }
+
+  ///The standard deviation of the mutation
+  double get_mut_stddev() const noexcept { return m_mut_stddev; }
 
   int get_spatial_height() const noexcept { return m_spatial_height; }
   int get_spatial_width() const noexcept { return m_spatial_width; }
@@ -36,6 +46,11 @@ struct parameters
 
   private:
   const fitness_parameters m_fitness_parameters;
+
+  double m_init_trait_mean;
+  double m_init_trait_stddev;
+  double m_mut_stddev;
+
   int m_spatial_height;
   int m_spatial_width;
 

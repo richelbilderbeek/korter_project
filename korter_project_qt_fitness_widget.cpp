@@ -1,5 +1,6 @@
 #include "korter_project_qt_fitness_widget.h"
 
+#include <cassert>
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot_grid.h>
 #include <qwt_plot.h>
@@ -35,6 +36,15 @@ ribi::kp::qt_fitness_widget::qt_fitness_widget(QWidget *parent) :
 ribi::kp::qt_fitness_widget::~qt_fitness_widget()
 {
   delete ui;
+}
+
+void ribi::kp::qt_fitness_widget::set(const fitness_parameters& p) noexcept
+{
+  ui->box_fac_opt->setValue(p.m_fac_opt);
+  ui->box_fac_stddev->setValue(p.m_fac_stddev);
+  ui->box_unfac_opt->setValue(p.m_unfac_opt);
+  ui->box_unfac_stddev->setValue(p.m_unfac_stddev);
+  assert(to_parameters() == p);
 }
 
 ribi::kp::fitness_parameters ribi::kp::qt_fitness_widget::to_parameters() const noexcept

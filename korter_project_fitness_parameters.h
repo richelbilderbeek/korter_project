@@ -27,6 +27,9 @@ double gauss(const double x, const double sd) noexcept;
 ///at position x
 double normal(const double x, const double mean, const double sd) noexcept;
 
+bool operator==(const fitness_parameters& lhs, const fitness_parameters& rhs) noexcept;
+bool operator!=(const fitness_parameters& lhs, const fitness_parameters& rhs) noexcept;
+
 } //~namespace kp
 } //~namespace rib
 
