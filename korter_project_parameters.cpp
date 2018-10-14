@@ -24,9 +24,6 @@ ribi::kp::parameters::parameters(
     m_n_seeds{n_seeds},
     m_rng_seed{rng_seed}
 {
-  #ifndef NDEBUG
-  Test();
-  #endif
   assert(m_spatial_height > 0);
   assert(m_spatial_width > 0);
   assert(m_n_nurse_plants >= 0.0);
@@ -49,6 +46,18 @@ ribi::kp::parameters ribi::kp::parameters::GetTest(const int /* i */)
     0.0 //any_n_nurse_plants,
   );
   return p;
+}
+
+void ribi::kp::parameters::set_n_nurse_plants(const int n_nurse_plants)
+{
+  assert(n_nurse_plants >= 0);
+  m_n_nurse_plants = n_nurse_plants;
+}
+
+void ribi::kp::parameters::set_n_seeds(const int n_seeds)
+{
+  assert(n_seeds >= 0);
+  m_n_seeds = n_seeds;
 }
 
 std::ostream& ribi::kp::operator<<(std::ostream& os, const parameters& parameter) noexcept

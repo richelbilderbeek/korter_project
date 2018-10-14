@@ -1,5 +1,6 @@
 #include "korter_project_fitness_parameters.h"
 
+#include <iostream>
 #include <cassert>
 #include <cmath>
 
@@ -31,14 +32,36 @@ double ribi::kp::normal(const double x, const double mean, const double sd) noex
 
 bool ribi::kp::operator==(const fitness_parameters& lhs, const fitness_parameters& rhs) noexcept
 {
-  return lhs.m_fac_opt == rhs.m_fac_opt
-    &&  lhs.m_fac_stddev == rhs.m_fac_stddev
-    &&  lhs.m_unfac_opt == rhs.m_unfac_opt
-    &&  lhs.m_unfac_stddev == rhs.m_unfac_stddev
+  return lhs.get_fac_opt() == rhs.get_fac_opt()
+    &&  lhs.get_fac_stddev() == rhs.get_fac_stddev()
+    &&  lhs.get_unfac_opt() == rhs.get_unfac_opt()
+    &&  lhs.get_unfac_stddev() == rhs.get_unfac_stddev()
   ;
 }
 
 bool ribi::kp::operator!=(const fitness_parameters& lhs, const fitness_parameters& rhs) noexcept
 {
   return !(lhs == rhs);
+}
+
+std::ostream& ribi::kp::operator<<(std::ostream& os, const fitness_parameters& parameter) noexcept
+{
+  os
+    << parameter.m_fac_opt << " "
+    << parameter.m_fac_stddev << " "
+    << parameter.m_unfac_opt << " "
+    << parameter.m_unfac_stddev << " "
+  ;
+  return os;
+}
+
+std::istream& ribi::kp::operator>>(std::istream& is, fitness_parameters& parameter) noexcept
+{
+  is
+    >> parameter.m_fac_opt
+    >> parameter.m_fac_stddev
+    >> parameter.m_unfac_opt
+    >> parameter.m_unfac_stddev
+  ;
+  return is;
 }

@@ -16,12 +16,12 @@
 #include "fileio.h"
 #pragma GCC diagnostic pop
 
-ribi::kp::MenuDialog::MenuDialog()
+ribi::kp::menu_dialog::menu_dialog()
 {
 
 }
 
-int ribi::kp::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
+int ribi::kp::menu_dialog::ExecuteSpecific(const std::vector<std::string>& argv) noexcept
 {
   const int argc = static_cast<int>(argv.size());
   if (argc == 1 || argc > 4)
@@ -32,7 +32,7 @@ int ribi::kp::MenuDialog::ExecuteSpecific(const std::vector<std::string>& argv) 
   return 0;
 }
 
-ribi::About ribi::kp::MenuDialog::GetAbout() const noexcept
+ribi::About ribi::kp::menu_dialog::GetAbout() const noexcept
 {
   About a(
     "Richel Bilderbeek",
@@ -47,19 +47,19 @@ ribi::About ribi::kp::MenuDialog::GetAbout() const noexcept
   return a;
 }
 
-std::string ribi::kp::MenuDialog::GetVersion() const noexcept
+std::string ribi::kp::menu_dialog::GetVersion() const noexcept
 {
   return "0.1";
 }
 
-std::vector<std::string> ribi::kp::MenuDialog::GetVersionHistory() const noexcept
+std::vector<std::string> ribi::kp::menu_dialog::GetVersionHistory() const noexcept
 {
   return {
     "2018-10-13: Version 0.1: initial version "
   };
 }
 
-ribi::Help ribi::kp::MenuDialog::GetHelp() const noexcept
+ribi::Help ribi::kp::menu_dialog::GetHelp() const noexcept
 {
   return ribi::Help(
     "korter_project",

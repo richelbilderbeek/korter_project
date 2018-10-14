@@ -39,10 +39,8 @@ struct parameters
   ///Create a testing parameter set
   static parameters GetTest(const int i);
 
-  #ifndef NDEBUG
-  static void Test() noexcept;
-  #endif
-
+  void set_n_nurse_plants(const int n_nurse_plants);
+  void set_n_seeds(const int n_seeds);
 
   private:
   const fitness_parameters m_fitness_parameters;

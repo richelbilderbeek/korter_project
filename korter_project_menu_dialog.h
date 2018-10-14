@@ -6,7 +6,6 @@
 
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Weffc++"
-#include <boost/scoped_ptr.hpp>
 
 #include "about.h"
 #include "menudialog.h"
@@ -15,10 +14,10 @@
 namespace ribi {
 namespace kp {
 
-struct MenuDialog final : public ::ribi::MenuDialog
+struct menu_dialog final : public ::ribi::MenuDialog
 {
-  MenuDialog();
-  ~MenuDialog() noexcept {}
+  menu_dialog();
+  ~menu_dialog() noexcept {}
   int ExecuteSpecific(const std::vector<std::string>& argv) noexcept override;
 
   About GetAbout() const noexcept override;

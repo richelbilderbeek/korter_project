@@ -4,28 +4,34 @@
 #include <vector>
 
 #include "korter_project_parameters.h"
-#include "korter_project_grid_cell.h"
+#include "korter_project_grid.h"
 
 namespace ribi {
 namespace kp {
 
 struct simulation
 {
-  using grid = std::vector<std::vector<grid_cell>>;
+  simulation(const parameters& p = parameters());
 
-  simulation(const parameters& p);
+  void go_to_next_generation();
 
-  void Change(const double delta_t);
-
-  const grid& GetGrid() const noexcept { return m_grid; }
-
-  void KillSeagrass(const int x, const int y);
+  const grid& get_grid() const noexcept { return m_grid; }
+  const parameters& get_parameters() const noexcept { return m_parameters; }
 
   private:
 
   grid m_grid;
-  const parameters m_parameters;
+  parameters m_parameters;
+
+  friend std::ostream& operator<<(std::ostream& os, const simulation& parameter) noexcept;
+  friend std::istream& operator>>(std::istream& is, simulation& parameter) noexcept;
 };
+
+bool operator==(const simulation& lhs, const simulation& rhs) noexcept;
+bool operator!=(const simulation& lhs, const simulation& rhs) noexcept;
+
+std::ostream& operator<<(std::ostream& os, const simulation& parameter) noexcept;
+std::istream& operator>>(std::istream& is, simulation& parameter) noexcept;
 
 } //~namespace mb
 } //~namespace ribi
