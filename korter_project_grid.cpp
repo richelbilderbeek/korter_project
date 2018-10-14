@@ -15,6 +15,59 @@ ribi::kp::grid::grid(
   assert(static_cast<int>(m_cells[0].size()) == get_width());
 }
 
+ribi::kp::grid ribi::kp::add_seeds(
+  grid g,
+  const std::vector<double>& traits,
+  std::mt19937& rng_engine
+)
+{
+  const int n_seeds = static_cast<int>(traits.size());
+  assert(n_seeds <= count_n_empty(g));
+  const int width{g.get_width()};
+  const int height{g.get_height()};
+  //Put nurse plants into position
+  std::uniform_int_distribution<int> width_distr(0, width - 1);
+  std::uniform_int_distribution<int> height_distr(0, height - 1);
+  for (int i = 0; i != n_seeds; ++i)
+  {
+    const double trait{traits[i]};
+    const int x{width_distr(rng_engine)};
+    const int y{height_distr(rng_engine)};
+    assert(x >= 0);
+    assert(x < g.get_width());
+    assert(y >= 0);
+    assert(y < g.get_height());
+    if (g.get(x, y).is_empty())
+    {
+      g.get(x, y).set_trait(trait);
+    }
+    else
+    {
+      --i;
+    }
+  }
+  return g;
+}
+
+std::vector<bool> ribi::kp::collect_is_facilitated(const grid& g)
+{
+  std::vector<bool> v;
+  const int height{g.get_height()};
+  const int width{g.get_width()};
+  std::vector<double> t;
+  for (int y = 0; y != height; ++y)
+  {
+    for (int x = 0; x != width; ++x)
+    {
+      if (is_seed(g, x, y))
+      {
+        v.push_back(is_facilitated(g, x, y));
+      }
+    }
+  }
+  return v;
+}
+
 std::vector<double> ribi::kp::collect_traits(const grid& g)
 {
   std::vector<double> t;
@@ -70,6 +123,16 @@ int ribi::kp::count_n_seeds(const grid& g) noexcept
     );
   }
   return n;
+}
+
+ribi::kp::grid ribi::kp::create_next_grid(
+  grid g,
+  const std::vector<double>& traits,
+  std::mt19937& rng_engine
+)
+{
+  remove_seeds(g);
+  return add_seeds(g, traits, rng_engine);
 }
 
 std::vector<int> ribi::kp::create_trait_histogram(
@@ -142,6 +205,24 @@ bool ribi::kp::is_facilitated(const grid& g, const int x, const int y)
     || g.get(x, (y - 1 + h) % h).is_nurse()
     || g.get(x, (y + 1 + h) % h).is_nurse()
   ;
+}
+
+bool ribi::kp::is_seed(const grid& g, const int x, const int y)
+{
+  return g.get(x, y).is_seed();
+}
+
+void ribi::kp::remove_seeds(grid& g)
+{
+  for (auto& row: g.get_cells())
+  {
+    for (auto& cell: row)
+    {
+      if (cell.is_seed()) {
+        cell.make_empty();
+      }
+    }
+  }
 }
 
 std::ostream& ribi::kp::operator<<(std::ostream& os, const grid& g) noexcept

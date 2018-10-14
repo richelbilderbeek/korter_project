@@ -37,6 +37,13 @@ private:
   friend std::istream& operator>>(std::istream& is, fitness_parameters& parameter) noexcept;
 };
 
+///Get the fitness from the parameters for a trait and being facilitated yes/no
+double get_fitness(
+  const fitness_parameters& params,
+  const double trait,
+  const bool is_facilitated
+);
+
 ///Calculate an upper trait value, which is the maximum of
 ///  'trait_mean + (n_stddevs * trait_stddev)' of both facilitated and unfacilitated
 double calc_upper_trait(const fitness_parameters& params, const double n_stddevs = 2.0);

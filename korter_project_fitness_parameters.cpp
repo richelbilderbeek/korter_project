@@ -35,6 +35,22 @@ double ribi::kp::gauss(const double x, const double sd) noexcept
   return std::exp(-(x * x) / (2.0 * sd * sd));
 }
 
+double ribi::kp::get_fitness(
+  const fitness_parameters& params,
+  const double trait,
+  const bool is_facilitated
+)
+{
+  double mean = params.get_unfac_opt();
+  double stddev = params.get_unfac_stddev();
+  if (is_facilitated)
+  {
+    mean = params.get_unfac_opt();
+    stddev = params.get_unfac_stddev();
+  }
+  return normal(trait, mean, stddev);
+}
+
 double ribi::kp::normal(const double x, const double mean, const double sd) noexcept
 {
   return gauss(x - mean, sd);
