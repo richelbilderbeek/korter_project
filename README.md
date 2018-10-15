@@ -9,8 +9,6 @@ Research project for Megan Korte.
 
 ![](pics/20181015.png)
 
-![](pics/20181014.png)
-
 ## Why the name?
 
 It started with [Jeroen Niemendal and Florian de Jagers's spatial model](https://github.com/JeroenN/Spatial-model).
