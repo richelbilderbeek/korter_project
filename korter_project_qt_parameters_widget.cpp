@@ -28,15 +28,18 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
   }
 
 
+  QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_nurse_plants,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_n_seeds,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
+  QObject::connect(ui->box_n_trait_histogram_bins,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_rng_seed,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
-  QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_init_trait_mean, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_init_trait_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_mut_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_trait_histogram_bin_width, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+
 }
 
 ribi::kp::korter_project_qt_parameters_widget::~korter_project_qt_parameters_widget()
@@ -55,25 +58,27 @@ ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameter
     ui->box_spatial_width->value(),
     ui->box_n_nurse_plants->value(),
     ui->box_n_seeds->value(),
-    ui->box_rng_seed->value()
+    ui->box_n_trait_histogram_bins->value(),
+    ui->box_rng_seed->value(),
+    ui->box_trait_histogram_bin_width->value()
   );
 
   return p;
 }
 
-void ribi::kp::korter_project_qt_parameters_widget::set(const parameters& parameters)
+void ribi::kp::korter_project_qt_parameters_widget::set(const parameters& p)
 {
-  m_fitness_widget->set(parameters.get_fitness_parameters());
-
-  ui->box_init_trait_mean->setValue(parameters.get_init_trait_mean());
-  ui->box_init_trait_stddev->setValue(parameters.get_init_trait_stddev());
-  ui->box_mut_stddev->setValue(parameters.get_mut_stddev());
-  ui->box_n_nurse_plants->setValue(parameters.get_n_nurse_plants());
-  ui->box_n_seeds->setValue(parameters.get_n_seeds());
-  ui->box_rng_seed->setValue(parameters.get_rng_seed());
-  ui->box_spatial_height->setValue(parameters.get_spatial_height());
-  ui->box_spatial_width->setValue(parameters.get_spatial_width());
-
+  m_fitness_widget->set(p.get_fitness_parameters());
+  ui->box_init_trait_mean->setValue(p.get_init_trait_mean());
+  ui->box_init_trait_stddev->setValue(p.get_init_trait_stddev());
+  ui->box_mut_stddev->setValue(p.get_mut_stddev());
+  ui->box_n_nurse_plants->setValue(p.get_n_nurse_plants());
+  ui->box_n_seeds->setValue(p.get_n_seeds());
+  ui->box_n_trait_histogram_bins->setValue(p.get_n_trait_histogram_bins()),
+  ui->box_rng_seed->setValue(p.get_rng_seed());
+  ui->box_spatial_height->setValue(p.get_spatial_height());
+  ui->box_spatial_width->setValue(p.get_spatial_width());
+  ui->box_trait_histogram_bin_width->setValue(p.get_trait_histogram_bin_width());
 
 }
 

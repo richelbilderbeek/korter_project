@@ -84,7 +84,8 @@ ribi::kp::grid ribi::kp::add_seeds(
     if (g.get(x, y).is_empty())
     {
       std::normal_distribution<double> d(init_trait_mean, init_trait_stddev);
-      g.get(x, y).set_trait(d(rng_engine));
+      const double trait{d(rng_engine)};
+      g.get(x, y).set_trait(std::max(0.0, trait));
     }
     else
     {
@@ -99,7 +100,7 @@ void ribi::kp::simulation::add_trait_histogram()
   const std::vector<int> histogram = create_trait_histogram(
     m_grid,
     m_parameters.get_n_trait_histogram_bins(),
-    calc_upper_trait(m_parameters.get_fitness_parameters())
+    m_parameters.get_trait_histogram_bin_width()
   );
 
   const std::vector<double> density = create_density_plot(histogram);

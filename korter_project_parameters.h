@@ -20,7 +20,9 @@ struct parameters
     const int spatial_width = 1,
     const int n_nurse_plants = 0,
     const int n_seeds = 0,
-    const int rng_seed = 0
+    const int n_trait_histogram_bins = 10,
+    const int rng_seed = 0,
+    const double trait_histogram_bin_width = 0.1
   );
 
   const auto& get_fitness_parameters() const noexcept { return m_fitness_parameters; }
@@ -35,7 +37,8 @@ struct parameters
   int get_n_nurse_plants() const noexcept { return m_n_nurse_plants; }
   int get_n_seeds() const noexcept { return m_n_seeds; }
   int get_rng_seed() const noexcept { return m_rng_seed; }
-  int get_n_trait_histogram_bins() const noexcept { return 10; }
+  int get_n_trait_histogram_bins() const noexcept { return m_n_trait_histogram_bins; }
+  double get_trait_histogram_bin_width() const noexcept { return m_trait_histogram_bin_width; }
 
   ///Create a testing parameter set
   static parameters GetTest(const int i);
@@ -58,7 +61,9 @@ struct parameters
 
   int m_n_nurse_plants;
   int m_n_seeds;
+  int m_n_trait_histogram_bins;
   int m_rng_seed;
+  double m_trait_histogram_bin_width;
 
   friend std::ostream& operator<<(std::ostream& os, const parameters& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, parameters& parameter) noexcept;

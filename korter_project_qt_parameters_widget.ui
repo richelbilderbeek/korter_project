@@ -49,7 +49,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="page_spatial_plot">
       <property name="geometry">
@@ -57,7 +57,7 @@
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>376</height>
+        <height>345</height>
        </rect>
       </property>
       <attribute name="label">
@@ -137,8 +137,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>251</width>
-        <height>357</height>
+        <width>400</width>
+        <height>397</height>
        </rect>
       </property>
       <attribute name="label">
@@ -226,7 +226,7 @@
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>376</height>
+        <height>397</height>
        </rect>
       </property>
       <attribute name="label">
@@ -314,14 +314,67 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>100</width>
-        <height>30</height>
+        <width>400</width>
+        <height>345</height>
        </rect>
       </property>
       <attribute name="label">
        <string>Fitness</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_2"/>
+     </widget>
+     <widget class="QWidget" name="page_output">
+      <attribute name="label">
+       <string>Output</string>
+      </attribute>
+      <layout class="QFormLayout" name="formLayout">
+       <item row="0" column="0">
+        <widget class="QLabel" name="label_n_trait_histogram_bins">
+         <property name="text">
+          <string>#trait histogram bins</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="0">
+        <widget class="QLabel" name="label_trait_histogram_bin_width">
+         <property name="text">
+          <string>trait histogram bin width</string>
+         </property>
+        </widget>
+       </item>
+       <item row="1" column="1">
+        <widget class="QDoubleSpinBox" name="box_trait_histogram_bin_width">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+         <property name="minimum">
+          <double>0.000100000000000</double>
+         </property>
+         <property name="maximum">
+          <double>100.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.010000000000000</double>
+         </property>
+         <property name="value">
+          <double>0.010000000000000</double>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="box_n_trait_histogram_bins">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>10000</number>
+         </property>
+         <property name="value">
+          <number>10</number>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>

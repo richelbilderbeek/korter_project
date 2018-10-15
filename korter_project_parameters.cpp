@@ -13,7 +13,9 @@ ribi::kp::parameters::parameters(
   const int spatial_width,
   const int n_nurse_plants,
   const int n_seeds,
-  const int rng_seed
+  const int n_trait_histogram_bins,
+  const int rng_seed,
+  const double trait_histogram_bin_width
 ) : m_fitness_parameters(fp),
     m_init_trait_mean{init_trait_mean},
     m_init_trait_stddev{init_trait_stddev},
@@ -22,16 +24,20 @@ ribi::kp::parameters::parameters(
     m_spatial_width{spatial_width},
     m_n_nurse_plants{n_nurse_plants},
     m_n_seeds{n_seeds},
-    m_rng_seed{rng_seed}
+    m_n_trait_histogram_bins{n_trait_histogram_bins},
+    m_rng_seed{rng_seed},
+    m_trait_histogram_bin_width{trait_histogram_bin_width}
 {
-  assert(m_spatial_height > 0);
-  assert(m_spatial_width > 0);
-  assert(m_n_nurse_plants >= 0.0);
-  assert(m_n_seeds >= 0.0);
-  assert(m_rng_seed >= 0.0);
   assert(m_init_trait_mean >= 0.0);
   assert(m_init_trait_stddev >= 0.0);
   assert(m_mut_stddev >= 0.0);
+  assert(m_n_nurse_plants >= 0.0);
+  assert(m_n_seeds >= 0.0);
+  assert(m_n_trait_histogram_bins >= 1);
+  assert(m_rng_seed >= 0.0);
+  assert(m_spatial_height > 0);
+  assert(m_spatial_width > 0);
+  assert(m_trait_histogram_bin_width > 0.0);
 }
 
 ribi::kp::parameters ribi::kp::parameters::GetTest(const int /* i */)

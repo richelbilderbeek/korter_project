@@ -10,6 +10,48 @@
 using namespace ribi::kp;
 using namespace ribi::fileio;
 
+BOOST_AUTO_TEST_CASE(ribi_kp_parameters_construction)
+{
+  const fitness_parameters fp;
+  const double init_trait_mean{0.12};
+  const double init_trait_stddev{0.23};
+  const double mut_stddev{0.34};
+  const int spatial_height{4};
+  const int spatial_width{5};
+  const int n_nurse_plants{6};
+  const int n_seeds{7};
+  const int n_trait_histogram_bins{8};
+  const int rng_seed{9};
+  const double trait_histogram_bin_width{0.11};
+
+  const parameters p(
+    fp,
+    init_trait_mean,
+    init_trait_stddev,
+    mut_stddev,
+    spatial_height,
+    spatial_width,
+    n_nurse_plants,
+    n_seeds,
+    n_trait_histogram_bins,
+    rng_seed,
+    trait_histogram_bin_width
+  );
+  BOOST_CHECK_EQUAL(fp, p.get_fitness_parameters());
+  BOOST_CHECK_EQUAL(init_trait_mean, p.get_init_trait_mean());
+  BOOST_CHECK_EQUAL(init_trait_stddev, p.get_init_trait_stddev());
+  BOOST_CHECK_EQUAL(mut_stddev, p.get_mut_stddev());
+  BOOST_CHECK_EQUAL(spatial_height, p.get_spatial_height());
+  BOOST_CHECK_EQUAL(spatial_width, p.get_spatial_width());
+  BOOST_CHECK_EQUAL(n_nurse_plants, p.get_n_nurse_plants());
+  BOOST_CHECK_EQUAL(n_seeds, p.get_n_seeds());
+  BOOST_CHECK_EQUAL(n_trait_histogram_bins, p.get_n_trait_histogram_bins());
+  BOOST_CHECK_EQUAL(rng_seed, p.get_rng_seed());
+  BOOST_CHECK_EQUAL(trait_histogram_bin_width, p.get_trait_histogram_bin_width());
+
+}
+
+
 BOOST_AUTO_TEST_CASE(ribi_kp_parameters_operator_equals)
 {
   {

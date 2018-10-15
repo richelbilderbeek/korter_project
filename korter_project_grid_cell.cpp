@@ -1,5 +1,6 @@
 #include "korter_project_grid_cell.h"
 
+#include <cassert>
 #include <iostream>
 #include <sstream>
 
@@ -22,6 +23,12 @@ bool ribi::kp::is_nurse(const grid_cell& c) noexcept
 bool ribi::kp::is_seed(const grid_cell& c) noexcept
 {
   return c.is_seed();
+}
+
+void ribi::kp::grid_cell::set_trait(const double trait)
+{
+  assert(trait >= 0.0);
+  m_trait = trait;
 }
 
 bool ribi::kp::operator==(const grid_cell& lhs, const grid_cell& rhs) noexcept

@@ -17,7 +17,7 @@ struct grid_cell
   void make_empty() { m_trait = sm_empty; }
   void make_nurse() { m_trait = sm_nurse; }
   double get_trait() const noexcept { return m_trait; }
-  void set_trait(const double trait) { m_trait = trait; }
+  void set_trait(const double trait);
 
   private:
 
