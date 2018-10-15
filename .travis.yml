@@ -53,14 +53,14 @@ script:
   - ./build_other_githubs.sh
   # Console test
   - qmake -qt=qt5 korter_project_console_test.pro
-  - make --silent
+  - make debug --silent
   - ./korter_project_console_test
   # Desktop
   - qmake -qt=qt5 korter_project_desktop.pro
   - make --silent
-  - ./korter_project_desktop &
-  - sleep 10
-  - sudo killall -9 korter_project_desktop
+  #- ./korter_project_desktop &
+  #- sleep 10
+  #- sudo killall -9 korter_project_desktop
   # cppcheck, be mild
   - cppcheck --quiet --error-exitcode=0 . 
   #- cppcheck --quiet --error-exitcode=1 . 
