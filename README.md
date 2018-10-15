@@ -7,9 +7,9 @@ develop|[![Build Status](https://travis-ci.org/richelbilderbeek/korter_project.s
 
 Research project for Megan Korte.
 
-![]([pics/20181015.png)
+![](pics/20181015.png)
 
-![]([pics/20181014.png)
+![](pics/20181014.png)
 
 ## Why the name?
 
