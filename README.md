@@ -7,9 +7,14 @@ develop|[![Build Status](https://travis-ci.org/richelbilderbeek/korter_project.s
 
 Research project for Megan Korte.
 
+![]([pics/20181015.png)
+
+![]([pics/20181014.png)
+
 ## Why the name?
 
 It started with [Jeroen Niemendal and Florian de Jagers's spatial model](https://github.com/JeroenN/Spatial-model).
 
 Next came [Richel Bilderbeek's 'korte_project'](https://github.com/richelbilderbeek/korte_project),
 but this was abandoned because QtCharts does not work on Travis CI yet.
+
