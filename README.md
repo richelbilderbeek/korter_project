@@ -7,7 +7,12 @@ develop|[![Build Status](https://travis-ci.org/richelbilderbeek/korter_project.s
 
 Research project for Megan Korte.
 
+
 ![](pics/20181015.png)
+
+## Downloads
+
+ * [Windows executable](http://richelbilderbeek.nl/korter_project_desktop.zip)
 
 ## Why the name?
 
