@@ -73,6 +73,8 @@ script:
   - rm -rf oclint-0.10.3
   - rm -rf pics
   - rm -rf .git
+  - rm -rf debug
+  - rm -rf release
   - cd ..; sloccount --overhead 1 --personcost 22614 korter_project; cd korter_project
 
 after_success:
