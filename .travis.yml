@@ -69,8 +69,10 @@ script:
   # Get code coverage
   - ./get_code_cov.sh >/dev/null
   - codecov >/dev/null
-  # SLOCcount
+  # SLOCcount, destructive
   - rm -rf oclint-0.10.3
+  - rm -rf pics
+  - rm -rf .git
   - cd ..; sloccount --overhead 1 --personcost 22614 korter_project; cd korter_project
 
 after_success:
