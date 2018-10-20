@@ -53,12 +53,12 @@ void ribi::kp::qt_fitness_widget::set(const fitness_parameters& p) noexcept
 ribi::kp::fitness_parameters ribi::kp::qt_fitness_widget::to_parameters() const noexcept
 {
   return fitness_parameters(
+    ui->box_fac_max->value(),
     ui->box_fac_opt->value(),
     ui->box_fac_stddev->value(),
-    ui->box_fac_max->value(),
+    ui->box_unfac_max->value(),
     ui->box_unfac_opt->value(),
-    ui->box_unfac_stddev->value(),
-    ui->box_unfac_max->value()
+    ui->box_unfac_stddev->value()
   );
 }
 

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>689</height>
+    <height>781</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -20,17 +20,10 @@
    <string>Form</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="3" column="0">
+   <item row="4" column="0">
     <widget class="QPushButton" name="button_load">
      <property name="text">
       <string>&amp;Load parameters</string>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="button_save">
-     <property name="text">
-      <string>&amp;Save parameters</string>
      </property>
     </widget>
    </item>
@@ -49,7 +42,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="page_spatial_plot">
       <property name="geometry">
@@ -57,7 +50,7 @@
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>345</height>
+        <height>546</height>
        </rect>
       </property>
       <attribute name="label">
@@ -93,7 +86,7 @@
           <number>10000</number>
          </property>
          <property name="value">
-          <number>10</number>
+          <number>20</number>
          </property>
         </widget>
        </item>
@@ -113,7 +106,7 @@
           <number>10000</number>
          </property>
          <property name="value">
-          <number>10</number>
+          <number>20</number>
          </property>
         </widget>
        </item>
@@ -137,8 +130,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>386</width>
-        <height>357</height>
+        <width>400</width>
+        <height>546</height>
        </rect>
       </property>
       <attribute name="label">
@@ -225,8 +218,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>543</width>
-        <height>625</height>
+        <width>411</width>
+        <height>532</height>
        </rect>
       </property>
       <attribute name="label">
@@ -272,7 +265,7 @@
           <number>10000</number>
          </property>
          <property name="value">
-          <number>20</number>
+          <number>100</number>
          </property>
         </widget>
        </item>
@@ -289,7 +282,7 @@
           <number>1000</number>
          </property>
          <property name="value">
-          <number>10</number>
+          <number>200</number>
          </property>
         </widget>
        </item>
@@ -302,8 +295,17 @@
        </item>
        <item row="2" column="1">
         <widget class="QDoubleSpinBox" name="box_mut_stddev">
+         <property name="decimals">
+          <number>4</number>
+         </property>
+         <property name="maximum">
+          <double>1000.000000000000000</double>
+         </property>
+         <property name="singleStep">
+          <double>0.010000000000000</double>
+         </property>
          <property name="value">
-          <double>0.100000000000000</double>
+          <double>0.010000000000000</double>
          </property>
         </widget>
        </item>
@@ -315,7 +317,7 @@
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>345</height>
+        <height>546</height>
        </rect>
       </property>
       <attribute name="label">
@@ -329,7 +331,7 @@
         <x>0</x>
         <y>0</y>
         <width>400</width>
-        <height>345</height>
+        <height>546</height>
        </rect>
       </property>
       <attribute name="label">
@@ -340,6 +342,19 @@
         <widget class="QLabel" name="label_n_trait_histogram_bins">
          <property name="text">
           <string>#trait histogram bins</string>
+         </property>
+        </widget>
+       </item>
+       <item row="0" column="1">
+        <widget class="QSpinBox" name="box_n_trait_histogram_bins">
+         <property name="minimum">
+          <number>1</number>
+         </property>
+         <property name="maximum">
+          <number>10000</number>
+         </property>
+         <property name="value">
+          <number>10</number>
          </property>
         </widget>
        </item>
@@ -365,20 +380,33 @@
           <double>0.010000000000000</double>
          </property>
          <property name="value">
-          <double>0.010000000000000</double>
+          <double>0.100000000000000</double>
          </property>
         </widget>
        </item>
-       <item row="0" column="1">
-        <widget class="QSpinBox" name="box_n_trait_histogram_bins">
-         <property name="minimum">
-          <number>1</number>
+       <item row="3" column="0">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
          </property>
-         <property name="maximum">
-          <number>10000</number>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
          </property>
-         <property name="value">
-          <number>10</number>
+        </spacer>
+       </item>
+       <item row="2" column="0" colspan="2">
+        <widget class="QLabel" name="label">
+         <property name="text">
+          <string/>
+         </property>
+         <property name="pixmap">
+          <pixmap resource="korter_project.qrc">:/pics/brachypodium_fac_slim.jpg</pixmap>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -386,18 +414,12 @@
      </widget>
     </widget>
    </item>
-   <item row="1" column="0">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
+   <item row="3" column="0">
+    <widget class="QPushButton" name="button_save">
+     <property name="text">
+      <string>&amp;Save parameters</string>
      </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
+    </widget>
    </item>
   </layout>
  </widget>

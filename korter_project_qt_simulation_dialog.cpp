@@ -166,11 +166,13 @@ void ribi::kp::korter_project_qt_simulation_dialog::start_run()
   {
     to_parameters();
   }
-  catch (std::logic_error& e)
+  catch (std::exception& e)
   {
-    std::clog << e.what() << '\n';
+    QString title = "Korter Project (" + QString(e.what()) + ")";
+    this->setWindowTitle(title);
     return;
   }
+  this->setWindowTitle("Korter Project");
 
   const auto parameters = to_parameters();
   {

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Korter project</string>
+   <string>Korter Project</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {
