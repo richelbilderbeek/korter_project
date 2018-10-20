@@ -1,12 +1,10 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>ZosteraNoltiiSmall.jpg</file>
-        <file>EquilibriumSmall.jpg</file>
-        <file>Sulfide.jpg</file>
-        <file>SulfideDetoxificationSmall.jpg</file>
-        <file>OrganicMatterSmall.jpg</file>
-        <file>PrimordialSoup.png</file>
-        <file>Time.jpg</file>
-        <file>Grid.jpg</file>
+    <qresource prefix="/">
+        <file>pics/brachypodium_fac.jpg</file>
+        <file>pics/brachypodium.jpg</file>
+        <file>pics/site.jpg</file>
+        <file>pics/grid.jpg</file>
+        <file>pics/primordial_soup.png</file>
+        <file>pics/time.jpg</file>
     </qresource>
 </RCC>

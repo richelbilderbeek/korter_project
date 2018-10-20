@@ -12,14 +12,22 @@ public:
   explicit fitness_parameters(
     const double fac_opt = 0.5,
     const double fac_stddev = 0.1,
+    const double fac_max = 1.0,
     const double unfac_opt = 0.1,
-    const double unfac_stddev = 0.2
+    const double unfac_stddev = 0.2,
+    const double unfac_max = 1.0
   );
+  ///Get the maximum fitness value for a facilitated plant
+  double get_fac_max() const noexcept { return m_fac_max; }
+
   ///Get the optimum trait value for a facilitated plant
   double get_fac_opt() const noexcept { return m_fac_opt; }
 
   ///Get the standard deviation around the optimal trait value for a facilitated plant
   double get_fac_stddev() const noexcept { return m_fac_stddev; }
+
+  ///Get the maximum fitness value for an unfacilitated plant
+  double get_unfac_max() const noexcept { return m_unfac_max; }
 
   ///Get the optimum trait value for an unfacilitated plant
   double get_unfac_opt() const noexcept { return m_unfac_opt; }
@@ -28,8 +36,10 @@ public:
   double get_unfac_stddev() const noexcept { return m_unfac_stddev; }
 
 private:
+  double m_fac_max;
   double m_fac_opt;
   double m_fac_stddev;
+  double m_unfac_max;
   double m_unfac_opt;
   double m_unfac_stddev;
 

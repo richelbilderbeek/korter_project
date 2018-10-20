@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>418</width>
-    <height>728</height>
+    <height>689</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -49,7 +49,7 @@
       </size>
      </property>
      <property name="currentIndex">
-      <number>4</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="page_spatial_plot">
       <property name="geometry">
@@ -123,7 +123,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="korter_project.qrc">:/images/Grid.jpg</pixmap>
+          <pixmap resource="korter_project.qrc">:/pics/grid.jpg</pixmap>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -137,8 +137,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>397</height>
+        <width>386</width>
+        <height>357</height>
        </rect>
       </property>
       <attribute name="label">
@@ -158,7 +158,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="korter_project.qrc">:/images/PrimordialSoup.png</pixmap>
+          <pixmap resource="korter_project.qrc">:/pics/primordial_soup.png</pixmap>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -225,8 +225,8 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>400</width>
-        <height>397</height>
+        <width>543</width>
+        <height>625</height>
        </rect>
       </property>
       <attribute name="label">
@@ -259,7 +259,7 @@
           <string/>
          </property>
          <property name="pixmap">
-          <pixmap resource="korter_project.qrc">:/images/PrimordialSoup.png</pixmap>
+          <pixmap resource="korter_project.qrc">:/pics/brachypodium.jpg</pixmap>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -324,6 +324,14 @@
       <layout class="QGridLayout" name="gridLayout_2"/>
      </widget>
      <widget class="QWidget" name="page_output">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>400</width>
+        <height>345</height>
+       </rect>
+      </property>
       <attribute name="label">
        <string>Output</string>
       </attribute>

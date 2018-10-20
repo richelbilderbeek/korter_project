@@ -25,11 +25,12 @@ ribi::kp::qt_fitness_widget::qt_fitness_widget(QWidget *parent) :
   m_curve_unfac->setStyle(QwtPlotCurve::Lines);
   m_curve_unfac->setPen(QPen(QColor(255, 0, 0), 2));
 
-
   QObject::connect(ui->box_fac_opt, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_fac_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_fac_max, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_unfac_opt, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_unfac_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_unfac_max, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   OnAnyChange();
 }
 
@@ -42,8 +43,10 @@ void ribi::kp::qt_fitness_widget::set(const fitness_parameters& p) noexcept
 {
   ui->box_fac_opt->setValue(p.get_fac_opt());
   ui->box_fac_stddev->setValue(p.get_fac_stddev());
+  ui->box_fac_max->setValue(p.get_fac_max());
   ui->box_unfac_opt->setValue(p.get_unfac_opt());
   ui->box_unfac_stddev->setValue(p.get_unfac_stddev());
+  ui->box_unfac_max->setValue(p.get_unfac_max());
   assert(to_parameters() == p);
 }
 
@@ -52,8 +55,10 @@ ribi::kp::fitness_parameters ribi::kp::qt_fitness_widget::to_parameters() const 
   return fitness_parameters(
     ui->box_fac_opt->value(),
     ui->box_fac_stddev->value(),
+    ui->box_fac_max->value(),
     ui->box_unfac_opt->value(),
-    ui->box_unfac_stddev->value()
+    ui->box_unfac_stddev->value(),
+    ui->box_unfac_max->value()
   );
 }
 
@@ -86,7 +91,8 @@ void ribi::kp::qt_fitness_widget::plot()
     const double x{xs[i]};
     const double u_optimum = params.get_unfac_opt();
     const double u_sd = params.get_unfac_stddev();
-    fitness_unfacs.push_back(normal(x, u_optimum, u_sd));
+    const double u_max = params.get_unfac_max();
+    fitness_unfacs.push_back(u_max * normal(x, u_optimum, u_sd));
   }
 
   std::vector<double> fitness_facs;
@@ -95,7 +101,8 @@ void ribi::kp::qt_fitness_widget::plot()
     const double x{xs[i]};
     const double f_optimum = params.get_fac_opt();
     const double f_sd = params.get_fac_stddev();
-    fitness_facs.push_back(normal(x, f_optimum, f_sd));
+    const double f_max = params.get_fac_max();
+    fitness_facs.push_back(f_max * normal(x, f_optimum, f_sd));
   }
   m_curve_fac->setData(
     new QwtPointArrayData(&xs[0], &fitness_facs[0], fitness_facs.size())

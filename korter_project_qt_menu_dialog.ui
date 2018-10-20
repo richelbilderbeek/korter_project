@@ -6,14 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>303</width>
-    <height>343</height>
+    <width>844</width>
+    <height>749</height>
    </rect>
   </property>
   <property name="font">
-   <font>
-    <pointsize>28</pointsize>
-   </font>
+   <font/>
   </property>
   <property name="windowTitle">
    <string>Korter project</string>
@@ -44,7 +42,7 @@ QPushButton
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="korter_project.qrc">:/images/EquilibriumSmall.jpg</pixmap>
+      <pixmap resource="korter_project.qrc">:/pics/site.jpg</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
