@@ -70,6 +70,7 @@ script:
   - ./get_code_cov.sh >/dev/null
   - codecov >/dev/null
   # SLOCcount
+  - rm -rf oclint-0.10.3
   - cd ..; sloccount --overhead 1 --personcost 22614 korter_project; cd korter_project
 
 after_success:

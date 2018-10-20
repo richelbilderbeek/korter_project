@@ -35,3 +35,5 @@ korter_project_desktop_plugin_import.cpp
 release/
 debug/
 ui_*
+oclint-0.10.3-x86_64-linux-3.13.0-74-generic.tar.gz
+oclint-0.10.3/
