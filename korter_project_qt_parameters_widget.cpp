@@ -37,6 +37,7 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
   QObject::connect(ui->box_init_trait_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_mut_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_trait_histogram_bin_width, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_max_n_generations, SIGNAL(valueChanged(int)), this, SLOT(OnAnyChange()));
 
 }
 
@@ -58,7 +59,8 @@ ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameter
     ui->box_n_seeds->value(),
     ui->box_n_trait_histogram_bins->value(),
     ui->box_rng_seed->value(),
-    ui->box_trait_histogram_bin_width->value()
+    ui->box_trait_histogram_bin_width->value(),
+    ui->box_max_n_generations->value()
   );
 
   return p;
@@ -77,7 +79,7 @@ void ribi::kp::korter_project_qt_parameters_widget::set(const parameters& p)
   ui->box_spatial_height->setValue(p.get_spatial_height());
   ui->box_spatial_width->setValue(p.get_spatial_width());
   ui->box_trait_histogram_bin_width->setValue(p.get_trait_histogram_bin_width());
-
+  ui->box_max_n_generations->setValue(p.get_max_n_generations());
 }
 
 void ribi::kp::korter_project_qt_parameters_widget::OnAnyChange()

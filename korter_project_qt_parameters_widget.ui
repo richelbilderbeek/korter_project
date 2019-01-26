@@ -418,7 +418,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QSpinBox" name="spinBox">
+        <widget class="QSpinBox" name="box_max_n_generations">
          <property name="minimum">
           <number>100</number>
          </property>
