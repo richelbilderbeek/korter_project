@@ -36,7 +36,6 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
     const auto my_layout = ui->widget_left->layout();
     assert(my_layout);
     my_layout->addWidget(m_parameters_widget);
-    //m_parameters_widget->setMaximumWidth(100);
   }
   {
     const auto my_layout = ui->widget_mid->layout();
@@ -49,6 +48,15 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
     my_layout->addWidget(m_surface_plot);
     my_layout->addWidget(m_qt_scale);
   }
+  m_qt_grid->setToolTip(
+    "<p>Shows the spatial situation.</p>"
+    "<ul>"
+    "  <li>Green: a nurse/facilitator plant<li>"
+    "  <li>Blue: a facilitated plant. The brighter the color, the higher its fitness<li>"
+    "  <li>Red: an unfacilitated plant. The brighter the color, the higher its fitness<li>"
+    "</ul>"
+  );
+
   //Setup surface plot
   {
     m_surface_plot->setMinimumWidth(100);
@@ -63,6 +71,25 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
       }
     }
     m_surface_plot->SetSurfaceGrey(v);
+    m_surface_plot->setToolTip(
+      "<p>The trait value distribution through time<p>"
+      "<ul>"
+      "<li>"
+      "The vertical axis shows the trait value distribution through time, "
+      "starting at at the top and adding new trait value distributions "
+      "below"
+      "</li>"
+      "<li>"
+      "The horizontal axis shows the trait value distribution, "
+      "where abundant trait values are displayed brighter. "
+      "Trait values range from zero at the left to their maximum range at the "
+      "right. The maximum range is determined by the parameters set by the "
+      "user in the 'Output' tab. The maximum range of traits displayed "
+      "equals the number of bins times the bin width. "
+      "Traits values higher than the maximum range are put in the rightmost bin"
+      "</li>"
+      "</ul>"
+    );
   }
   //Setup scale
   {
