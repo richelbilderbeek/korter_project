@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include <memory>
-
+#include <sstream>
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
@@ -182,7 +182,22 @@ void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
   const int current_generation
     = this->m_simulation->get_trait_histograms().size();
   const int max_n_generations = to_parameters().get_max_n_generations();
-  if (current_generation >= max_n_generations) return;
+  if (current_generation == max_n_generations)
+  {
+    std::ofstream f(to_parameters().get_results_filename());
+    f << "# " << to_parameters() << '\n';
+    const auto& histograms =  m_simulation->get_trait_histograms();
+    for (const auto& histogram: histograms)
+    {
+      std::stringstream s;
+      std::copy(std::begin(histogram), std::end(histogram),
+      std::ostream_iterator<double>(s, ","));
+      std::string t = s.str();
+      t.back() = '\n'; //Replace comma by newlime
+      f << t;
+    }
+  }
+  if (current_generation > max_n_generations) return;
 
 
   assert(m_simulation);

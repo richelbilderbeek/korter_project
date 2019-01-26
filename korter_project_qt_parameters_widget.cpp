@@ -26,6 +26,9 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
     assert(my_layout);
     my_layout->addWidget(m_fitness_widget);
   }
+
+  ui->button_save_results->setText("results.csv");
+
   QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
@@ -38,7 +41,7 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
   QObject::connect(ui->box_mut_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_trait_histogram_bin_width, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_max_n_generations, SIGNAL(valueChanged(int)), this, SLOT(OnAnyChange()));
-
+  QObject::connect(ui->button_save_results, SIGNAL(clicked(bool)), this, SLOT(OnAnyChange()));
 }
 
 ribi::kp::korter_project_qt_parameters_widget::~korter_project_qt_parameters_widget()
@@ -60,7 +63,8 @@ ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameter
     ui->box_n_trait_histogram_bins->value(),
     ui->box_rng_seed->value(),
     ui->box_trait_histogram_bin_width->value(),
-    ui->box_max_n_generations->value()
+    ui->box_max_n_generations->value(),
+    ui->button_save_results->text().toStdString()
   );
 
   return p;
@@ -80,6 +84,7 @@ void ribi::kp::korter_project_qt_parameters_widget::set(const parameters& p)
   ui->box_spatial_width->setValue(p.get_spatial_width());
   ui->box_trait_histogram_bin_width->setValue(p.get_trait_histogram_bin_width());
   ui->box_max_n_generations->setValue(p.get_max_n_generations());
+  ui->button_save_results->setText(QString::fromStdString(p.get_results_filename()));
 }
 
 void ribi::kp::korter_project_qt_parameters_widget::OnAnyChange()
@@ -114,5 +119,7 @@ void ribi::kp::korter_project_qt_parameters_widget::on_button_load_clicked()
 
 void ribi::kp::korter_project_qt_parameters_widget::on_button_save_results_clicked()
 {
-  ui->button_save->setText(QFileDialog::getSaveFileName());
+  const std::string filename = QFileDialog::getSaveFileName().toStdString();
+  if (filename.empty()) return;
+  ui->button_save_results->setText(QString::fromStdString(filename));
 }
