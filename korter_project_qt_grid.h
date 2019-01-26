@@ -13,6 +13,8 @@ struct QImage;
 namespace ribi {
 namespace kp {
 
+///The visual representation of a spatial grid,
+///allowing to set and get pixels.
 class korter_project_qt_grid : public QWidget
 {
   Q_OBJECT

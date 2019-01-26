@@ -29,4 +29,3 @@ LIBS += -lgcov
 
 # Thanks QDateTime
 QMAKE_CXXFLAGS += -Wno-unused-result
-

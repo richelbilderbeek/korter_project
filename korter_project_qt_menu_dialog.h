@@ -10,6 +10,7 @@ namespace Ui {
 namespace ribi {
 namespace kp {
 
+///The menu dialog, shown at the start of the program
 class qt_menu_dialog : public QDialog
 {
   Q_OBJECT

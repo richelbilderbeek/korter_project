@@ -22,9 +22,12 @@ class QtSurfacePlotWidget;
 namespace kp {
 
 struct simulation;
+struct qt_scale;
 struct korter_project_qt_parameters_widget;
 struct korter_project_qt_grid;
 
+///The main dialog showing the parameters, simulation and
+///results
 class korter_project_qt_simulation_dialog : public QDialog
 {
   Q_OBJECT
@@ -47,6 +50,7 @@ private:
   Ui::korter_project_qt_simulation_dialog *ui;
   korter_project_qt_parameters_widget * const m_parameters_widget;
   korter_project_qt_grid * const m_qt_grid;
+  qt_scale * const m_qt_scale;
   QTimer * const m_timer;
   std::unique_ptr<simulation> m_simulation;
   QtSurfacePlotWidget * const m_surface_plot;

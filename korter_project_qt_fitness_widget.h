@@ -13,6 +13,8 @@ namespace Ui {
 namespace ribi {
 namespace kp {
 
+///Visual representation of the trait value distribution
+///through time
 class qt_fitness_widget : public QWidget
 {
   Q_OBJECT

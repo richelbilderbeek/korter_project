@@ -14,6 +14,7 @@
 #include <qwt_plot.h>
 #include <qwt_plot_curve.h>
 
+#include "korter_project_qt_scale.h"
 #include "korter_project_qt_parameters_widget.h"
 #include "korter_project_qt_grid.h"
 #include "ui_korter_project_qt_simulation_dialog.h"
@@ -24,6 +25,7 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
   ui(new Ui::korter_project_qt_simulation_dialog),
   m_parameters_widget{new korter_project_qt_parameters_widget},
   m_qt_grid{new korter_project_qt_grid(10,10)},
+  m_qt_scale{new qt_scale},
   m_timer{new QTimer(this)},
   m_simulation{nullptr},
   m_surface_plot{new QtSurfacePlotWidget}
@@ -45,6 +47,10 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
     const auto my_layout = ui->widget_right->layout();
     assert(my_layout);
     my_layout->addWidget(m_surface_plot);
+    my_layout->addWidget(m_qt_scale);
+  }
+  //Setup surface plot
+  {
     m_surface_plot->setMinimumWidth(100);
     std::vector<std::vector<double>> v(100, std::vector<double>(100, 0.0));
     for (int i = 0; i != 100; ++i)
@@ -57,6 +63,11 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
       }
     }
     m_surface_plot->SetSurfaceGrey(v);
+  }
+  //Setup scale
+  {
+    m_qt_scale->set_min(0.0);
+    m_qt_scale->set_text("trait value");
   }
 
   QObject::connect(m_parameters_widget,SIGNAL(signal_parameters_changed()),this,SLOT(start_run()));
@@ -175,6 +186,11 @@ void ribi::kp::korter_project_qt_simulation_dialog::start_run()
   this->setWindowTitle("Korter Project");
 
   const auto parameters = to_parameters();
+
+  m_qt_scale->set_max(
+    static_cast<double>(parameters.get_n_trait_histogram_bins()) *
+    parameters.get_trait_histogram_bin_width()
+  );
   {
     const int w{parameters.get_spatial_width()};
     const int h{parameters.get_spatial_height()};

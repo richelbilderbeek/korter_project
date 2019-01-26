@@ -14,6 +14,7 @@ namespace kp {
 
 class qt_fitness_widget;
 
+///The widget in which the user can set parameters
 class korter_project_qt_parameters_widget : public QWidget
 {
   Q_OBJECT
