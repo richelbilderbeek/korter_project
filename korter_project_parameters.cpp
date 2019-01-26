@@ -15,7 +15,8 @@ ribi::kp::parameters::parameters(
   const int n_seeds,
   const int n_trait_histogram_bins,
   const int rng_seed,
-  const double trait_histogram_bin_width
+  const double trait_histogram_bin_width,
+  const int max_n_generations
 ) : m_fitness_parameters(fp),
     m_init_trait_mean{init_trait_mean},
     m_init_trait_stddev{init_trait_stddev},
@@ -26,7 +27,8 @@ ribi::kp::parameters::parameters(
     m_n_seeds{n_seeds},
     m_n_trait_histogram_bins{n_trait_histogram_bins},
     m_rng_seed{rng_seed},
-    m_trait_histogram_bin_width{trait_histogram_bin_width}
+    m_trait_histogram_bin_width{trait_histogram_bin_width},
+    m_max_n_generations{max_n_generations}
 {
   assert(m_init_trait_mean >= 0.0);
   assert(m_init_trait_stddev >= 0.0);
@@ -38,6 +40,7 @@ ribi::kp::parameters::parameters(
   assert(m_spatial_height > 0);
   assert(m_spatial_width > 0);
   assert(m_trait_histogram_bin_width > 0.0);
+  assert(m_max_n_generations > 0);
 
   if (m_n_nurse_plants + m_n_seeds > m_spatial_width * m_spatial_height)
   {

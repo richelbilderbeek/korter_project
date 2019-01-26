@@ -22,7 +22,8 @@ struct parameters
     const int n_seeds = 0,
     const int n_trait_histogram_bins = 10,
     const int rng_seed = 0,
-    const double trait_histogram_bin_width = 0.1
+    const double trait_histogram_bin_width = 0.1,
+    const int max_n_generations = 1000
   );
 
   const auto& get_fitness_parameters() const noexcept { return m_fitness_parameters; }
@@ -39,6 +40,8 @@ struct parameters
   int get_rng_seed() const noexcept { return m_rng_seed; }
   int get_n_trait_histogram_bins() const noexcept { return m_n_trait_histogram_bins; }
   double get_trait_histogram_bin_width() const noexcept { return m_trait_histogram_bin_width; }
+
+  int get_max_n_generations() const noexcept { return m_max_n_generations; }
 
   ///Create a testing parameter set
   static parameters GetTest(const int i);
@@ -64,6 +67,7 @@ struct parameters
   int m_n_trait_histogram_bins;
   int m_rng_seed;
   double m_trait_histogram_bin_width;
+  int m_max_n_generations;
 
   friend std::ostream& operator<<(std::ostream& os, const parameters& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, parameters& parameter) noexcept;

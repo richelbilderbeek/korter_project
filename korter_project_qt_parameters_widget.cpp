@@ -26,8 +26,6 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
     assert(my_layout);
     my_layout->addWidget(m_fitness_widget);
   }
-
-
   QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
@@ -110,4 +108,9 @@ void ribi::kp::korter_project_qt_parameters_widget::on_button_load_clicked()
   parameters parameters;
   f >> parameters;
   set(parameters);
+}
+
+void ribi::kp::korter_project_qt_parameters_widget::on_button_save_results_clicked()
+{
+  ui->button_save->setText(QFileDialog::getSaveFileName());
 }

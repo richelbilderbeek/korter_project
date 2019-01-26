@@ -179,6 +179,12 @@ ribi::kp::parameters ribi::kp::korter_project_qt_simulation_dialog::to_parameter
 
 void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
 {
+  const int current_generation
+    = this->m_simulation->get_trait_histograms().size();
+  const int max_n_generations = to_parameters().get_max_n_generations();
+  if (current_generation >= max_n_generations) return;
+
+
   assert(m_simulation);
   m_simulation->go_to_next_generation();
   display_grid();

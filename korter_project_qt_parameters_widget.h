@@ -36,6 +36,8 @@ private slots:
   void on_button_load_clicked();
   void on_button_save_clicked();
 
+  void on_button_save_results_clicked();
+
 private:
   qt_fitness_widget * const m_fitness_widget;
   Ui::korter_project_qt_parameters_widget *ui;
