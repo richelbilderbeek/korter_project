@@ -89,8 +89,16 @@ we can set a mean, standard deviation and maximum (i.e. the
 fitness achieved at the optimal trait value; the height of
 the Gaussian curve).
 
-
-which is determined  
+The genotype of a seed equals its phenotype. In other words,
+the trait is assumed to lie on a haploid genome,
+with an infinite amount of loci,
+each locus contributing equally and additively to the trait's expression.
+Every new offspring seed inherits its asexual parent's trait
+with a small random mutation, which is normally distributed around zero,
+with standard deviation `mu`. If an offspring's trait values goes below zero,
+its trait value is set to zero.
+The initial population has its traits drawn from a normal distribution
+with a given mean and standard deviation.
 
 ## Results
 
