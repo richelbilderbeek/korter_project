@@ -17,6 +17,7 @@
 #include "korter_project_qt_scale.h"
 #include "korter_project_qt_parameters_widget.h"
 #include "korter_project_qt_grid.h"
+#include "korter_project_fitness_parameters.h"
 #include "ui_korter_project_qt_simulation_dialog.h"
 #include "korter_project_simulation.h"
 
@@ -185,7 +186,31 @@ void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
   if (current_generation == max_n_generations)
   {
     std::ofstream f(to_parameters().get_results_filename());
-    f << "# " << to_parameters() << '\n';
+    // Display parameters properly
+    {
+      const parameters params = to_parameters();
+      const fitness_parameters& fitness_params = params.get_fitness_parameters();
+      f
+        << "# fitness_params.get_fac_max: " << fitness_params.get_fac_max() << '\n'
+        << "# fitness_params.get_fac_opt: " << fitness_params.get_fac_opt() << '\n'
+        << "# fitness_params.get_fac_stddev: " << fitness_params.get_fac_stddev() << '\n'
+        << "# fitness_params.get_unfac_max: " << fitness_params.get_unfac_max() << '\n'
+        << "# fitness_params.get_unfac_opt: " << fitness_params.get_unfac_opt() << '\n'
+        << "# fitness_params.get_unfac_stddev: " << fitness_params.get_unfac_stddev() << '\n'
+        << "# init_trait_mean: " << params.get_init_trait_mean() << '\n'
+        << "# init_trait_stddev: " << params.get_init_trait_stddev() << '\n'
+        << "# max_n_generations: " << params.get_max_n_generations() << '\n'
+        << "# mut_stddev: " << params.get_mut_stddev() << '\n'
+        << "# n_nurse_plants: " << params.get_n_nurse_plants() << '\n'
+        << "# n_seeds: " << params.get_n_seeds() << '\n'
+        << "# n_trait_histogram_bins: " << params.get_n_trait_histogram_bins() << '\n'
+        << "# results_filename: " << params.get_results_filename() << '\n'
+        << "# rng_seed: " << params.get_rng_seed() << '\n'
+        << "# spatial_height: " << params.get_spatial_height() << '\n'
+        << "# spatial_height: " << params.get_spatial_height() << '\n'
+        << "# trait_histogram_bin_width: " << params.get_trait_histogram_bin_width() << '\n'
+      ;
+    }
     const auto& histograms =  m_simulation->get_trait_histograms();
     for (const auto& histogram: histograms)
     {

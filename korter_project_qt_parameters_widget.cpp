@@ -29,6 +29,8 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
 
   ui->button_save_results->setText("results.csv");
 
+
+
   QObject::connect(m_fitness_widget,SIGNAL(signal_parameters_changed()),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_height,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_spatial_width,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
@@ -42,6 +44,7 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
   QObject::connect(ui->box_trait_histogram_bin_width, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_max_n_generations, SIGNAL(valueChanged(int)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->button_save_results, SIGNAL(clicked(bool)), this, SLOT(OnAnyChange()));
+  OnAnyChange();
 }
 
 ribi::kp::korter_project_qt_parameters_widget::~korter_project_qt_parameters_widget()
@@ -92,6 +95,21 @@ void ribi::kp::korter_project_qt_parameters_widget::OnAnyChange()
   ui->box_n_nurse_plants->setMaximum(
     ui->box_spatial_width->value() * ui->box_spatial_height->value()
   );
+  {
+    QString r_code =
+      QString("<code>")
+      + "filename &lt;- \""
+      + ui->button_save_results->text()
+      + "\"<br>"
+      + "</code>"
+      + "<code>"
+      + "df_result &lt;- read.csv(filename, comment.char = \"#\")</br>"
+      + "</code>"
+    ;
+    ui->button_save_results->setToolTip(r_code);
+    ui->label_save_results->setToolTip(r_code);
+  }
+
   emit signal_parameters_changed();
 }
 
