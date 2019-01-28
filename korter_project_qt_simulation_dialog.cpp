@@ -193,7 +193,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
       std::copy(std::begin(histogram), std::end(histogram),
       std::ostream_iterator<double>(s, ","));
       std::string t = s.str();
-      t.back() = '\n'; //Replace comma by newlime
+      t.back() = '\n'; //Replace comma by newline
       f << t;
     }
   }
