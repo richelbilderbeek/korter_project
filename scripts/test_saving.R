@@ -15,3 +15,9 @@ comment_lines <- c("# Comment", "# Another comment", lines)
 writeLines(text = comment_lines, con = filename)
 df_again <- read.csv(filename, comment.char = "#")
 testthat::expect_equal(df, df_again)
+
+
+
+
+filename <- "~/results.csv"
+df_result <- read.csv(filename, comment.char = "#")
