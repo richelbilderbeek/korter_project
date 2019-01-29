@@ -4,6 +4,9 @@ include(../RibiClasses/CppHelp/CppHelp.pri)
 include(../RibiClasses/CppMenuDialog/CppMenuDialog.pri)
 include(../RibiClasses/CppQtAboutDialog/CppQtAboutDialog.pri)
 include(../RibiClasses/CppQtHideAndShowDialog/CppQtHideAndShowDialog.pri)
+
+DEFINES += QWT_NO_SVG
+
 include(../RibiLibraries/Qwt.pri)
 include(../SurfacePlotter/QtSurfacePlotWidget.pri)
 
