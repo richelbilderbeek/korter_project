@@ -25,6 +25,11 @@ public:
   parameters to_parameters() const;
   void set(const parameters& parameters);
 
+  ///Show the fraction of the facilitated cells in the realized grid.
+  ///This fraction goes from 0.0 (no nurse plants) to 1.0 (all grid cells
+  ///are connected to a nurse plant)
+  void show_frac_fac(const double f_fac);
+
 signals:
   void signal_parameters_changed() const;
 

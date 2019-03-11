@@ -52,6 +52,13 @@ ribi::kp::korter_project_qt_parameters_widget::~korter_project_qt_parameters_wid
   delete ui;
 }
 
+void ribi::kp::korter_project_qt_parameters_widget::show_frac_fac(const double f_fac)
+{
+  ui->label_percentage_facilitated_value->setText(
+    QString::number(f_fac * 100.0)
+  );
+}
+
 ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameters() const
 {
   const parameters p(

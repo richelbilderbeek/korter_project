@@ -49,6 +49,34 @@ ribi::kp::grid ribi::kp::add_seeds(
   return g;
 }
 
+double ribi::kp::calc_frac_fac(const grid& g)
+{
+  const int height{g.get_height()};
+  const int width{g.get_width()};
+  int n_fac{0};
+  int n_unfac{0};
+
+  for (int y = 0; y != height; ++y)
+  {
+    for (int x = 0; x != width; ++x)
+    {
+      if (!is_nurse(g, x, y))
+      {
+        if (is_facilitated(g, x, y))
+        {
+          ++n_fac;
+        }
+        else
+        {
+          assert(is_unfacilitated(g, x, y));
+          ++n_unfac;
+        }
+      }
+    }
+  }
+  return static_cast<double>(n_fac) / static_cast<double>(n_fac + n_unfac);
+}
+
 std::vector<bool> ribi::kp::collect_is_facilitated(const grid& g)
 {
   std::vector<bool> v;
@@ -196,7 +224,7 @@ bool ribi::kp::is_empty(const ribi::kp::grid& g) noexcept
 
 bool ribi::kp::is_facilitated(const grid& g, const int x, const int y)
 {
-  assert(g.get(x, y).is_seed());
+  assert(!g.get(x, y).is_nurse());
   const int h{g.get_height()};
   const int w{g.get_width()};
   return
@@ -207,9 +235,20 @@ bool ribi::kp::is_facilitated(const grid& g, const int x, const int y)
   ;
 }
 
+bool ribi::kp::is_nurse(const grid& g, const int x, const int y)
+{
+  return g.get(x, y).is_nurse();
+}
+
 bool ribi::kp::is_seed(const grid& g, const int x, const int y)
 {
   return g.get(x, y).is_seed();
+}
+
+bool ribi::kp::is_unfacilitated(const grid& g, const int x, const int y)
+{
+  assert(!g.get(x, y).is_nurse());
+  return !is_facilitated(g, x, y);
 }
 
 void ribi::kp::remove_seeds(grid& g)

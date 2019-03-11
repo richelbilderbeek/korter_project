@@ -40,6 +40,12 @@ grid add_seeds(
   std::mt19937& rng_engine
 );
 
+
+///Calculate the fraction of the facilitated cells in the realized grid.
+///This fraction goes from 0.0 (no nurse plants) to 1.0 (all grid cells
+///are connected to a nurse plant)
+double calc_frac_fac(const grid& g);
+
 ///Extract the seeds that are facilitated
 std::vector<bool> collect_is_facilitated(const grid& g);
 
@@ -75,11 +81,20 @@ grid create_next_grid(
 bool is_empty(const grid& g) noexcept;
 
 ///Is the cell adjacent to a nurse plant?
-///Assumes the cell is a seed/non-nurse plant
+///Assumes the cell is a non-nurse plant,
+///i.e. either the cell is empty or contains a seed
 bool is_facilitated(const grid& g, const int x, const int y);
+
+///Is the cell containing a nurse plant?
+bool is_nurse(const grid& g, const int x, const int y);
 
 ///Is this grid cell a seed/non-nurse plant?
 bool is_seed(const grid& g, const int x, const int y);
+
+///Is the cell not adjacent to a nurse plant?
+///Assumes the cell is a non-nurse plant,
+///i.e. either the cell is empty or contains a seed
+bool is_unfacilitated(const grid& g, const int x, const int y);
 
 ///Empty all grid cells with a seed/non-nurse plant
 void remove_seeds(grid& g);
