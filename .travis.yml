@@ -1,9 +1,11 @@
 sudo: required
 language: cpp
 dist: xenial
-compiler:
-  - gcc
+compiler: gcc
 
+# Xenial
+services:
+  - xvfb
 
 addons:
   # Boost
@@ -15,15 +17,12 @@ before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo apt-get update -qq
   # Qt5, From https://gist.github.com/jreese/6207161#gistcomment-1462109
-  #- sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
-  #- sudo apt-get update -qq
-  #- sudo apt-get install -qq libqt5webkit5-dev qtdeclarative5-dev
-  #- export QMAKE=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
+  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+  - sudo apt-get update -qq
   # codecov
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
   - sudo pip install codecov # From https://github.com/travis-ci/travis-ci/issues/1705
   - sudo apt-get update -qq
-
 
 install: 
   # C++14
@@ -41,10 +40,6 @@ install:
   - sudo apt-get install sloccount
   # OCLint
   - ./install_oclint.sh
-
-# Xenial
-services:
-  - xvfb
 
 # Trusty
 # Start virtual X server
