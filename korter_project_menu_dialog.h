@@ -5,7 +5,7 @@
 #include <vector>
 
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
+
 
 #include "about.h"
 #include "menudialog.h"

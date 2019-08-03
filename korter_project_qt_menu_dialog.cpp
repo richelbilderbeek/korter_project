@@ -1,5 +1,5 @@
 #pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Weffc++"
+
 #include "korter_project_qt_menu_dialog.h"
 
 #include <QKeyEvent>
