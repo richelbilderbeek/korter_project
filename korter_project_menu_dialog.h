@@ -4,12 +4,12 @@
 #include <string>
 #include <vector>
 
-#pragma GCC diagnostic push
+
 
 
 #include "about.h"
 #include "menudialog.h"
-#pragma GCC diagnostic pop
+
 
 namespace ribi {
 namespace kp {

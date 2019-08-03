@@ -1,4 +1,4 @@
-#pragma GCC diagnostic push
+
 
 #include "korter_project_qt_menu_dialog.h"
 
@@ -8,7 +8,7 @@
 #include "korter_project_menu_dialog.h"
 #include "korter_project_qt_simulation_dialog.h"
 #include "ui_korter_project_qt_menu_dialog.h"
-#pragma GCC diagnostic pop
+
 
 
 ribi::kp::qt_menu_dialog::qt_menu_dialog(QWidget *parent) :

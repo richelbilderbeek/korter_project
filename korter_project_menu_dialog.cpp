@@ -1,4 +1,4 @@
-#pragma GCC diagnostic push
+
 
 
 #include "korter_project_menu_dialog.h"
@@ -14,7 +14,7 @@
 
 #include "korter_project_menu_dialog.h"
 #include "fileio.h"
-#pragma GCC diagnostic pop
+
 
 ribi::kp::menu_dialog::menu_dialog()
 {
