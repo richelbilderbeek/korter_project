@@ -115,6 +115,40 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_count)
   BOOST_CHECK_EQUAL(9, count_n_empty(s.get_grid()));
 }
 
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_calc_fitnesses)
+{
+  using namespace std;
+
+  // The parameters for a test grid
+  const parameters p = create_test_parameters();
+  const simulation s(p);
+  const auto traits = collect_traits(s.get_grid());
+  BOOST_CHECK_EQUAL(traits[0], 0.25);
+  BOOST_CHECK_EQUAL(traits[1], 0.75);
+  const auto is_facilitated = collect_is_facilitated(s.get_grid());
+  BOOST_CHECK_EQUAL(is_facilitated[0], false);
+  BOOST_CHECK_EQUAL(is_facilitated[1], true);
+
+  //The fitnesses
+  const auto created = calc_fitnesses(s.get_grid(), p);
+  BOOST_CHECK_EQUAL(2, created.size());
+  const auto fitness_1 = get_fitness(
+    p.get_fitness_parameters(),
+    traits[0],
+    is_facilitated[0]
+  );
+  const auto fitness_2 = get_fitness(
+    p.get_fitness_parameters(),
+    traits[1],
+    is_facilitated[1]
+  );
+  const std::vector<double> expected = { fitness_1, fitness_2 };
+  BOOST_CHECK_EQUAL_COLLECTIONS(
+    begin(created), end(created),
+    begin(expected), end(expected)
+  );
+}
+
 BOOST_AUTO_TEST_CASE(ribi_kp_no_selection_for_max_zero)
 {
   // We set a fitness of the facilitated plant
@@ -169,10 +203,6 @@ BOOST_AUTO_TEST_CASE(ribi_kp_no_selection_for_max_zero)
     begin(traits), end(traits),
     [](const double trait) { return trait >= 0.5; }
   );
-
-  //#define FIX_ISSUE_1
-  #ifdef FIX_ISSUE_1
   BOOST_CHECK(n_high > n_low);
-  #endif
 }
 

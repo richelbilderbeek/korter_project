@@ -5,12 +5,12 @@
 #include <cmath>
 
 ribi::kp::fitness_parameters::fitness_parameters(
-  const double fac_max,
   const double fac_opt,
   const double fac_stddev,
-  const double unfac_max,
+  const double fac_max,
   const double unfac_opt,
-  const double unfac_stddev
+  const double unfac_stddev,
+  const double unfac_max
 ) :
     m_fac_max{fac_max},
     m_fac_opt{fac_opt},
