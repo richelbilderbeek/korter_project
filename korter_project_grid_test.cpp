@@ -73,4 +73,18 @@ BOOST_AUTO_TEST_CASE(ribi_kp_test_grid_is_setup_as_expected)
   const grid g = create_test_grid();
   BOOST_CHECK_EQUAL(4, g.get_width());
   BOOST_CHECK_EQUAL(3, g.get_height());
+  BOOST_CHECK(g.get(0, 0).is_empty());
+  BOOST_CHECK(g.get(1, 0).is_empty());
+  BOOST_CHECK(g.get(2, 0).is_empty());
+  BOOST_CHECK(g.get(3, 0).is_empty());
+
+  BOOST_CHECK(g.get(0, 1).is_empty());
+  BOOST_CHECK(g.get(1, 1).is_empty());
+  BOOST_CHECK(g.get(2, 1).is_empty());
+  BOOST_CHECK(g.get(3, 1).is_empty());
+
+  BOOST_CHECK(g.get(0, 2).is_empty());
+  BOOST_CHECK(g.get(1, 2).is_empty());
+  BOOST_CHECK(g.get(2, 2).is_empty());
+  BOOST_CHECK(g.get(3, 2).is_empty());
 }

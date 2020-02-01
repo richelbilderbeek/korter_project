@@ -20,7 +20,6 @@ public:
   int get_height() const noexcept { return m_cells.size(); }
   int get_width() const;
 
-
   const auto& get_cells() const noexcept { return m_cells; }
   auto& get_cells() noexcept { return m_cells; }
 
