@@ -116,7 +116,9 @@ BOOST_AUTO_TEST_CASE(ribi_kp_no_selection_for_max_zero)
     [](const double trait) { return trait >= 0.5; }
   );
 
-  return;
+  //#define FIX_ISSUE_1
+  #ifdef FIX_ISSUE_1
   BOOST_CHECK(n_high > n_low);
+  #endif
 }
 
