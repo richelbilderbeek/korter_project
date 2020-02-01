@@ -82,9 +82,19 @@ BOOST_AUTO_TEST_CASE(ribi_kp_test_grid_is_setup_as_expected)
   BOOST_CHECK(g.get(1, 1).is_nurse()); //N
   BOOST_CHECK(g.get(2, 1).is_empty());
   BOOST_CHECK(g.get(3, 1).is_seed()); //U
+  BOOST_CHECK_EQUAL(g.get(3, 1).get_trait(), 0.25); //U
 
   BOOST_CHECK(g.get(0, 2).is_empty());
   BOOST_CHECK(g.get(1, 2).is_seed()); //F
+  BOOST_CHECK_EQUAL(g.get(1, 2).get_trait(), 0.75); //F
   BOOST_CHECK(g.get(2, 2).is_empty());
   BOOST_CHECK(g.get(3, 2).is_empty());
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_test_grid_calc_frac_fac)
+{
+  const grid g = create_test_grid();
+  BOOST_CHECK_EQUAL(1, count_n_facilitated_seeds(g));
+  BOOST_CHECK_EQUAL(1, count_n_unfacilitated_seeds(g));
+  BOOST_CHECK_EQUAL(0.5, calc_frac_fac_seeds(g));
 }

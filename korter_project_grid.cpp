@@ -49,33 +49,11 @@ ribi::kp::grid ribi::kp::add_seeds(
   return g;
 }
 
-double ribi::kp::calc_frac_fac(const grid& g)
+double ribi::kp::calc_frac_fac_seeds(const grid& g)
 {
-  const int height{g.get_height()};
-  const int width{g.get_width()};
-  int n_fac{0};
-  int n_unfac{0};
-
-  for (int y = 0; y != height; ++y)
-  {
-    for (int x = 0; x != width; ++x)
-    {
-      if (!is_nurse(g, x, y))
-      {
-        if (is_facilitated(g, x, y))
-        {
-          ++n_fac;
-        }
-        else
-        {
-          assert(is_unfacilitated(g, x, y));
-          ++n_unfac;
-        }
-      }
-    }
-  }
-  assert(n_fac == count_n_facilitated_seeds(g));
-  assert(n_unfac == count_n_unfacilitated_seeds(g));
+  const int n_fac{count_n_facilitated_seeds(g)};
+  const int n_unfac{count_n_unfacilitated_seeds(g)};
+  assert(n_fac + n_unfac > 0);
   return static_cast<double>(n_fac) / static_cast<double>(n_fac + n_unfac);
 }
 
@@ -223,14 +201,16 @@ ribi::kp::grid ribi::kp::create_test_grid() noexcept
   //
   // N: Nurse plant
   // F: Facilitated plant/seed, because adjacent to nurse
+  //    trait value 0.75
   // U: Unfacilitated plant/seed, because not adjacent to nurse
+  //    trait value 0.25
 
   const int width{4};
   const int height{3};
   grid g(width, height);
   g.get(1, 1).make_nurse(); // N
-  g.get(3, 1).make_seed(); // U
-  g.get(1, 2).make_seed(); // F
+  g.get(3, 1).make_seed(0.25); // U
+  g.get(1, 2).make_seed(0.75); // F
   return g;
 }
 
