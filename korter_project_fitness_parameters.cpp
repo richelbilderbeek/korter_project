@@ -50,7 +50,7 @@ double ribi::kp::get_fitness(
 {
   double mean = params.get_unfac_opt();
   double stddev = params.get_unfac_stddev();
-  double max = params.get_fac_max();
+  double max = params.get_unfac_max();
   if (is_facilitated)
   {
     mean = params.get_fac_opt();
