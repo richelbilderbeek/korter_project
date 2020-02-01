@@ -69,9 +69,50 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_with_test_grid)
   BOOST_CHECK_EQUAL(s.get_grid(), create_test_grid());
 }
 
-BOOST_AUTO_TEST_CASE(ribi_kp_simulation_low_trait_has_high_fitness)
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_traits)
 {
-  //const simulation s;
+  using namespace std;
+
+  // The parameters for a test grid
+  const parameters p = create_test_parameters();
+  const simulation s(p);
+  const std::vector<double> expected = { 0.25, 0.75 };
+  const auto created = collect_traits(s.get_grid());
+  BOOST_CHECK_EQUAL(2, created.size());
+  BOOST_CHECK_EQUAL_COLLECTIONS(
+    begin(created), end(created),
+    begin(expected), end(expected)
+  );
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_is_facilitated)
+{
+  using namespace std;
+
+  // The parameters for a test grid
+  const parameters p = create_test_parameters();
+  const simulation s(p);
+  const std::vector<bool> expected = { false, true };
+  const auto created = collect_is_facilitated(s.get_grid());
+  BOOST_CHECK_EQUAL(2, created.size());
+  BOOST_CHECK_EQUAL_COLLECTIONS(
+    begin(created), end(created),
+    begin(expected), end(expected)
+  );
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_count)
+{
+  using namespace std;
+
+  // The parameters for a test grid
+  const parameters p = create_test_parameters();
+  const simulation s(p);
+  BOOST_CHECK_EQUAL(1, count_n_nurse(s));
+  BOOST_CHECK_EQUAL(2, count_n_seeds(s));
+  BOOST_CHECK_EQUAL(1, count_n_facilitated_seeds(s.get_grid()));
+  BOOST_CHECK_EQUAL(1, count_n_unfacilitated_seeds(s.get_grid()));
+  BOOST_CHECK_EQUAL(9, count_n_empty(s.get_grid()));
 }
 
 BOOST_AUTO_TEST_CASE(ribi_kp_no_selection_for_max_zero)
