@@ -282,7 +282,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::start_run()
 
   m_simulation.reset(new simulation(parameters));
   this->m_parameters_widget->show_frac_fac(
-    calc_frac_fac(m_simulation->get_grid())
+    calc_frac_fac_seeds(m_simulation->get_grid())
   );
   display_grid();
   display_traits();

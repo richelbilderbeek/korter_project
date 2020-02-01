@@ -52,14 +52,21 @@ void ribi::kp::qt_fitness_widget::set(const fitness_parameters& p) noexcept
 
 ribi::kp::fitness_parameters ribi::kp::qt_fitness_widget::to_parameters() const noexcept
 {
-  return fitness_parameters(
-    ui->box_fac_max->value(),
+  const fitness_parameters p(
     ui->box_fac_opt->value(),
     ui->box_fac_stddev->value(),
-    ui->box_unfac_max->value(),
+    ui->box_fac_max->value(),
     ui->box_unfac_opt->value(),
-    ui->box_unfac_stddev->value()
+    ui->box_unfac_stddev->value(),
+    ui->box_unfac_max->value()
   );
+  assert(abs(p.get_fac_opt() - ui->box_fac_opt->value()) < 0.0001);
+  assert(abs(p.get_fac_stddev() - ui->box_fac_stddev->value()) < 0.0001);
+  assert(abs(p.get_fac_max() - ui->box_fac_max->value()) < 0.0001);
+  assert(abs(p.get_unfac_opt() - ui->box_unfac_opt->value()) < 0.0001);
+  assert(abs(p.get_unfac_stddev() - ui->box_unfac_stddev->value()) < 0.0001);
+  assert(abs(p.get_unfac_max() - ui->box_unfac_max->value()) < 0.0001);
+  return p;
 }
 
 void ribi::kp::qt_fitness_widget::OnAnyChange()
