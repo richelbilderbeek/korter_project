@@ -56,6 +56,16 @@ struct parameters
   void set_spatial_height(const int height);
   void set_spatial_width(const int width);
 
+  /// Does the user want to use the testing grid,
+  /// as created by 'create_test_grid'?
+  /// Assumes the width is already set to 4
+  /// Assumes the height is already set to 3
+  void set_use_test_grid(const bool use_test_grid = true);
+
+  /// Does the user want to use the testing grid,
+  /// as created by 'create_test_grid'?
+  bool use_test_grid() const noexcept { return m_use_test_grid; }
+
   private:
   const fitness_parameters m_fitness_parameters;
 
@@ -74,11 +84,17 @@ struct parameters
   int m_max_n_generations;
   std::string m_results_filename;
 
+  ///If true, the testing grid is used,
+  ///as can be created by 'create_test_grid'
+  bool m_use_test_grid = false;
+
   friend std::ostream& operator<<(std::ostream& os, const parameters& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, parameters& parameter) noexcept;
   friend bool operator==(const parameters& lhs, const parameters& rhs) noexcept;
 };
 
+/// Create the parameters to use a testing grid
+parameters create_test_parameters() noexcept;
 
 bool operator==(const parameters& lhs, const parameters& rhs) noexcept;
 bool operator!=(const parameters& lhs, const parameters& rhs) noexcept;

@@ -59,6 +59,17 @@ ribi::kp::parameters::parameters(
   }
 }
 
+ribi::kp::parameters ribi::kp::create_test_parameters() noexcept
+{
+  parameters p;
+  p.set_spatial_width(4);
+  p.set_spatial_height(3);
+  assert(!p.use_test_grid());
+  p.set_use_test_grid();
+  assert(p.use_test_grid());
+  return p;
+}
+
 ribi::kp::parameters ribi::kp::parameters::GetTest(const int /* i */)
 {
 
@@ -95,6 +106,16 @@ void ribi::kp::parameters::set_spatial_width(const int width)
 {
   assert(width >= 1);
   m_spatial_width = width;
+}
+
+void ribi::kp::parameters::set_use_test_grid(const bool use_test_grid)
+{
+  if (use_test_grid)
+  {
+    assert(m_spatial_width == 4);
+    assert(m_spatial_height == 3);
+  }
+  m_use_test_grid = use_test_grid;
 }
 
 std::ostream& ribi::kp::operator<<(std::ostream& os, const parameters& parameter) noexcept

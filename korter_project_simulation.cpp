@@ -12,6 +12,9 @@ ribi::kp::simulation::simulation(const parameters& p)
 {
   assert(m_grid.get_width() == p.get_spatial_width());
   assert(m_grid.get_height() == p.get_spatial_height());
+  if (p.use_test_grid()) {
+    m_grid = create_test_grid();
+  }
   const int n_nurse{p.get_n_nurse_plants()};
   const int n_seeds{p.get_n_seeds()};
   const int width{p.get_spatial_width()};

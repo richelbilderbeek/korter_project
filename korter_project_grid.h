@@ -40,9 +40,10 @@ grid add_seeds(
 );
 
 
-///Calculate the fraction of the facilitated seeds in the realized grid.
-///This fraction goes from 0.0 (no nurse plants) to 1.0 (all grid cells
-///are connected to a nurse plant)
+///Calculate the fraction of the facilitated seeds
+///of all the seeds in the realized grid.
+///This fraction goes from 0.0 (no seeds are adjacent to a nurse plant)
+///to 1.0 (all seeds are connected to a nurse plant)
 double calc_frac_fac_seeds(const grid& g);
 
 ///Extract the seeds that are facilitated
@@ -63,7 +64,7 @@ int count_n_nurse(const grid& g) noexcept;
 ///Count the number of seeds/non-nurse plants
 int count_n_seeds(const grid& g) noexcept;
 
-///Count the number of unfacilitated plants
+///Count the number of unfacilitated plantsF
 int count_n_unfacilitated_seeds(const grid& g) noexcept;
 
 /// Create a 4x3 (width x height) grid to be used in testing.

@@ -61,6 +61,19 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_increases_number_of_histograms)
   BOOST_CHECK_EQUAL(2, s.get_trait_histograms().size());
 }
 
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_with_test_grid)
+{
+  // The parameters for a test grid
+  const parameters p = create_test_parameters();
+  const simulation s(p);
+  BOOST_CHECK_EQUAL(s.get_grid(), create_test_grid());
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_low_trait_has_high_fitness)
+{
+  //const simulation s;
+}
+
 BOOST_AUTO_TEST_CASE(ribi_kp_no_selection_for_max_zero)
 {
   // We set a fitness of the facilitated plant
