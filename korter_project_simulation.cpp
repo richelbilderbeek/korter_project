@@ -131,34 +131,41 @@ std::vector<double> ribi::kp::create_density_plot(const std::vector<int>& histog
 
 void ribi::kp::simulation::go_to_next_generation()
 {
-  std::vector<double> traits = collect_traits(m_grid);
-  std::vector<bool> is_facilitated = collect_is_facilitated(m_grid);
+  using namespace std;
+
+  vector<double> traits = collect_traits(m_grid);
+  vector<bool> is_facilitated = collect_is_facilitated(m_grid);
   assert(traits.size() == is_facilitated.size());
-  const int n = traits.size();
+  const int n{static_cast<int>(traits.size())};
   std::vector<double> fitnesses;
-  fitnesses.reserve(n);
+  fitnesses.reserve(static_cast<size_t>(n));
   for (int i = 0; i != n; ++i)
   {
+    const size_t index = static_cast<size_t>(i);
     const double fitness = get_fitness(
       m_parameters.get_fitness_parameters(),
-      traits[i],
-      is_facilitated[i]
+      traits[index],
+      is_facilitated[index]
     );
     fitnesses.push_back(fitness);
   }
-  std::discrete_distribution<int> d(std::begin(fitnesses), std::end(fitnesses));
+  discrete_distribution<int> d(begin(fitnesses), end(fitnesses));
   const int n_seeds{m_parameters.get_n_seeds()};
-  std::vector<double> new_traits;
-  new_traits.reserve(n_seeds);
+  vector<double> new_traits;
+  new_traits.reserve(static_cast<size_t>(n_seeds));
   for (int i = 0; i != n_seeds; ++i)
   {
     const int seed_index{d(m_rng_engine)};
     assert(seed_index >= 0);
     assert(seed_index < static_cast<int>(traits.size()));
-    const double cur_trait{traits[seed_index]};
-    std::normal_distribution<double> normal_distr(0.0, m_parameters.get_mut_stddev());
+    const double cur_trait{
+      traits[ static_cast<size_t>(seed_index) ]
+    };
+    normal_distribution<double> normal_distr(
+      0.0, m_parameters.get_mut_stddev()
+    );
     const double new_trait{cur_trait + normal_distr(m_rng_engine)};
-    new_traits.push_back(std::max(0.0, new_trait));
+    new_traits.push_back(max(0.0, new_trait));
   }
   assert(n_seeds == static_cast<int>(new_traits.size()));
   m_grid = create_next_grid(m_grid, new_traits, m_rng_engine);

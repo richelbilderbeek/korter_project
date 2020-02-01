@@ -55,11 +55,33 @@ std::vector<double> collect_traits(const grid& g);
 ///Count the number of empty grid cells
 int count_n_empty(const grid& g) noexcept;
 
+///Count the number of facilitated plants
+int count_n_facilitated_seeds(const grid& g) noexcept;
+
 ///Count the number of nurse plants
 int count_n_nurse(const grid& g) noexcept;
 
 ///Count the number of seeds/non-nurse plants
 int count_n_seeds(const grid& g) noexcept;
+
+///Count the number of unfacilitated plants
+int count_n_unfacilitated_seeds(const grid& g) noexcept;
+
+/// Create a 4x3 (width x height) grid to be used in testing.
+/// This is the layout of the grid:
+///
+///   |0123|
+///  -|----+-
+///  0|....|0
+///  1|.N.U|1
+///  2|.F..|2
+///  -|----+-
+///   |0123|
+///
+/// N: Nurse plant
+/// F: Facilitated plant/seed, because adjacent to nurse
+/// U: Unfacilitated plant/seed, because not adjacent to nurse
+grid create_test_grid() noexcept;
 
 ///Create a histogram of the traits
 ///Traits are assumed to be zero or more
@@ -79,6 +101,9 @@ grid create_next_grid(
 
 ///Return true if all cells are empty
 bool is_empty(const grid& g) noexcept;
+
+///Is the cell empty?
+bool is_empty(const grid& g, const int x, const int y);
 
 ///Is the cell adjacent to a nurse plant?
 ///Assumes the cell is a non-nurse plant,

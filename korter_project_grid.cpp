@@ -74,6 +74,8 @@ double ribi::kp::calc_frac_fac(const grid& g)
       }
     }
   }
+  assert(n_fac == count_n_facilitated_seeds(g));
+  assert(n_unfac == count_n_unfacilitated_seeds(g));
   return static_cast<double>(n_fac) / static_cast<double>(n_fac + n_unfac);
 }
 
@@ -125,6 +127,29 @@ int ribi::kp::count_n_empty(const grid& g) noexcept
   return n;
 }
 
+int ribi::kp::count_n_facilitated_seeds(const grid& g) noexcept
+{
+  using namespace std;
+
+  const int height{g.get_height()};
+  const int width{g.get_width()};
+  int n_fac{0};
+  for (int y = 0; y != height; ++y)
+  {
+    for (int x = 0; x != width; ++x)
+    {
+      if (!is_empty(g, x, y)
+        && !is_nurse(g, x, y)
+        && is_facilitated(g, x, y)
+      )
+      {
+        ++n_fac;
+      }
+    }
+  }
+  return n_fac;
+}
+
 int ribi::kp::count_n_nurse(const grid& g) noexcept
 {
   int n{0};
@@ -153,6 +178,29 @@ int ribi::kp::count_n_seeds(const grid& g) noexcept
   return n;
 }
 
+int ribi::kp::count_n_unfacilitated_seeds(const grid& g) noexcept
+{
+  using namespace std;
+  const int height{g.get_height()};
+  const int width{g.get_width()};
+  int n_unfac{0};
+
+  for (int y = 0; y != height; ++y)
+  {
+    for (int x = 0; x != width; ++x)
+    {
+      if (!is_empty(g, x, y)
+        && !is_nurse(g, x, y)
+        && is_unfacilitated(g, x, y)
+      )
+      {
+        ++n_unfac;
+      }
+    }
+  }
+  return n_unfac;
+}
+
 ribi::kp::grid ribi::kp::create_next_grid(
   grid g,
   const std::vector<double>& traits,
@@ -161,6 +209,26 @@ ribi::kp::grid ribi::kp::create_next_grid(
 {
   remove_seeds(g);
   return add_seeds(g, traits, rng_engine);
+}
+
+ribi::kp::grid ribi::kp::create_test_grid() noexcept
+{
+  // |0123|
+  //-|----+---
+  //0|....|0
+  //1|.N.U|1
+  //2|.F..|2
+  //-|----+---
+  // |0123|
+  //
+  // N: Nurse plant
+  // F: Facilitated plant/seed, because adjacent to nurse
+  // U: Unfacilitated plant/seed, because not adjacent to nurse
+
+  const int width{4};
+  const int height{3};
+  grid g(width, height);
+  return g;
 }
 
 std::vector<int> ribi::kp::create_trait_histogram(
@@ -220,6 +288,11 @@ bool ribi::kp::is_empty(const ribi::kp::grid& g) noexcept
     }
   }
   return true;
+}
+
+bool ribi::kp::is_empty(const grid& g, const int x, const int y)
+{
+  return g.get(x, y).is_empty();
 }
 
 bool ribi::kp::is_facilitated(const grid& g, const int x, const int y)
