@@ -8,6 +8,7 @@
 #include <QDesktopWidget>
 #include <QGridLayout>
 #include <QTimer>
+#include <QScreen>
 
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot_grid.h>
@@ -112,7 +113,8 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
 
   {
     //Put the dialog in the screen center
-    const QRect screen = QApplication::desktop()->screenGeometry();
+    //const QRect screen = QApplication::desktop()->screenGeometry();
+    const QRect screen = QGuiApplication::primaryScreen()->geometry();
     this->setGeometry(0,0,screen.width() * 9 / 10,screen.height() * 9 / 10);
     this->move( screen.center() - this->rect().center() );
   }

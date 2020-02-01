@@ -39,5 +39,6 @@ INCLUDEPATH += /usr/include/qwt
 
 # For crosscompiling
 #INCLUDEPATH += /home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/include
+#LIBS += -L/home/richel/GitHubs/RibiLibraries/mxe/usr/i686-w64-mingw32.static/qt5/lib
 #LIBS += -lqwt
 #QT += svg
