@@ -111,6 +111,31 @@ void ribi::kp::simulation::add_trait_histogram()
   m_trait_histograms.push_back(density);
 }
 
+std::vector<double> ribi::kp::calc_fitnesses(
+  const grid& grid,
+  const parameters& p
+)
+{
+  using namespace std;
+  vector<double> traits = collect_traits(grid);
+  vector<bool> is_facilitated = collect_is_facilitated(grid);
+  assert(traits.size() == is_facilitated.size());
+  const int n{static_cast<int>(traits.size())};
+  std::vector<double> fitnesses;
+  fitnesses.reserve(static_cast<size_t>(n));
+  for (int i = 0; i != n; ++i)
+  {
+    const size_t index = static_cast<size_t>(i);
+    const double fitness = get_fitness(
+      p.get_fitness_parameters(),
+      traits[index],
+      is_facilitated[index]
+    );
+    fitnesses.push_back(fitness);
+  }
+  return fitnesses;
+}
+
 int ribi::kp::count_n_nurse(const simulation& s) noexcept
 {
   return count_n_nurse(s.get_grid());
@@ -135,23 +160,11 @@ std::vector<double> ribi::kp::create_density_plot(const std::vector<int>& histog
 void ribi::kp::simulation::go_to_next_generation()
 {
   using namespace std;
+  const vector<double> traits{collect_traits(m_grid)};
+  const std::vector<double> fitnesses{
+    calc_fitnesses(m_grid, m_parameters)
+  };
 
-  vector<double> traits = collect_traits(m_grid);
-  vector<bool> is_facilitated = collect_is_facilitated(m_grid);
-  assert(traits.size() == is_facilitated.size());
-  const int n{static_cast<int>(traits.size())};
-  std::vector<double> fitnesses;
-  fitnesses.reserve(static_cast<size_t>(n));
-  for (int i = 0; i != n; ++i)
-  {
-    const size_t index = static_cast<size_t>(i);
-    const double fitness = get_fitness(
-      m_parameters.get_fitness_parameters(),
-      traits[index],
-      is_facilitated[index]
-    );
-    fitnesses.push_back(fitness);
-  }
   discrete_distribution<int> d(begin(fitnesses), end(fitnesses));
   const int n_seeds{m_parameters.get_n_seeds()};
   vector<double> new_traits;

@@ -52,6 +52,13 @@ grid add_seeds(
   std::mt19937& rng_engine
 );
 
+///Calculate all the seeds' fitnesses.
+///Will return in
+std::vector<double> calc_fitnesses(
+  const grid& grid,
+  const parameters& p
+);
+
 ///Count the number of nurse plants in the simulation's grid
 int count_n_nurse(const simulation& s) noexcept;
 
