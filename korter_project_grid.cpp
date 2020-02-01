@@ -228,6 +228,9 @@ ribi::kp::grid ribi::kp::create_test_grid() noexcept
   const int width{4};
   const int height{3};
   grid g(width, height);
+  g.get(1, 1).make_nurse(); // N
+  g.get(3, 1).make_seed(); // U
+  g.get(1, 2).make_seed(); // F
   return g;
 }
 

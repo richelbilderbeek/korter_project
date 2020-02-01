@@ -16,6 +16,9 @@ struct grid_cell
   bool is_seed() const noexcept { return m_trait >= 0.0; }
   void make_empty() { m_trait = sm_empty; }
   void make_nurse() { m_trait = sm_nurse; }
+
+  /// Make the grid cell contain a seed, with a trait of 0.5
+  void make_seed(const double trait = 0.5) { m_trait = trait; }
   double get_trait() const noexcept { return m_trait; }
   void set_trait(const double trait);
 
