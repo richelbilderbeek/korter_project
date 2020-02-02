@@ -35,7 +35,7 @@ private:
 ///Add seeds again with the trait
 grid add_seeds(
   grid g,
-  const std::vector<double>& traits,
+  const std::vector<grid_cell>& seeds,
   std::mt19937& rng_engine
 );
 
@@ -51,7 +51,10 @@ std::vector<bool> collect_is_facilitated(const grid& g);
 
 ///Collect the seed neutral marker values,
 ///these markers (that are trait values) are not under selection
-std::vector<double> collect_neutral(const grid& g);
+std::vector<double> collect_neutrals(const grid& g);
+
+///Collect the seeds
+std::vector<grid_cell> collect_seeds(const grid& g);
 
 ///Collect the seed trait values, the traits
 ///are under selection
@@ -88,6 +91,13 @@ int count_n_unfacilitated_seeds(const grid& g) noexcept;
 /// U: Unfacilitated plant/seed, because not adjacent to nurse
 grid create_test_grid() noexcept;
 
+///Create a histogram of the neutral marker values
+std::vector<int> create_neutral_histogram(
+  const grid& g,
+  const int n_bins,
+  const double bin_width
+);
+
 ///Create a histogram of the traits
 ///Traits are assumed to be zero or more
 std::vector<int> create_trait_histogram(
@@ -96,11 +106,12 @@ std::vector<int> create_trait_histogram(
   const double bin_width
 );
 
-///From an grid, remove the seeds, keep the nurse plants
-///and add seeds again with the trait
+///From an grid, remove the current seeds,
+///keep the nurse plants
+///and add the new seeds
 grid create_next_grid(
   grid g,
-  const std::vector<double>& traits,
+  const std::vector<grid_cell>& seeds,
   std::mt19937& rng_engine
 );
 

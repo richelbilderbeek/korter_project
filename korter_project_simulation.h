@@ -20,6 +20,7 @@ struct simulation
   const parameters& get_parameters() const noexcept { return m_parameters; }
 
   const std::vector<std::vector<double>>& get_trait_histograms() const noexcept { return m_trait_histograms; }
+  const std::vector<std::vector<double>>& get_neutral_histograms() const noexcept { return m_neutral_histograms; }
 
   private:
 
@@ -27,6 +28,14 @@ struct simulation
   parameters m_parameters;
   std::mt19937 m_rng_engine;
   std::vector<std::vector<double>> m_trait_histograms;
+  std::vector<std::vector<double>> m_neutral_histograms;
+
+  ///Measure the traits and neutral markers
+  ///and add their distributions to their respective histograms
+  void add_histograms();
+
+  ///Measure the neutral markers and add a histogram of these
+  void add_neutral_histogram();
 
   ///Measure the traits and add a histogram of these
   void add_trait_histogram();
@@ -67,9 +76,12 @@ std::vector<double> calc_fitnesses(
 ///Extract the booleans whether seeds are facilitated or not
 std::vector<bool> collect_is_facilitated(const simulation& s);
 
+///Collect the seeds
+std::vector<grid_cell> collect_seeds(const simulation& s);
+
 ///Collect the seed neutral marker values,
 ///these markers (that are trait values) are not under selection
-std::vector<double> collect_neutral(const simulation& s);
+std::vector<double> collect_neutrals(const simulation& s);
 
 ///Extract the seed trait values
 std::vector<double> collect_traits(const simulation& s);
@@ -94,6 +106,13 @@ int count_n_unfacilitated_seeds(const simulation& s) noexcept;
 ///In practice, simply converts the int to double,
 ///as QwtSurfacePlotWidget will normalize anyways?
 std::vector<double> create_density_plot(const std::vector<int>& histogram);
+
+///Create the mutated set of traits
+std::vector<grid_cell> create_new_seeds(
+  const grid& g,
+  const parameters& p,
+  std::mt19937& rng_engine
+);
 
 bool operator==(const simulation& lhs, const simulation& rhs) noexcept;
 bool operator!=(const simulation& lhs, const simulation& rhs) noexcept;

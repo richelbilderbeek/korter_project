@@ -168,7 +168,7 @@
         </widget>
        </item>
        <item row="2" column="0">
-        <widget class="QLabel" name="label">
+        <widget class="QLabel" name="label_init_neutral_mean">
          <property name="toolTip">
           <string>The desired initial mean value of the neutral marker; the trait not under selection</string>
          </property>
@@ -237,7 +237,7 @@
         </widget>
        </item>
        <item row="4" column="0">
-        <widget class="QLabel" name="label_2">
+        <widget class="QLabel" name="label_init_neutral_stddev">
          <property name="toolTip">
           <string>The desired initial standard deviation of the neutral marker; the trait not under selection</string>
          </property>
@@ -247,7 +247,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox">
+        <widget class="QDoubleSpinBox" name="box_init_neutral_mean">
          <property name="toolTip">
           <string>The desired initial mean value of the neutral marker; the trait not under selection</string>
          </property>
@@ -263,10 +263,13 @@
          <property name="singleStep">
           <double>0.010000000000000</double>
          </property>
+         <property name="value">
+          <double>0.500000000000000</double>
+         </property>
         </widget>
        </item>
        <item row="4" column="1">
-        <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+        <widget class="QDoubleSpinBox" name="box_init_neutral_stddev">
          <property name="toolTip">
           <string>The desired initial standard deviation of the neutral marker; the trait not under selection</string>
          </property>

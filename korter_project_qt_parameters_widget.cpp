@@ -40,6 +40,8 @@ ribi::kp::korter_project_qt_parameters_widget::korter_project_qt_parameters_widg
   QObject::connect(ui->box_rng_seed,SIGNAL(valueChanged(int)),this,SLOT(OnAnyChange()));
   QObject::connect(ui->box_init_trait_mean, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_init_trait_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_init_neutral_mean, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
+  QObject::connect(ui->box_init_neutral_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_mut_stddev, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_trait_histogram_bin_width, SIGNAL(valueChanged(double)), this, SLOT(OnAnyChange()));
   QObject::connect(ui->box_max_n_generations, SIGNAL(valueChanged(int)), this, SLOT(OnAnyChange()));
@@ -61,11 +63,18 @@ void ribi::kp::korter_project_qt_parameters_widget::show_frac_fac(const double f
 
 ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameters() const
 {
-  const parameters p(
+  const double init_trait_mean{ui->box_init_trait_mean->value()};
+  const double init_trait_stddev{ui->box_init_trait_stddev->value()};
+  const double init_neutral_mean{ui->box_init_neutral_mean->value()};
+  const double init_neutral_stddev{ui->box_init_neutral_stddev->value()};
+  const double mut_stddev{ui->box_mut_stddev->value()};
+  //Mixed approach here: the more parameters,
+  //the more I use setters
+  parameters p(
     m_fitness_widget->to_parameters(),
-    ui->box_init_trait_mean->value(),
-    ui->box_init_trait_stddev->value(),
-    ui->box_mut_stddev->value(),
+    init_trait_mean,
+    init_trait_stddev,
+    mut_stddev,
     ui->box_spatial_height->value(),
     ui->box_spatial_width->value(),
     ui->box_n_nurse_plants->value(),
@@ -76,7 +85,14 @@ ribi::kp::parameters ribi::kp::korter_project_qt_parameters_widget::to_parameter
     ui->box_max_n_generations->value(),
     ui->button_save_results->text().toStdString()
   );
+  p.set_init_neutral_mean(init_neutral_mean);
+  p.set_init_neutral_stddev(init_neutral_stddev);
 
+  assert(abs(p.get_init_trait_mean() - init_trait_mean) < 0.0001);
+  assert(abs(p.get_init_trait_stddev() - init_trait_stddev) < 0.0001);
+  assert(abs(p.get_init_neutral_mean() - init_neutral_mean) < 0.0001);
+  assert(abs(p.get_init_neutral_stddev() - init_neutral_stddev) < 0.0001);
+  assert(abs(p.get_mut_stddev() - mut_stddev) < 0.0001);
   return p;
 }
 

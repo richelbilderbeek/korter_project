@@ -93,12 +93,27 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_neutral_markers)
   const parameters p = create_test_parameters();
   const simulation s(p);
   const std::vector<double> expected = { 0.1, 0.9 };
-  const auto created = collect_neutral(s);
+  const auto created = collect_neutrals(s);
   BOOST_CHECK_EQUAL(2, created.size());
   BOOST_CHECK_EQUAL_COLLECTIONS(
     begin(created), end(created),
     begin(expected), end(expected)
   );
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_seeds)
+{
+  using namespace std;
+
+  // The parameters for a test grid
+  const parameters p = create_test_parameters();
+  const simulation s(p);
+  const auto created = collect_seeds(s);
+  BOOST_CHECK_EQUAL(2, created.size());
+  BOOST_CHECK_EQUAL(created[0].get_trait(), 0.25);
+  BOOST_CHECK_EQUAL(created[0].get_neutral(), 0.1);
+  BOOST_CHECK_EQUAL(created[1].get_trait(), 0.75);
+  BOOST_CHECK_EQUAL(created[1].get_neutral(), 0.9);
 }
 
 BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_is_facilitated)
@@ -201,7 +216,7 @@ BOOST_AUTO_TEST_CASE(ribi_kp_neutral_markers_are_correctly_initialized)
   p.set_init_neutral_mean(314.15);
   p.set_init_neutral_stddev(14.0);
   const simulation s(p);
-  const auto neutrals = collect_neutral(s);
+  const auto neutrals = collect_neutrals(s);
   assert(neutrals.size() != 0);
   const double expected_mean = p.get_init_neutral_mean();
   const double expected_stddev = p.get_init_neutral_stddev();

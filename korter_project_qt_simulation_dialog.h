@@ -53,10 +53,19 @@ private:
   qt_scale * const m_qt_scale;
   QTimer * const m_timer;
   std::unique_ptr<simulation> m_simulation;
-  QtSurfacePlotWidget * const m_surface_plot;
+
+  ///Shows the histogram of the neutral markers in time
+  QtSurfacePlotWidget * const m_neutrals_in_time_plot;
+
+  ///Shows the histogram of the traits in time
+  QtSurfacePlotWidget * const m_traits_in_time_plot;
+
 
   ///Display the grid of plants
   void display_grid();
+
+  ///Display the neutral markers' values in time
+  void display_neutrals();
 
   ///Display the plant traits in time
   void display_traits();

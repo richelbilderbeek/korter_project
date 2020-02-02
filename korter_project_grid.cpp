@@ -17,11 +17,11 @@ ribi::kp::grid::grid(
 
 ribi::kp::grid ribi::kp::add_seeds(
   grid g,
-  const std::vector<double>& traits,
+  const std::vector<grid_cell>& seeds,
   std::mt19937& rng_engine
 )
 {
-  const int n_seeds = static_cast<int>(traits.size());
+  const int n_seeds = static_cast<int>(seeds.size());
   assert(n_seeds <= count_n_empty(g));
   const int width{g.get_width()};
   const int height{g.get_height()};
@@ -30,7 +30,8 @@ ribi::kp::grid ribi::kp::add_seeds(
   std::uniform_int_distribution<int> height_distr(0, height - 1);
   for (int i = 0; i != n_seeds; ++i)
   {
-    const double trait{traits[i]};
+    const auto seed = seeds[i];
+    assert(seed.is_seed());
     const int x{width_distr(rng_engine)};
     const int y{height_distr(rng_engine)};
     assert(x >= 0);
@@ -39,7 +40,7 @@ ribi::kp::grid ribi::kp::add_seeds(
     assert(y < g.get_height());
     if (g.get(x, y).is_empty())
     {
-      g.get(x, y).set_trait(trait);
+      g.get(x, y) = seed;
     }
     else
     {
@@ -76,8 +77,9 @@ std::vector<bool> ribi::kp::collect_is_facilitated(const grid& g)
   return v;
 }
 
-std::vector<double> ribi::kp::collect_neutral(const grid& g)
+std::vector<double> ribi::kp::collect_neutrals(const grid& g)
 {
+  // TODO: call collect_seeds and extract the neutral marker values
   std::vector<double> t;
   for (const auto& row: g.get_cells())
   {
@@ -91,8 +93,24 @@ std::vector<double> ribi::kp::collect_neutral(const grid& g)
   return t;
 }
 
+std::vector<ribi::kp::grid_cell> ribi::kp::collect_seeds(const grid& g)
+{
+  std::vector<grid_cell> seeds;
+  for (const auto& row: g.get_cells())
+  {
+    for (const grid_cell& cell: row)
+    {
+      if (cell.is_seed()) {
+        seeds.push_back(cell);
+      }
+    }
+  }
+  return seeds;
+}
+
 std::vector<double> ribi::kp::collect_traits(const grid& g)
 {
+  // TODO: call collect_seeds and extract the trait values
   std::vector<double> t;
   for (const auto& row: g.get_cells())
   {
@@ -196,12 +214,12 @@ int ribi::kp::count_n_unfacilitated_seeds(const grid& g) noexcept
 
 ribi::kp::grid ribi::kp::create_next_grid(
   grid g,
-  const std::vector<double>& traits,
+  const std::vector<grid_cell>& seeds,
   std::mt19937& rng_engine
 )
 {
   remove_seeds(g);
-  return add_seeds(g, traits, rng_engine);
+  return add_seeds(g, seeds, rng_engine);
 }
 
 ribi::kp::grid ribi::kp::create_test_grid() noexcept
@@ -228,6 +246,28 @@ ribi::kp::grid ribi::kp::create_test_grid() noexcept
   g.get(3, 1).make_seed(0.25, 0.1); // U
   g.get(1, 2).make_seed(0.75, 0.9); // F
   return g;
+}
+
+std::vector<int> ribi::kp::create_neutral_histogram(
+  const grid& g,
+  const int n_bins,
+  const double bin_width
+)
+{
+  assert(g.get_height() > 0);
+  assert(g.get_width() > 0);
+  assert(n_bins > 0);
+  assert(bin_width > 0.0);
+  const std::vector<double> neutrals = collect_neutrals(g);
+  std::vector<int> histogram(n_bins, 0);
+  for (const double neutral: neutrals)
+  {
+    const int index = neutral / bin_width;
+    assert(index >= 0);
+    if (index < n_bins) { ++histogram[index]; }
+    else { ++histogram.back(); }
+  }
+  return histogram;
 }
 
 std::vector<int> ribi::kp::create_trait_histogram(

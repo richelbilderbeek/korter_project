@@ -24,7 +24,8 @@ ribi::kp::simulation::simulation(const parameters& p)
   m_grid = add_nurse_plants(m_grid, n_nurse, m_rng_engine);
   m_grid = add_seeds(m_grid, m_parameters, m_rng_engine);
 
-  add_trait_histogram();
+  add_histograms();
+  assert(m_trait_histograms.size() == m_neutral_histograms.size());
 }
 
 ribi::kp::grid ribi::kp::add_nurse_plants(
@@ -103,6 +104,27 @@ ribi::kp::grid ribi::kp::add_seeds(
   return g;
 }
 
+void ribi::kp::simulation::add_histograms()
+{
+  assert(m_trait_histograms.size() == m_neutral_histograms.size());
+  add_neutral_histogram();
+  add_trait_histogram();
+  assert(m_trait_histograms.size() == m_neutral_histograms.size());
+}
+
+void ribi::kp::simulation::add_neutral_histogram()
+{
+  const std::vector<int> histogram = create_neutral_histogram(
+    m_grid,
+    m_parameters.get_n_trait_histogram_bins(),
+    m_parameters.get_trait_histogram_bin_width()
+  );
+
+  const std::vector<double> density = create_density_plot(histogram);
+
+  m_neutral_histograms.push_back(density);
+}
+
 void ribi::kp::simulation::add_trait_histogram()
 {
   const std::vector<int> histogram = create_trait_histogram(
@@ -154,9 +176,14 @@ std::vector<bool> ribi::kp::collect_is_facilitated(const simulation& s)
   return collect_is_facilitated(s.get_grid());
 }
 
-std::vector<double> ribi::kp::collect_neutral(const simulation& s)
+std::vector<double> ribi::kp::collect_neutrals(const simulation& s)
 {
-  return collect_neutral(s.get_grid());
+  return collect_neutrals(s.get_grid());
+}
+
+std::vector<ribi::kp::grid_cell> ribi::kp::collect_seeds(const simulation& s)
+{
+  return collect_seeds(s.get_grid());
 }
 
 std::vector<double> ribi::kp::collect_traits(const simulation& s)
@@ -200,37 +227,49 @@ std::vector<double> ribi::kp::create_density_plot(const std::vector<int>& histog
   return d;
 }
 
+std::vector<ribi::kp::grid_cell> ribi::kp::create_new_seeds(
+  const grid& g,
+  const parameters& p,
+  std::mt19937& rng_engine
+)
+{
+  using namespace std;
+
+  const std::vector<grid_cell> seeds{collect_seeds(g)};
+  const std::vector<double> fitnesses{calc_fitnesses(g, p)};
+
+  // Weight chance of an index being picked by the fitness
+  discrete_distribution<int> d(begin(fitnesses), end(fitnesses));
+
+  const int n_seeds{p.get_n_seeds()};
+  vector<grid_cell> new_seeds;
+  new_seeds.reserve(static_cast<size_t>(n_seeds));
+  for (int i = 0; i != n_seeds; ++i)
+  {
+    const int seed_index{d(rng_engine)};
+    assert(seed_index >= 0);
+    assert(seed_index < static_cast<int>(seeds.size()));
+    const auto& seed = seeds[seed_index];
+    const grid_cell new_seed{
+      create_new_seed(
+        seed,
+        p,
+        rng_engine
+      )
+    };
+    new_seeds.push_back(new_seed);
+  }
+  assert(n_seeds == static_cast<int>(new_seeds.size()));
+  return new_seeds;
+}
+
 void ribi::kp::simulation::go_to_next_generation()
 {
   using namespace std;
-  const vector<double> traits{collect_traits(m_grid)};
-  const std::vector<double> fitnesses{
-    calc_fitnesses(m_grid, m_parameters)
-  };
-
-  discrete_distribution<int> d(begin(fitnesses), end(fitnesses));
-  const int n_seeds{m_parameters.get_n_seeds()};
-  vector<double> new_traits;
-  new_traits.reserve(static_cast<size_t>(n_seeds));
-  for (int i = 0; i != n_seeds; ++i)
-  {
-    const int seed_index{d(m_rng_engine)};
-    assert(seed_index >= 0);
-    assert(seed_index < static_cast<int>(traits.size()));
-    const double cur_trait{
-      traits[ static_cast<size_t>(seed_index) ]
-    };
-    normal_distribution<double> normal_distr(
-      0.0, m_parameters.get_mut_stddev()
-    );
-    const double new_trait{cur_trait + normal_distr(m_rng_engine)};
-    new_traits.push_back(max(0.0, new_trait));
-  }
-  assert(n_seeds == static_cast<int>(new_traits.size()));
-  m_grid = create_next_grid(m_grid, new_traits, m_rng_engine);
-  add_trait_histogram();
+  const auto new_seeds = create_new_seeds(m_grid, m_parameters, m_rng_engine);
+  m_grid = create_next_grid(m_grid, new_seeds, m_rng_engine);
+  add_histograms();
 }
-
 
 std::ostream& ribi::kp::operator<<(std::ostream& os, const simulation& s) noexcept
 {

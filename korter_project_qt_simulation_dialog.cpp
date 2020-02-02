@@ -30,7 +30,8 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
   m_qt_scale{new qt_scale},
   m_timer{new QTimer(this)},
   m_simulation{nullptr},
-  m_surface_plot{new QtSurfacePlotWidget}
+  m_neutrals_in_time_plot{new QtSurfacePlotWidget},
+  m_traits_in_time_plot{new QtSurfacePlotWidget}
 {
   ui->setupUi(this);
 
@@ -47,7 +48,8 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
   {
     const auto my_layout = ui->widget_right->layout();
     assert(my_layout);
-    my_layout->addWidget(m_surface_plot);
+    my_layout->addWidget(m_traits_in_time_plot);
+    my_layout->addWidget(m_neutrals_in_time_plot);
     my_layout->addWidget(m_qt_scale);
   }
   m_qt_grid->setToolTip(
@@ -65,9 +67,9 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
     "</ul>"
   );
 
-  //Setup surface plot
+  //Setup traits in time plot
   {
-    m_surface_plot->setMinimumWidth(100);
+    m_traits_in_time_plot->setMinimumWidth(100);
     std::vector<std::vector<double>> v(100, std::vector<double>(100, 0.0));
     for (int i = 0; i != 100; ++i)
     {
@@ -78,8 +80,8 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
         ;
       }
     }
-    m_surface_plot->SetSurfaceGrey(v);
-    m_surface_plot->setToolTip(
+    m_traits_in_time_plot->SetSurfaceGrey(v);
+    m_traits_in_time_plot->setToolTip(
       "<b>The trait value distribution through time</b>"
       "<ul>"
       "  <li>"
@@ -98,6 +100,38 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
       "    displayed equals the number of bins times the bin width. "
       "    Traits values higher than the maximum range are put in the "
       "    rightmost bin"
+      "  </li>"
+      "</ul>"
+    );
+  }
+  //Setup neutrals in time plot
+  {
+    m_neutrals_in_time_plot->setMinimumWidth(100);
+    std::vector<std::vector<double>> v(100, std::vector<double>(100, 0.0));
+    for (int i = 0; i != 100; ++i)
+    {
+      for (int j = 0; j != 100; ++j)
+      {
+        v[i][j] = std::cos(6.28 * static_cast<double>(i) / 100.0)
+          + std::sin(6.28 * static_cast<double>(j) / 100.0)
+        ;
+      }
+    }
+    m_neutrals_in_time_plot->SetSurfaceGrey(v);
+    m_neutrals_in_time_plot->setToolTip(
+      "<b>The neutral markers' distribution through time</b>"
+      "<ul>"
+      "  <li>"
+      "    <b>The vertical axis</b> shows "
+      "    the neutral markers' value distribution through time, "
+      "    starting at at the top and adding new trait value distributions "
+      "    below. These values are trait values for traits that are not under selection"
+      "  </li>"
+      "  <li>"
+      "    <b>The horizontal axis</b> "
+      "    shows the neutral marker value distribution, "
+      "    where abundant neutral marker values are displayed brighter. "
+      "    Neutral marker values follow the same range as the traits. "
       "  </li>"
       "</ul>"
     );
@@ -168,10 +202,16 @@ void ribi::kp::korter_project_qt_simulation_dialog::display_grid()
   m_qt_grid->update();
 }
 
+void ribi::kp::korter_project_qt_simulation_dialog::display_neutrals()
+{
+  const auto& histograms = m_simulation->get_neutral_histograms();
+  m_neutrals_in_time_plot->SetSurfaceGrey(histograms);
+}
+
 void ribi::kp::korter_project_qt_simulation_dialog::display_traits()
 {
   const auto& histograms = m_simulation->get_trait_histograms();
-  m_surface_plot->SetSurfaceGrey(histograms);
+  m_traits_in_time_plot->SetSurfaceGrey(histograms);
 }
 
 ribi::kp::parameters ribi::kp::korter_project_qt_simulation_dialog::to_parameters() const
@@ -231,6 +271,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::NextTimestep()
   m_simulation->go_to_next_generation();
   display_grid();
   display_traits();
+  display_neutrals();
 }
 
 void ribi::kp::korter_project_qt_simulation_dialog::resizeEvent(QResizeEvent *)
@@ -288,6 +329,7 @@ void ribi::kp::korter_project_qt_simulation_dialog::start_run()
   );
   display_grid();
   display_traits();
+  display_neutrals();
 
   m_timer->setInterval(1);
   m_timer->start();

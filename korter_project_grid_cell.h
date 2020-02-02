@@ -1,6 +1,7 @@
 #ifndef KORTER_PROJECT_GRID_CELL_H
 #define KORTER_PROJECT_GRID_CELL_H
 
+#include <random>
 #include "korter_project_parameters.h"
 
 namespace ribi {
@@ -64,6 +65,13 @@ struct grid_cell
   friend std::ostream& operator<<(std::ostream& os, const grid_cell& g) noexcept;
   friend std::istream& operator>>(std::istream& is, grid_cell& g) noexcept;
 };
+
+/// From a parental seed, create its slightly mutated offspring
+grid_cell create_new_seed(
+  const grid_cell& seed,
+  const parameters& p,
+  std::mt19937& rng_engine
+);
 
 ///Is the grid cell empty?
 bool is_empty(const grid_cell& c) noexcept;

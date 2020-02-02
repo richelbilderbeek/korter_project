@@ -3,6 +3,7 @@
 #include <cassert>
 #include <iostream>
 #include <sstream>
+#include <random>
 
 ribi::kp::grid_cell::grid_cell(
   const double trait,
@@ -10,6 +11,31 @@ ribi::kp::grid_cell::grid_cell(
   : m_trait{trait}, m_neutral{neutral}
 {
 
+}
+
+ribi::kp::grid_cell ribi::kp::create_new_seed(
+  const grid_cell& seed,
+  const parameters& p,
+  std::mt19937& rng_engine
+)
+{
+  using namespace std;
+
+  assert(seed.is_seed());
+
+  const double cur_trait{seed.get_trait()};
+  const double cur_neutral{seed.get_neutral()};
+  normal_distribution<double> normal_distr(
+    0.0, p.get_mut_stddev()
+  );
+  const double new_trait_unconstrained{cur_trait + normal_distr(rng_engine)};
+  const double new_trait{max(0.0, new_trait_unconstrained)};
+
+  const double new_neutral{cur_neutral + normal_distr(rng_engine)};
+  return grid_cell(
+    new_trait,
+    new_neutral
+  );
 }
 
 bool ribi::kp::grid_cell::is_empty() const noexcept
