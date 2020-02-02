@@ -4,11 +4,53 @@
 
 using namespace ribi::kp;
 
+BOOST_AUTO_TEST_CASE(ribi_kp_grid_cell_is_empty_by_default)
+{
+  const grid_cell p;
+  BOOST_CHECK(p.is_empty());
+  BOOST_CHECK(!p.is_nurse());
+  BOOST_CHECK(!p.is_seed());
+  BOOST_CHECK(p.get_trait() < 0.0);
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_grid_cell_is_constructed_with_a_trait)
+{
+  const double trait{0.5};
+  const grid_cell p(trait);
+  BOOST_CHECK(!p.is_empty());
+  BOOST_CHECK(!p.is_nurse());
+  BOOST_CHECK(p.is_seed());
+  BOOST_CHECK_EQUAL(p.get_trait(), trait);
+}
+
 BOOST_AUTO_TEST_CASE(ribi_kp_grid_cell_operator_equals)
 {
   {
     const grid_cell p;
     const grid_cell q;
     BOOST_CHECK_EQUAL(p, q);
+  }
+  {
+    const double trait{0.5};
+    const grid_cell p(trait);
+    const grid_cell q(trait);
+    BOOST_CHECK_EQUAL(p, q);
+  }
+  // First is empty
+  {
+    const grid_cell p;
+    const grid_cell q(0.2);
+    BOOST_CHECK_NE(p, q);
+  }
+  // Second is empty
+  {
+    const grid_cell p(0.1);
+    const grid_cell q;
+    BOOST_CHECK_NE(p, q);
+  }
+  {
+    const grid_cell p(0.1);
+    const grid_cell q(0.2);
+    BOOST_CHECK_NE(p, q);
   }
 }

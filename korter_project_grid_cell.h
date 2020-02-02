@@ -19,7 +19,16 @@ struct grid_cell
 
   /// Make the grid cell contain a seed, with a trait of 0.5
   void make_seed(const double trait = 0.5) { m_trait = trait; }
+
+  ///Get the trait that has a fitness effect.
+  ///If the value is lower than zero, this grid cell is
+  ///either empty or a nurse plant.
   double get_trait() const noexcept { return m_trait; }
+
+  ///Set the trait that has a fitness effect.
+  ///This value must be zero or higher.
+  ///To make a grid cell empty or become a nurse plant,
+  ///use 'make_empty' or 'make_nurse'
   void set_trait(const double trait);
 
   private:
