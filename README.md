@@ -9,7 +9,10 @@ Research project for Megan Korte.
 
 ![](pics/20190130.png)
 
- * Videos: [YouTube](https://youtu.be/5pkV3PY8uus) [download (.ogv)](http://richelbilderbeek.nl/korter_project_20190311.ogv)
+## Videos
+
+ * v1.2: [YouTube](https://youtu.be/fjG0mtLOUBQ) [download (.ogv)](http://richelbilderbeek.nl/korter_project_1_2.ogv)
+ * v1.0: [YouTube](https://youtu.be/5pkV3PY8uus) [download (.ogv)](http://richelbilderbeek.nl/korter_project_20190311.ogv)
 
 ## Downloads
 

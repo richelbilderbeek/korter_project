@@ -262,7 +262,8 @@ std::vector<int> ribi::kp::create_neutral_histogram(
   std::vector<int> histogram(n_bins, 0);
   for (const double neutral: neutrals)
   {
-    const int index = neutral / bin_width;
+    int index = neutral / bin_width;
+    if (index < 0) index = 0; //Yup, also range from zero to one
     assert(index >= 0);
     if (index < n_bins) { ++histogram[index]; }
     else { ++histogram.back(); }
