@@ -93,7 +93,7 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_is_facilitated)
   const parameters p = create_test_parameters();
   const simulation s(p);
   const std::vector<bool> expected = { false, true };
-  const auto created = collect_is_facilitated(s.get_grid());
+  const auto created = collect_is_facilitated(s);
   BOOST_CHECK_EQUAL(2, created.size());
   BOOST_CHECK_EQUAL_COLLECTIONS(
     begin(created), end(created),
@@ -122,15 +122,15 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_calc_fitnesses)
   // The parameters for a test grid
   const parameters p = create_test_parameters();
   const simulation s(p);
-  const auto traits = collect_traits(s.get_grid());
+  const auto traits = collect_traits(s);
   BOOST_CHECK_EQUAL(traits[0], 0.25);
   BOOST_CHECK_EQUAL(traits[1], 0.75);
-  const auto is_facilitated = collect_is_facilitated(s.get_grid());
+  const auto is_facilitated = collect_is_facilitated(s);
   BOOST_CHECK_EQUAL(is_facilitated[0], false);
   BOOST_CHECK_EQUAL(is_facilitated[1], true);
 
   //The fitnesses
-  const auto created = calc_fitnesses(s.get_grid(), p);
+  const auto created = calc_fitnesses(s, p);
   BOOST_CHECK_EQUAL(2, created.size());
   const auto fitness_1 = get_fitness(
     p.get_fitness_parameters(),
@@ -184,13 +184,13 @@ BOOST_AUTO_TEST_CASE(ribi_kp_no_selection_for_max_zero)
   for (int i = 0; i != 100; ++i) {
     s.go_to_next_generation();
   }
-  const auto traits = collect_traits(s.get_grid());
+  const auto traits = collect_traits(s);
 
   // 625 grid cells
   // 100 nurse plants
   // 200 seeds
-  const int n_facilitated_seeds = count_n_facilitated_seeds(s.get_grid());
-  const int n_unfacilitated_seeds = count_n_unfacilitated_seeds(s.get_grid());
+  const int n_facilitated_seeds = count_n_facilitated_seeds(s);
+  const int n_unfacilitated_seeds = count_n_unfacilitated_seeds(s);
   assert(p.get_n_seeds() == n_facilitated_seeds + n_unfacilitated_seeds);
 
   // No fitness at trait 0.3

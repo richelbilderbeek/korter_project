@@ -53,11 +53,24 @@ grid add_seeds(
 );
 
 ///Calculate all the seeds' fitnesses.
-///Will return in
+///Will return in the same order as 'collect_traits'
 std::vector<double> calc_fitnesses(
   const grid& grid,
   const parameters& p
 );
+
+///Calculate all the seeds' fitnesses.
+///Will return in the same order as 'collect_traits'
+std::vector<double> calc_fitnesses(
+  const simulation& s,
+  const parameters& p
+);
+
+///Extract the booleans whether seeds are facilitated or not
+std::vector<bool> collect_is_facilitated(const simulation& s);
+
+///Extract the seed trait values
+std::vector<double> collect_traits(const simulation& s);
 
 ///Count the number of empty grid cells in the simulation's grid
 int count_n_empty(const simulation& s) noexcept;

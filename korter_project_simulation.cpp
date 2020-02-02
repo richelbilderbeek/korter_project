@@ -136,6 +136,24 @@ std::vector<double> ribi::kp::calc_fitnesses(
   return fitnesses;
 }
 
+std::vector<double> ribi::kp::calc_fitnesses(
+  const simulation& s,
+  const parameters& p
+)
+{
+  return calc_fitnesses(s.get_grid(), p);
+}
+
+std::vector<bool> ribi::kp::collect_is_facilitated(const simulation& s)
+{
+  return collect_is_facilitated(s.get_grid());
+}
+
+std::vector<double> ribi::kp::collect_traits(const simulation& s)
+{
+  return collect_traits(s.get_grid());
+}
+
 int ribi::kp::count_n_empty(const simulation& s) noexcept
 {
   return count_n_empty(s.get_grid());
