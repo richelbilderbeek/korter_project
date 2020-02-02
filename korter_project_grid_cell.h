@@ -9,13 +9,16 @@ namespace kp {
 struct grid_cell
 {
   ///A grid cell is empty by default
-  grid_cell(const double trait = sm_empty);
+  grid_cell(
+    const double trait = sm_empty,
+    const double neutral = 0.0
+  );
 
-  bool is_empty() const noexcept { return m_trait == sm_empty; }
-  bool is_nurse() const noexcept { return m_trait == sm_nurse; }
-  bool is_seed() const noexcept { return m_trait >= 0.0; }
-  void make_empty() { m_trait = sm_empty; }
-  void make_nurse() { m_trait = sm_nurse; }
+  bool is_empty() const noexcept;
+  bool is_nurse() const noexcept;
+  bool is_seed() const noexcept;
+  void make_empty();
+  void make_nurse();
 
   /// Make the grid cell contain a seed, with a trait of 0.5
   void make_seed(const double trait = 0.5) { m_trait = trait; }
@@ -24,6 +27,9 @@ struct grid_cell
   ///If the value is lower than zero, this grid cell is
   ///either empty or a nurse plant.
   double get_trait() const noexcept { return m_trait; }
+
+  ///Get the neutral marker; the trait that has no fitness effect.
+  double get_neutral() const noexcept { return m_neutral; }
 
   ///Set the trait that has a fitness effect.
   ///This value must be zero or higher.
@@ -35,12 +41,15 @@ struct grid_cell
 
   static constexpr double sm_empty{-12.34};
   static constexpr double sm_nurse{-23.45};
+
+  /// A trait that is under selection:
   /// * 0.0 or bigger if occupied
-  /// * less than zero if empty
+  /// * Equal to 'sm_empty' if empty
+  /// * Equal to 'sm_nurse' if nurse
   double m_trait;
 
-
-
+  /// A neutral marker, a trait that is not under selection
+  double m_neutral;
 
   friend std::ostream& operator<<(std::ostream& os, const grid_cell& g) noexcept;
   friend std::istream& operator>>(std::istream& is, grid_cell& g) noexcept;

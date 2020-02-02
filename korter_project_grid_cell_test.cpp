@@ -23,6 +23,18 @@ BOOST_AUTO_TEST_CASE(ribi_kp_grid_cell_is_constructed_with_a_trait)
   BOOST_CHECK_EQUAL(p.get_trait(), trait);
 }
 
+BOOST_AUTO_TEST_CASE(ribi_kp_grid_cell_is_constructed_with_a_neutral_marker)
+{
+  const double trait{0.1};
+  const double neutral{0.2};
+  const grid_cell p(trait, neutral);
+  BOOST_CHECK(!p.is_empty());
+  BOOST_CHECK(!p.is_nurse());
+  BOOST_CHECK(p.is_seed());
+  BOOST_CHECK_EQUAL(p.get_trait(), trait);
+  BOOST_CHECK_EQUAL(p.get_neutral(), neutral);
+}
+
 BOOST_AUTO_TEST_CASE(ribi_kp_grid_cell_operator_equals)
 {
   {
