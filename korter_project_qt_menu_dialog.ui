@@ -14,7 +14,7 @@
    <font/>
   </property>
   <property name="windowTitle">
-   <string>Korter Project v1.1</string>
+   <string>Korter Project</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QDialog {

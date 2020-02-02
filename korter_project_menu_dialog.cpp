@@ -38,8 +38,8 @@ ribi::About ribi::kp::menu_dialog::GetAbout() const noexcept
     "Richel Bilderbeek",
     "Korter Project",
     "simulation",
-    "the 20th of October 2018",
-    "2018",
+    "the 2nd of February 2020",
+    "2018-2020",
     "https://github.com/richelbilderbeek/korter_project",
     GetVersion(),
     GetVersionHistory()
@@ -49,7 +49,7 @@ ribi::About ribi::kp::menu_dialog::GetAbout() const noexcept
 
 std::string ribi::kp::menu_dialog::GetVersion() const noexcept
 {
-  return "0.2";
+  return "1.2";
 }
 
 std::vector<std::string> ribi::kp::menu_dialog::GetVersionHistory() const noexcept
@@ -58,6 +58,9 @@ std::vector<std::string> ribi::kp::menu_dialog::GetVersionHistory() const noexce
     "2018-10-13: Version 0.1: initial version",
     "2018-10-20: Version 0.2: allow to set fitness maximum, "
       "correctly calculate fitness, no crashes, use correct pics"
+    "2018-10-21: Version 1.0: first complete version",
+    "2020-02-01: Version 1.1: fixed bug",
+    "2020-02-02: Version 1.2: added neutral trait"
   };
 }
 
