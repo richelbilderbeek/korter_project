@@ -77,7 +77,23 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_traits)
   const parameters p = create_test_parameters();
   const simulation s(p);
   const std::vector<double> expected = { 0.25, 0.75 };
-  const auto created = collect_traits(s.get_grid());
+  const auto created = collect_traits(s);
+  BOOST_CHECK_EQUAL(2, created.size());
+  BOOST_CHECK_EQUAL_COLLECTIONS(
+    begin(created), end(created),
+    begin(expected), end(expected)
+  );
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_simulation_collect_neutral_markers)
+{
+  using namespace std;
+
+  // The parameters for a test grid
+  const parameters p = create_test_parameters();
+  const simulation s(p);
+  const std::vector<double> expected = { 0.1, 0.9 };
+  const auto created = collect_neutral(s);
   BOOST_CHECK_EQUAL(2, created.size());
   BOOST_CHECK_EQUAL_COLLECTIONS(
     begin(created), end(created),

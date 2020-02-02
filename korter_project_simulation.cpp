@@ -149,6 +149,11 @@ std::vector<bool> ribi::kp::collect_is_facilitated(const simulation& s)
   return collect_is_facilitated(s.get_grid());
 }
 
+std::vector<double> ribi::kp::collect_neutral(const simulation& s)
+{
+  return collect_neutral(s.get_grid());
+}
+
 std::vector<double> ribi::kp::collect_traits(const simulation& s)
 {
   return collect_traits(s.get_grid());

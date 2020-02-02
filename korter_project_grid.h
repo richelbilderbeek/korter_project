@@ -49,7 +49,12 @@ double calc_frac_fac_seeds(const grid& g);
 ///Extract the seeds that are facilitated
 std::vector<bool> collect_is_facilitated(const grid& g);
 
-///Extract the seed trait values
+///Collect the seed neutral marker values,
+///these markers (that are trait values) are not under selection
+std::vector<double> collect_neutral(const grid& g);
+
+///Collect the seed trait values, the traits
+///are under selection
 std::vector<double> collect_traits(const grid& g);
 
 ///Count the number of empty grid cells

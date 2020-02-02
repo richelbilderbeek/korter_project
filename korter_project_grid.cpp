@@ -76,6 +76,21 @@ std::vector<bool> ribi::kp::collect_is_facilitated(const grid& g)
   return v;
 }
 
+std::vector<double> ribi::kp::collect_neutral(const grid& g)
+{
+  std::vector<double> t;
+  for (const auto& row: g.get_cells())
+  {
+    for (const grid_cell& cell: row)
+    {
+      if (cell.is_seed()) {
+        t.push_back(cell.get_neutral());
+      }
+    }
+  }
+  return t;
+}
+
 std::vector<double> ribi::kp::collect_traits(const grid& g)
 {
   std::vector<double> t;
