@@ -9,6 +9,7 @@
 #include <QGridLayout>
 #include <QTimer>
 #include <QScreen>
+#include <QLabel>
 
 #include <qwt_plot_zoomer.h>
 #include <qwt_plot_grid.h>
@@ -48,7 +49,17 @@ ribi::kp::korter_project_qt_simulation_dialog::korter_project_qt_simulation_dial
   {
     const auto my_layout = ui->widget_right->layout();
     assert(my_layout);
+    {
+      QLabel * const label = new QLabel("Traits under selection:");
+      label->setMaximumHeight(16);
+      my_layout->addWidget(label);
+    }
     my_layout->addWidget(m_traits_in_time_plot);
+    {
+      QLabel * const label = new QLabel("Neutral markers:");
+      label->setMaximumHeight(16);
+      my_layout->addWidget(label);
+    }
     my_layout->addWidget(m_neutrals_in_time_plot);
     my_layout->addWidget(m_qt_scale);
   }
