@@ -49,7 +49,7 @@ ribi::About ribi::kp::menu_dialog::GetAbout() const noexcept
 
 std::string ribi::kp::menu_dialog::GetVersion() const noexcept
 {
-  return "1.2";
+  return "1.2.1";
 }
 
 std::vector<std::string> ribi::kp::menu_dialog::GetVersionHistory() const noexcept
@@ -60,7 +60,8 @@ std::vector<std::string> ribi::kp::menu_dialog::GetVersionHistory() const noexce
       "correctly calculate fitness, no crashes, use correct pics"
     "2018-10-21: Version 1.0: first complete version",
     "2020-02-01: Version 1.1: fixed bug",
-    "2020-02-02: Version 1.2: added neutral trait"
+    "2020-02-02: Version 1.2: added neutral trait",
+    "2020-02-02: Version 1.2.1: fix histogram crash"
   };
 }
 
