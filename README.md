@@ -13,6 +13,7 @@ Research project for Megan Korte.
 
 ## Downloads
 
+ * [Windows executable (v1.2)](http://richelbilderbeek.nl/korter_project_1_2.zip)
  * [Windows executable (v1.1)](http://richelbilderbeek.nl/korter_project_1_1.zip)
  * [Windows executable (v1.0)](http://richelbilderbeek.nl/korter_project_desktop.zip)
 
