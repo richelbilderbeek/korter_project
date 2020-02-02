@@ -76,6 +76,14 @@ void ribi::kp::grid_cell::make_seed(
   assert(!is_nurse());
 }
 
+void ribi::kp::grid_cell::set_neutral(const double neutral)
+{
+  assert(is_seed());
+  m_neutral = neutral;
+  assert(!is_empty());
+  assert(!is_nurse());
+}
+
 void ribi::kp::grid_cell::set_trait(const double trait)
 {
   assert(trait >= 0.0);

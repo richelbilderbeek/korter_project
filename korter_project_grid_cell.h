@@ -35,11 +35,17 @@ struct grid_cell
   ///Get the neutral marker; the trait that has no fitness effect.
   double get_neutral() const noexcept { return m_neutral; }
 
+  ///Set the neutral marker; the trait that has no fitness effect.
+  ///To make a grid cell empty or become a nurse plant,
+  ///use 'make_empty' or 'make_nurse'
+  void set_neutral(const double neutral);
+
   ///Set the trait that has a fitness effect.
   ///This value must be zero or higher.
   ///To make a grid cell empty or become a nurse plant,
   ///use 'make_empty' or 'make_nurse'
   void set_trait(const double trait);
+
 
   private:
 

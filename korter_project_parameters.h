@@ -24,10 +24,14 @@ struct parameters
     const int rng_seed = 0,
     const double trait_histogram_bin_width = 0.1,
     const int max_n_generations = 1000,
-    const std::string& results_filename = "results.csv"
+    const std::string& results_filename = "results.csv",
+    const double init_neutral_mean = 0.5,
+    const double init_neutral_stddev = 0.1
   );
 
   const auto& get_fitness_parameters() const noexcept { return m_fitness_parameters; }
+  double get_init_neutral_mean() const noexcept { return m_init_neutral_mean; }
+  double get_init_neutral_stddev() const noexcept { return m_init_neutral_stddev; }
   double get_init_trait_mean() const noexcept { return m_init_trait_mean; }
   double get_init_trait_stddev() const noexcept { return m_init_trait_stddev; }
 
@@ -46,9 +50,10 @@ struct parameters
 
   const std::string& get_results_filename() const noexcept { return m_results_filename; }
 
-
-  ///Create a testing parameter set
-  static parameters GetTest(const int i);
+  void set_init_neutral_mean(const double mean);
+  void set_init_neutral_stddev(const double stddev);
+  void set_init_trait_mean(const double mean);
+  void set_init_trait_stddev(const double stddev);
 
   void set_n_nurse_plants(const int n_nurse_plants);
   void set_n_seeds(const int n_seeds);
@@ -87,6 +92,9 @@ struct parameters
   ///If true, the testing grid is used,
   ///as can be created by 'create_test_grid'
   bool m_use_test_grid = false;
+
+  double m_init_neutral_mean;
+  double m_init_neutral_stddev;
 
   friend std::ostream& operator<<(std::ostream& os, const parameters& parameter) noexcept;
   friend std::istream& operator>>(std::istream& is, parameters& parameter) noexcept;

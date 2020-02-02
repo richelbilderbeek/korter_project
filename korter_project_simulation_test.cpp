@@ -165,6 +165,56 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_calc_fitnesses)
   );
 }
 
+
+BOOST_AUTO_TEST_CASE(ribi_kp_traits_are_correctly_initialized)
+{
+  using namespace std;
+  parameters p;
+  p.set_spatial_width(10);
+  p.set_spatial_height(10);
+  p.set_n_nurse_plants(0);
+  p.set_n_seeds(10 * 10);
+  p.set_init_trait_mean(3.14);
+  p.set_init_trait_stddev(0.1);
+  const simulation s(p);
+  const auto traits = collect_traits(s);
+  assert(traits.size() != 0);
+  const double expected_mean = p.get_init_trait_mean();
+  const double expected_stddev = p.get_init_trait_stddev();
+  const double actual_mean{
+    accumulate(begin(traits), end(traits), 0.0)
+    / static_cast<double>(traits.size())
+  };
+  // Actual mean should be within standard deviations
+  BOOST_CHECK_GT(actual_mean, expected_mean - expected_stddev);
+  BOOST_CHECK_LT(actual_mean, expected_mean + expected_stddev);
+}
+
+BOOST_AUTO_TEST_CASE(ribi_kp_neutral_markers_are_correctly_initialized)
+{
+  using namespace std;
+  parameters p;
+  p.set_spatial_width(10);
+  p.set_spatial_height(10);
+  p.set_n_nurse_plants(0);
+  p.set_n_seeds(10 * 10);
+  p.set_init_neutral_mean(314.15);
+  p.set_init_neutral_stddev(14.0);
+  const simulation s(p);
+  const auto neutrals = collect_neutral(s);
+  assert(neutrals.size() != 0);
+  const double expected_mean = p.get_init_neutral_mean();
+  const double expected_stddev = p.get_init_neutral_stddev();
+  const double actual_mean{
+    accumulate(begin(neutrals), end(neutrals), 0.0)
+    / static_cast<double>(neutrals.size())
+  };
+  // Actual mean should be within standard deviations
+  BOOST_CHECK_GT(actual_mean, expected_mean - expected_stddev);
+  BOOST_CHECK_LT(actual_mean, expected_mean + expected_stddev);
+}
+
+
 BOOST_AUTO_TEST_CASE(ribi_kp_no_selection_for_max_zero)
 {
   // We set a fitness of the facilitated plant

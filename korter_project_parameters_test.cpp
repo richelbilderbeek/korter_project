@@ -51,6 +51,37 @@ BOOST_AUTO_TEST_CASE(ribi_kp_parameters_construction)
 
 }
 
+BOOST_AUTO_TEST_CASE(ribi_kp_set_and_get_are_symmetrical)
+{
+  // init_trait_mean
+  {
+    const double init_trait_mean{12.34};
+    parameters p;
+    p.set_init_trait_mean(init_trait_mean);
+    BOOST_CHECK_EQUAL(init_trait_mean, p.get_init_trait_mean());
+  }
+  // init_trait_stddev
+  {
+    const double init_trait_stddev{12.34};
+    parameters p;
+    p.set_init_trait_stddev(init_trait_stddev);
+    BOOST_CHECK_EQUAL(init_trait_stddev, p.get_init_trait_stddev());
+  }
+  // init_neutral_mean
+  {
+    const double init_neutral_mean{12.34};
+    parameters p;
+    p.set_init_neutral_mean(init_neutral_mean);
+    BOOST_CHECK_EQUAL(init_neutral_mean, p.get_init_neutral_mean());
+  }
+  // init_neutral_stddev
+  {
+    const double init_neutral_stddev{12.34};
+    parameters p;
+    p.set_init_neutral_stddev(init_neutral_stddev);
+    BOOST_CHECK_EQUAL(init_neutral_stddev, p.get_init_neutral_stddev());
+  }
+}
 
 BOOST_AUTO_TEST_CASE(ribi_kp_parameters_operator_equals)
 {

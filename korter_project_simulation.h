@@ -46,9 +46,7 @@ grid add_nurse_plants(
 ///Add seeds/non-nurse plants to a grid
 grid add_seeds(
   grid g,
-  const int n_seeds,
-  const double init_trait_mean,
-  const double init_trait_stddev,
+  const parameters& p,
   std::mt19937& rng_engine
 );
 

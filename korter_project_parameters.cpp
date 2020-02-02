@@ -17,7 +17,9 @@ ribi::kp::parameters::parameters(
   const int rng_seed,
   const double trait_histogram_bin_width,
   const int max_n_generations,
-  const std::string& results_filename
+  const std::string& results_filename,
+  const double init_neutral_mean,
+  const double init_neutral_stddev
 ) : m_fitness_parameters(fp),
     m_init_trait_mean{init_trait_mean},
     m_init_trait_stddev{init_trait_stddev},
@@ -30,7 +32,9 @@ ribi::kp::parameters::parameters(
     m_rng_seed{rng_seed},
     m_trait_histogram_bin_width{trait_histogram_bin_width},
     m_max_n_generations{max_n_generations},
-    m_results_filename{results_filename}
+    m_results_filename{results_filename},
+    m_init_neutral_mean{init_neutral_mean},
+    m_init_neutral_stddev{init_neutral_stddev}
 {
   assert(m_init_trait_mean >= 0.0);
   assert(m_init_trait_stddev >= 0.0);
@@ -46,6 +50,7 @@ ribi::kp::parameters::parameters(
   assert(m_trait_histogram_bin_width > 0.0);
   assert(m_max_n_generations > 0);
   assert(!m_results_filename.empty());
+  assert(m_init_neutral_stddev > 0.0);
 
   if (m_n_nurse_plants + m_n_seeds > m_spatial_width * m_spatial_height)
   {
@@ -72,18 +77,27 @@ ribi::kp::parameters ribi::kp::create_test_parameters() noexcept
   return p;
 }
 
-ribi::kp::parameters ribi::kp::parameters::GetTest(const int /* i */)
+void ribi::kp::parameters::set_init_neutral_mean(const double mean)
 {
-  assert(1 == 2);
-  const parameters p(
-    fitness_parameters(0.5, 0.1, 1.0, 0.1, 0.2, 1.0),
-    10, //spatial_height
-    10, //spatial_width
-    0.1, //n_nurse_plants,
-    0.1, //n_seeds,
-    0.0 //any_n_nurse_plants,
-  );
-  return p;
+  m_init_neutral_mean = mean;
+}
+
+void ribi::kp::parameters::set_init_neutral_stddev(const double stddev)
+{
+  assert(stddev > 0.0);
+  m_init_neutral_stddev = stddev;
+}
+
+void ribi::kp::parameters::set_init_trait_mean(const double mean)
+{
+  assert(mean >= 0.0);
+  m_init_trait_mean = mean;
+}
+
+void ribi::kp::parameters::set_init_trait_stddev(const double stddev)
+{
+  assert(stddev > 0.0);
+  m_init_trait_stddev = stddev;
 }
 
 void ribi::kp::parameters::set_n_nurse_plants(const int n_nurse_plants)

@@ -22,12 +22,7 @@ ribi::kp::simulation::simulation(const parameters& p)
   assert(n_nurse + n_seeds <= width * height);
 
   m_grid = add_nurse_plants(m_grid, n_nurse, m_rng_engine);
-  m_grid = add_seeds(
-    m_grid,
-    n_seeds,
-    p.get_init_trait_mean(),
-    p.get_init_trait_stddev(),
-    m_rng_engine);
+  m_grid = add_seeds(m_grid, m_parameters, m_rng_engine);
 
   add_trait_histogram();
 }
@@ -65,11 +60,11 @@ ribi::kp::grid ribi::kp::add_nurse_plants(
 
 ribi::kp::grid ribi::kp::add_seeds(
   grid g,
-  const int n_seeds,
-  const double init_trait_mean,
-  const double init_trait_stddev,
+  const parameters& p,
   std::mt19937& rng_engine)
 {
+  const int n_seeds{p.get_n_seeds()};
+
   assert(n_seeds <= count_n_empty(g));
   const int width{g.get_width()};
   const int height{g.get_height()};
@@ -86,9 +81,19 @@ ribi::kp::grid ribi::kp::add_seeds(
     assert(y < g.get_height());
     if (g.get(x, y).is_empty())
     {
-      std::normal_distribution<double> d(init_trait_mean, init_trait_stddev);
-      const double trait{d(rng_engine)};
-      g.get(x, y).set_trait(std::max(0.0, trait));
+      const double init_trait_mean{p.get_init_trait_mean()};
+      const double init_trait_stddev{p.get_init_trait_stddev()};
+      std::normal_distribution<double> d_trait(init_trait_mean, init_trait_stddev);
+      const double unconstrained_trait{d_trait(rng_engine)};
+      const double trait{std::max(0.0, unconstrained_trait)};
+      assert(trait >= 0.0);
+      g.get(x, y).set_trait(trait);
+
+      const double init_neutral_mean{p.get_init_neutral_mean()};
+      const double init_neutral_stddev{p.get_init_neutral_stddev()};
+      std::normal_distribution<double> d_neutral(init_neutral_mean, init_neutral_stddev);
+      const double neutral{d_neutral(rng_engine)};
+      g.get(x, y).set_neutral(neutral);
     }
     else
     {
