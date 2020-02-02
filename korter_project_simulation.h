@@ -59,11 +59,21 @@ std::vector<double> calc_fitnesses(
   const parameters& p
 );
 
+///Count the number of empty grid cells in the simulation's grid
+int count_n_empty(const simulation& s) noexcept;
+
+///Count the number of facilitated seeds in the simulation's grid
+int count_n_facilitated_seeds(const simulation& s) noexcept;
+
 ///Count the number of nurse plants in the simulation's grid
 int count_n_nurse(const simulation& s) noexcept;
 
 ///Count the number of seed/non-nurse plants in the simulation's grid
 int count_n_seeds(const simulation& s) noexcept;
+
+
+///Count the number of unfacilitated seeds in the simulation's grid
+int count_n_unfacilitated_seeds(const simulation& s) noexcept;
 
 ///Create a density plot from a histogram
 ///In practice, simply converts the int to double,

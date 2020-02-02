@@ -110,9 +110,9 @@ BOOST_AUTO_TEST_CASE(ribi_kp_simulation_count)
   const simulation s(p);
   BOOST_CHECK_EQUAL(1, count_n_nurse(s));
   BOOST_CHECK_EQUAL(2, count_n_seeds(s));
-  BOOST_CHECK_EQUAL(1, count_n_facilitated_seeds(s.get_grid()));
-  BOOST_CHECK_EQUAL(1, count_n_unfacilitated_seeds(s.get_grid()));
-  BOOST_CHECK_EQUAL(9, count_n_empty(s.get_grid()));
+  BOOST_CHECK_EQUAL(1, count_n_facilitated_seeds(s));
+  BOOST_CHECK_EQUAL(1, count_n_unfacilitated_seeds(s));
+  BOOST_CHECK_EQUAL(9, count_n_empty(s));
 }
 
 BOOST_AUTO_TEST_CASE(ribi_kp_simulation_calc_fitnesses)

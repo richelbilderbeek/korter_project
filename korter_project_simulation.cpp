@@ -7,7 +7,7 @@
 ribi::kp::simulation::simulation(const parameters& p)
   : m_grid(p.get_spatial_width(), p.get_spatial_height()),
     m_parameters{p},
-    m_rng_engine(p.get_rng_seed()),
+    m_rng_engine(static_cast<unsigned long>(p.get_rng_seed())),
     m_trait_histograms{}
 {
   assert(m_grid.get_width() == p.get_spatial_width());
@@ -136,6 +136,16 @@ std::vector<double> ribi::kp::calc_fitnesses(
   return fitnesses;
 }
 
+int ribi::kp::count_n_empty(const simulation& s) noexcept
+{
+  return count_n_empty(s.get_grid());
+}
+
+int ribi::kp::count_n_facilitated_seeds(const simulation& s) noexcept
+{
+  return count_n_facilitated_seeds(s.get_grid());
+}
+
 int ribi::kp::count_n_nurse(const simulation& s) noexcept
 {
   return count_n_nurse(s.get_grid());
@@ -144,6 +154,11 @@ int ribi::kp::count_n_nurse(const simulation& s) noexcept
 int ribi::kp::count_n_seeds(const simulation& s) noexcept
 {
   return count_n_seeds(s.get_grid());
+}
+
+int ribi::kp::count_n_unfacilitated_seeds(const simulation& s) noexcept
+{
+  return count_n_unfacilitated_seeds(s.get_grid());
 }
 
 std::vector<double> ribi::kp::create_density_plot(const std::vector<int>& histogram)

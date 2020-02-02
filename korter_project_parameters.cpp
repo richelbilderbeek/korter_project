@@ -38,7 +38,9 @@ ribi::kp::parameters::parameters(
   assert(m_n_nurse_plants >= 0.0);
   assert(m_n_seeds >= 0.0);
   assert(m_n_trait_histogram_bins >= 1);
-  assert(m_rng_seed >= 0.0);
+  assert(m_rng_seed >= 0);
+  // Can cast to unsigned long (used by std::mt19937) and back
+  assert(m_rng_seed == static_cast<int>(static_cast<unsigned long>(m_rng_seed)));
   assert(m_spatial_height > 0);
   assert(m_spatial_width > 0);
   assert(m_trait_histogram_bin_width > 0.0);
@@ -72,7 +74,7 @@ ribi::kp::parameters ribi::kp::create_test_parameters() noexcept
 
 ribi::kp::parameters ribi::kp::parameters::GetTest(const int /* i */)
 {
-
+  assert(1 == 2);
   const parameters p(
     fitness_parameters(0.5, 0.1, 1.0, 0.1, 0.2, 1.0),
     10, //spatial_height
