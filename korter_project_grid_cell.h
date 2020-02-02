@@ -20,8 +20,12 @@ struct grid_cell
   void make_empty();
   void make_nurse();
 
-  /// Make the grid cell contain a seed, with a trait of 0.5
-  void make_seed(const double trait = 0.5) { m_trait = trait; }
+  /// Make the grid cell contain a seed,
+  /// with a trait of 0.5 and a neutral marker of 0.0
+  void make_seed(
+    const double trait = 0.5,
+    const double neutral = 0.0
+  );
 
   ///Get the trait that has a fitness effect.
   ///If the value is lower than zero, this grid cell is

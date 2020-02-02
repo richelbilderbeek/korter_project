@@ -60,9 +60,25 @@ BOOST_AUTO_TEST_CASE(ribi_kp_grid_cell_operator_equals)
     const grid_cell q;
     BOOST_CHECK_NE(p, q);
   }
+  // Different traits
   {
     const grid_cell p(0.1);
     const grid_cell q(0.2);
+    BOOST_CHECK_NE(p, q);
+  }
+  // Same trait, same neutral marker
+  {
+    const double trait{0.5};
+    const double neutral{1.2};
+    const grid_cell p(trait, neutral);
+    const grid_cell q(trait, neutral);
+    BOOST_CHECK_EQUAL(p, q);
+  }
+  // Same trait, different neutral marker
+  {
+    const double trait{0.5};
+    const grid_cell p(trait, 0.2);
+    const grid_cell q(trait, 0.6);
     BOOST_CHECK_NE(p, q);
   }
 }

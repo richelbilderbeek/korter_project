@@ -64,6 +64,18 @@ void ribi::kp::grid_cell::make_nurse()
   assert(is_nurse());
 }
 
+void ribi::kp::grid_cell::make_seed(
+  const double trait,
+  const double neutral
+)
+{
+  m_trait = trait;
+  m_neutral = neutral;
+  assert(is_seed());
+  assert(!is_empty());
+  assert(!is_nurse());
+}
+
 void ribi::kp::grid_cell::set_trait(const double trait)
 {
   assert(trait >= 0.0);
@@ -79,7 +91,9 @@ bool ribi::kp::operator==(const grid_cell& lhs, const grid_cell& rhs) noexcept
   // 'sm_empty' and 'sm_nurse'
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wfloat-equal"
-  return lhs.get_trait() == rhs.get_trait();
+  return lhs.get_trait() == rhs.get_trait()
+    && lhs.get_neutral() == rhs.get_neutral()
+  ;
   #pragma GCC diagnostic pop
 }
 
