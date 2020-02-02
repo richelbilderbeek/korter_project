@@ -202,15 +202,16 @@ ribi::kp::grid ribi::kp::create_test_grid() noexcept
   // N: Nurse plant
   // F: Facilitated plant/seed, because adjacent to nurse
   //    trait value 0.75
+  //    neutral marker value 0.9
   // U: Unfacilitated plant/seed, because not adjacent to nurse
   //    trait value 0.25
-
+  //    neutral marker value 0.1
   const int width{4};
   const int height{3};
   grid g(width, height);
   g.get(1, 1).make_nurse(); // N
-  g.get(3, 1).make_seed(0.25); // U
-  g.get(1, 2).make_seed(0.75); // F
+  g.get(3, 1).make_seed(0.25, 0.1); // U
+  g.get(1, 2).make_seed(0.75, 0.9); // F
   return g;
 }
 

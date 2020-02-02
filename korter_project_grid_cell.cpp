@@ -117,5 +117,3 @@ std::istream& ribi::kp::operator>>(std::istream& is, grid_cell& parameter) noexc
   ;
   return is;
 }
-
-

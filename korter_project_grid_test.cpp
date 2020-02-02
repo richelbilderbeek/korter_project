@@ -83,10 +83,12 @@ BOOST_AUTO_TEST_CASE(ribi_kp_test_grid_is_setup_as_expected)
   BOOST_CHECK(g.get(2, 1).is_empty());
   BOOST_CHECK(g.get(3, 1).is_seed()); //U
   BOOST_CHECK_EQUAL(g.get(3, 1).get_trait(), 0.25); //U
+  BOOST_CHECK_EQUAL(g.get(3, 1).get_neutral(), 0.1); //U
 
   BOOST_CHECK(g.get(0, 2).is_empty());
   BOOST_CHECK(g.get(1, 2).is_seed()); //F
   BOOST_CHECK_EQUAL(g.get(1, 2).get_trait(), 0.75); //F
+  BOOST_CHECK_EQUAL(g.get(1, 2).get_neutral(), 0.9); //F
   BOOST_CHECK(g.get(2, 2).is_empty());
   BOOST_CHECK(g.get(3, 2).is_empty());
 }
