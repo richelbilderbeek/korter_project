@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>844</width>
-    <height>749</height>
+    <width>425</width>
+    <height>433</height>
    </rect>
   </property>
   <property name="font">
@@ -42,7 +42,7 @@ QPushButton
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap resource="korter_project.qrc">:/pics/site.jpg</pixmap>
+      <pixmap resource="korter_project.qrc">:/pics/site_50.jpg</pixmap>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>

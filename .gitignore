@@ -41,3 +41,4 @@ moc_*
 *.gcno
 *.zip
 qrc_*.cpp
+compile_commands.json
