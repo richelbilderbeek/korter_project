@@ -51,6 +51,11 @@ script:
   - rm -rf debug
   - rm -rf release
   - cd ..; sloccount --overhead 1 --personcost 22614 korter_project; cd korter_project
+  # Download thesis
+  - Rscript -e 'download.file("https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf", tempfile())'
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+  # Download thesis
+  - Rscript -e 'download.file("https://www.rug.nl/research/portal/files/132028374/Complete_thesis.pdf", tempfile())'
+
